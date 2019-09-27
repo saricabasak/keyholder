@@ -1,17 +1,24 @@
 import React from "react";
-import { Container, Content } from "native-base";
+import { Container, Content,Button } from "native-base";
 import PasswordHeader from './PasswordHeader';
 import PasswordItemList from './PasswordItemList';
 import PasswordFooter from './PasswordFooter';
 
-export default function MainPage() {
-  return (
+export default class MainPage extends React.Component {
+  
+  render(){
+    const navigatePasswordItemDetail = () => {
+      this.props.navigation.navigate('PasswordItemDetail')
+    }
+
+    return (
     <Container>
       <PasswordHeader />
       <Content>
-        <PasswordItemList />
+        <PasswordItemList navigatePasswordItemDetail = {navigatePasswordItemDetail} />
       </Content>
       <PasswordFooter />
     </Container>
   );
+}
 }

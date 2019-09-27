@@ -3,13 +3,14 @@ import { List } from 'native-base';
 import PasswordItem from './PasswordItem';
 
 export default class PasswordItemList extends Component {
+    
     render() {
         return (
             <List>
-                <PasswordItem/>
-                    <PasswordItem/>
-                        <PasswordItem/>
-                            <PasswordItem/>
+                <PasswordItem navigatePasswordItemDetail = {this.props.navigatePasswordItemDetail}/>
+                    <PasswordItem />
+                        <PasswordItem />
+                            <PasswordItem />
             </List>
         );
     }

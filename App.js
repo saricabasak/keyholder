@@ -1,12 +1,15 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import MainPage from "./components/MainPage";
+import { createBottomTabNavigator } from "react-navigation-tabs";
+import { Icon } from 'native-base';
+import HomePage from "./pages/HomePage";
+import ProfilePage from "./pages/ProfilePage";
 import PasswordItemDetail from "./components/PasswordItemDetail";
 
 const AppNavigator = createStackNavigator(
   {
-    MainPage:MainPage,
+    HomePage:HomePage,
     PasswordItemDetail:  PasswordItemDetail
   },
   {
@@ -17,7 +20,42 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+const TabNavigator = createBottomTabNavigator(
+  {
+    ProfilePage: {
+      screen: ProfilePage,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+            <Icon name='person' />
+        )
+      }
+    },
+    HomePage: {
+      screen: HomePage,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+            <Icon name='home' />
+        )
+      }
+    },
+    PasswordItemDetail: {
+      screen: PasswordItemDetail,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+            <Icon name='save' />
+        )
+      }
+    }
+  }, {
+    initialRouteName: "HomePage",
+    tabBarOptions: {
+      showIcon: true,
+      showLabel: false
+    }
+  }
+);
+
+const AppContainer = createAppContainer(TabNavigator);
 
 export default class App extends React.Component {
   render() {

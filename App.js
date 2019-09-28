@@ -1,7 +1,7 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import { createBottomTabNavigator } from "react-navigation-tabs";
+import { createBottomTabNavigator,createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { Icon } from 'native-base';
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
@@ -21,7 +21,7 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-const TabNavigator = createBottomTabNavigator(
+const TabNavigator = createMaterialTopTabNavigator(
   {
     ProfilePage: {
       screen: ProfilePage,
@@ -49,6 +49,7 @@ const TabNavigator = createBottomTabNavigator(
     }
   }, {
     initialRouteName: "HomePage",
+    tabBarPosition :'bottom',
     tabBarOptions: {
       showIcon: true,
       showLabel: false

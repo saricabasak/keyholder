@@ -10,15 +10,15 @@ class PasswordItemDetail extends Component {
               <Form>
                   <Item floatingLabel>
                       <Label>Name</Label>
-                      <Input />
+                      <Input value = {this.props.navigation.getParam('name', '')} />
                   </Item>
                   <Item floatingLabel>
                       <Label>Username</Label>
-                      <Input />
+                      <Input value = {this.props.navigation.getParam('username', '')} />
                   </Item>
                   <Item floatingLabel>
                       <Label>Password</Label>
-                      <Input />
+                      <Input value = {this.props.navigation.getParam('password', '')} />
                   </Item>
                   <Button rounded onPress={() => {this.props.navigation.navigate('HomePage')}}>
                       <Icon name='save' />

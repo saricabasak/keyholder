@@ -5,7 +5,7 @@ export default class PasswordItem extends Component {
     render() {
         return (
             <ListItem onPress = {this.props.navigatePasswordItemDetail}>
-                <Text>Password Item</Text>
+                <Text>{this.props.passworditem.name}</Text>
             </ListItem>
         );
     }

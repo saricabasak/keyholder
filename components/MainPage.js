@@ -3,8 +3,13 @@ import { Container, Content,Button } from "native-base";
 import PasswordHeader from './PasswordHeader';
 import PasswordItemList from './PasswordItemList';
 import PasswordFooter from './PasswordFooter';
+import { connect } from 'react-redux';
 
-export default class MainPage extends React.Component {
+class MainPage extends React.Component {
+
+  static navigationOptions = {
+    headerTitle: <PasswordHeader/>,
+  };
   
   render(){
     const navigatePasswordItemDetail = () => {
@@ -13,12 +18,19 @@ export default class MainPage extends React.Component {
 
     return (
     <Container>
-      <PasswordHeader />
       <Content>
-        <PasswordItemList navigatePasswordItemDetail = {navigatePasswordItemDetail} />
+        <PasswordItemList navigatePasswordItemDetail = {navigatePasswordItemDetail} passwordItems = {this.props.items} />
       </Content>
-      <PasswordFooter />
     </Container>
   );
 }
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+      items: state.PasswordItemReducer.PasswordItems
+  }
+}
+
+export default connect(mapStateToProps, null)(MainPage);

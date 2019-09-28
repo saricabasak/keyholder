@@ -6,7 +6,7 @@ class PasswordItem extends Component {
     render() {
         return (
             <ListItem button onPress = {() => {this.props.navigation.navigate('PasswordItemDetail')}}>
-                <Text>Password Item</Text>
+                <Text>{this.props.passworditem.name}</Text>
             </ListItem>
         );
     }

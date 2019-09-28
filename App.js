@@ -5,18 +5,19 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Icon } from 'native-base';
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
+import PasswordHeader from "./components/PasswordHeader";
 import PasswordItemDetail from "./components/PasswordItemDetail";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./store/reducers/index";
+
+
 
 const AppNavigator = createStackNavigator(
   {
-    HomePage:HomePage,
-    PasswordItemDetail:  PasswordItemDetail
-  },
-  {
-    headerMode: "none",
-    navigationOptions: {
-      headerVisible: false
-    }
+    HomePage: HomePage,
+    PasswordItemDetail:  PasswordItemDetail,
+    ProfilePage: ProfilePage
   }
 );
 
@@ -57,8 +58,15 @@ const TabNavigator = createBottomTabNavigator(
 
 const AppContainer = createAppContainer(TabNavigator);
 
+const store = createStore(reducer);
+
 export default class App extends React.Component {
   render() {
-    return <AppContainer/>;
+    return (
+      <Provider store={store}>
+        <PasswordHeader/>
+        <AppContainer />
+      </Provider>
+    );
   }
 }

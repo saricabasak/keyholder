@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { withNavigation } from 'react-navigation';
-import {Container, Content, Form, Item, Label, Input, Button, Icon } from 'native-base';
+import { Content, Form, Item, Label, Input, Button, Icon } from 'native-base';
 import PasswordHeader from './PasswordHeader';
 
 class PasswordItemDetail extends Component {
     render() {
         return (
-        <Container>
-          <PasswordHeader />
           <Content>
               <Form>
                   <Item floatingLabel>
@@ -27,7 +25,6 @@ class PasswordItemDetail extends Component {
                   </Button>
               </Form>
           </Content>
-        </Container>
         );
     }
 }

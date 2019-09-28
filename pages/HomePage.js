@@ -1,18 +1,21 @@
 import React from "react";
+import { connect } from 'react-redux';
 import { Container, Content } from "native-base";
-import PasswordHeader from '../components/PasswordHeader';
 import PasswordItemList from '../components/PasswordItemList';
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
 
   render(){
     return (
-    <Container>
-      <PasswordHeader />
-      <Content>
-        <PasswordItemList/>
-      </Content>
-    </Container>
-  );
+          <PasswordItemList passwordItems = {this.props.items}/>
+    );
+  }
 }
+
+const mapStateToProps = (state) => {
+  return {
+      items: state.PasswordItemReducer.PasswordItems
+  }
 }
+
+export default connect(mapStateToProps, null)(HomePage);

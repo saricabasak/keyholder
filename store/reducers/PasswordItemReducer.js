@@ -1,5 +1,7 @@
+import {retrieveAllData,saveData} from '../../components/StorageOperations';
+
 const initialState = {
-    PasswordItems: [
+    /*PasswordItems: [
         {
             name : "Facebook Pass",
             username: "erkanerkisi@gmail.com",
@@ -20,29 +22,30 @@ const initialState = {
             username: "saricabasak@gmail.com",
             password: "1f3er4t54rt0"
         }
-    ]
+    ]*/
+    PasswordItems:[]
 } 
 
 const PasswordItemReducer = (state = initialState, action) => {
     const newState = {...state};
-    /*if(action.type === 'ADD'){
-        let todos = [...newState.items];
-        todos.push({
-                value:action.payload,
-                isCompleted:false
-            });
-        newState.items = todos
+    if(action.type === 'SET_ALL_ITEM_STORE'){
+        console.log("PasswordItemReducer - SET_ALL_ITEM_STORE");
+        let passwordItemList = [...newState.PasswordItems];
+        passwordItemList = action.payload
+        newState.PasswordItems = passwordItemList
+        /*retrieveAllData().then((data) => {
+            console.log("PasswordItemReducer JSON.stringify(data) ->>>" + JSON.stringify(data));
+            console.log("PasswordItemReducer data "+ data);
+            newState.PasswordItems = data
+            console.log("PasswordItemReducer JSON.stringify(newState.items) "+ JSON.stringify(newState.items));
+          });*/
     }
-    else if(action.type === 'DELETE'){
-        let todos = [...newState.items];
-        todos.splice(action.payload,1);
-        newState.items = todos
+    else if(action.type === 'ADD_PASSWORD_ITEM'){
+        let passwordItemList = [...newState.PasswordItems];
+        passwordItemList.push(action.payload);
+        newState.PasswordItems = passwordItemList
+        console.log("PasswordItemReducer SAVE_PASSWORD_ITEM "+ JSON.stringify(newState.PasswordItems));
     }
-    else if(action.type === 'TOGGLE'){
-        let todos = [...newState.items];
-        todos[action.payload].isCompleted = !todos[action.payload].isCompleted
-        newState.items = todos
-    }*/
 
     return newState;
 }

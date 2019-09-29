@@ -7,11 +7,14 @@ class PasswordItem extends Component {
         return (
             <ListItem
               button
-              onPress = {() => {this.props.navigation.navigate('PasswordItemDetail', {
+              onPress = {() => {
+                console.log("nav ->>>>>>>>>>>>>>> " + JSON.stringify(this.props.navigation));
+                this.props.navigation.navigate('PasswordPage', {
                 name: this.props.passworditem.name,
                 username: this.props.passworditem.username,
                 password: this.props.passworditem.password
-              })}}
+              })
+              }}
             >
               <Left>
                 <Text>{this.props.passworditem.name}</Text>

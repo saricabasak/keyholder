@@ -24,7 +24,7 @@ class PasswordItemDetail extends Component {
         specialValue: true
       };
     }
-    
+
 
   onNameChange(value: string) {
     this.setState(prevState => ({
@@ -89,18 +89,18 @@ class PasswordItemDetail extends Component {
             }));
         }
     }
-    
+
     savePasswordItemDetail = passwordItem => {
         console.log("savePasswordItemDetail" + JSON.stringify(passwordItem));
         this.props.addPasswordItemArrOnStore(passwordItem);
     };
-    
+
   render() {
     console.log("PasswordItemDetail render passworditem:" + JSON.stringify(this.props.passworditem));
     return (
         <Content
-          contentContainerStyle={{ 
-            flex: 1, 
+          contentContainerStyle={{
+            flex: 1,
             flexDirection: "column",
             justifyContent: "space-between"
           }}
@@ -108,24 +108,24 @@ class PasswordItemDetail extends Component {
       <Form>
         <Item>
           <Icon name="ios-bookmark" />
-          <Label>Name</Label>
           <Input
+            placeholder="Name"
             value={this.state.passwordItem.name}
             onChangeText={this.onNameChange.bind(this)}
           />
         </Item>
-        <Item inlineLabel>
+        <Item>
           <Icon name="person" />
-          <Label>Username</Label>
           <Input
+            placeholder="Username"
             value={this.state.passwordItem.username}
             onChangeText={this.onUsernameChange.bind(this)}
           />
         </Item>
-        <Item inlineLabel>
+        <Item>
           <Icon name="key" />
-          <Label>Password</Label>
           <Input
+            placeholder="Password"
             maxLength={20}
             value={this.state.passwordItem.password}
             onChangeText={this.onPasswordChange.bind(this)}
@@ -137,8 +137,6 @@ class PasswordItemDetail extends Component {
             <Icon name="ios-create" />
           </Button>
         </Item>
-      </Form>
-      <List>
         <ListItem>
           <Left>
             <Text>Length</Text>
@@ -205,7 +203,7 @@ class PasswordItemDetail extends Component {
             />
           </Right>
         </ListItem>
-      </List>
+      </Form>
         <Button
           iconLeft
           onPress={() => {
@@ -232,7 +230,7 @@ const mapDispatchToProps = dispatch => {
     addPasswordItemArrOnStore: data =>
       dispatch(addPasswordItemArrOnStoreAction(data))
   };
-}; 
+};
 
 export default connect(
     mapStateToProps,

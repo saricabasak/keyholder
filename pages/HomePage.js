@@ -2,10 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PasswordItemList from "../components/PasswordItemList";
 import { setPasswordItemArrOnStoreAction } from "../store/actions/PasswordItemAction";
-import {
-  retrieveAllData,
-  clearAsyncStorage
-} from "../components/StorageOperations";
+import { retrieveAllData, clearAsyncStorage} from "../components/StorageOperations";
 
 class HomePage extends React.Component {
   componentWillMount() {

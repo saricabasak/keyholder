@@ -5,6 +5,7 @@ import { Icon } from 'native-base';
 import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
 import PasswordPage from "../pages/PasswordPage";
+import NavigationService from './NavigationService';
 
 const TabNavigator = createMaterialTopTabNavigator(
   {
@@ -63,7 +64,11 @@ const AppContainer = createAppContainer(TabNavigator);
 export default class Navigator extends React.Component {
   render() {
     return (
-      <AppContainer/>
+      <AppContainer
+        ref={navigatorRef => {
+          NavigationService.setTabNavigator(navigatorRef);
+        }}
+      />
     )
   }
 };

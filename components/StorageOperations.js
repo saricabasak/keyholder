@@ -22,7 +22,7 @@ export const retrieveAllData = async () => {
 
 export const addDataToStorage = async PasswordItemList => {
   try {
-    console.log("PasswordItemList -> " + JSON.stringify(PasswordItemList));
+    console.log("addDataToStorage a geldim setlemeye PasswordItemList -> " + JSON.stringify(PasswordItemList));
     await AsyncStorage.setItem(PASSWORD_ITEMS,JSON.stringify(PasswordItemList));
   } catch (e) {
     console.log("error saving Data -> " + e);

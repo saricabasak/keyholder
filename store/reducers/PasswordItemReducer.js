@@ -1,4 +1,4 @@
-import {retrieveAllData,saveData} from '../../components/StorageOperations';
+import {retrieveAllData,saveData, addDataToStorage} from '../../components/StorageOperations';
 
 const initialState = {
     /*PasswordItems: [
@@ -44,6 +44,7 @@ const PasswordItemReducer = (state = initialState, action) => {
         let passwordItemList = [...newState.PasswordItems];
         passwordItemList.push(action.payload);
         newState.PasswordItems = passwordItemList
+        addDataToStorage(passwordItemList);
         console.log("PasswordItemReducer SAVE_PASSWORD_ITEM "+ JSON.stringify(newState.PasswordItems));
     }
 

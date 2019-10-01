@@ -29,7 +29,17 @@ const TabNavigator = createMaterialTopTabNavigator(
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
             <Icon name='ios-add-circle' />
-        )
+        ),
+        tabBarOnPress: ({ navigation, defaultHandler }) => {
+          navigation.setParams({
+            passworditem: {
+              name: '',
+              username: '',
+              password: ''
+            }
+          });
+          defaultHandler();
+        }
       }
     }
   }, {

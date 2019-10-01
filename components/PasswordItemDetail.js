@@ -3,6 +3,7 @@ import { Alert } from "react-native";
 import { withNavigation } from "react-navigation";
 import { addPasswordItemArrOnStoreAction } from "../store/actions/PasswordItemAction";
 import { connect } from "react-redux";
+import PasswordGenerator from './PasswordGenerator.js';
 import { Content, Form, Item, Icon, Label, Input, Button } from "native-base";
 import { List, ListItem, Left, Right, Text, Switch, Picker } from 'native-base';
 
@@ -25,6 +26,10 @@ class PasswordItemDetail extends Component {
       };
     }
 
+  generatePassword(){
+    PasswordGenerator.generatePassword(this.state.length);
+    //Alert.alert('I don\'t want to bring a password into this world!');
+  }
 
   onNameChange(value: string) {
     this.setState(prevState => ({
@@ -132,7 +137,7 @@ class PasswordItemDetail extends Component {
           />
           <Button
             transparent
-            onPress={() => Alert.alert('I don\'t want to bring a password into this world!')}
+            onPress={() => this.generatePassword.bind(this)}
           >
             <Icon name="ios-create" />
           </Button>

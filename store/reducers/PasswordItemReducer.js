@@ -16,9 +16,11 @@ const PasswordItemReducer = (state = initialState, action) => {
       let passwordItemList = [...newState.PasswordItems];
       passwordItemList = action.payload;
       newState.PasswordItems = passwordItemList;
+      return newState;
     }
     case "SET_SEQUENCE_STORE": {
       newState.nextSequence = action.payload;
+      return newState;
     }
     case "ADD_PASSWORD_ITEM": {
       let passwordItemList = [...newState.PasswordItems];
@@ -30,9 +32,31 @@ const PasswordItemReducer = (state = initialState, action) => {
       passwordItemList.push(action.payload);
       newState.PasswordItems = passwordItemList;
       addDataToStorage(passwordItemList);
+      return newState;
     }
+    case "UPDATE_PASSWORD_ITEM": {
+        let passwordItemList = [...newState.PasswordItems]
+        passwordItemList.forEach(element => {
+            if(element.id === action.payload.id){
+                element.name = action.payload.name
+                element.username =action.payload.username
+                element.password = action.payload.password
+            }
+        })
+        newState.PasswordItems = passwordItemList;
+        addDataToStorage(passwordItemList);
+        return newState;
+      }
+      case "DELETE_PASSWORD_ITEM": {
+        let passwordItemList = [...newState.PasswordItems]
+        let filteredPasswordItemArr = passwordItemList.filter( element => element.id !== action.payload.id)
+        newState.PasswordItems = filteredPasswordItemArr;
+        addDataToStorage(filteredPasswordItemArr);
+        return newState;
+      }
+    default:
+      return newState;
   }
-  return newState;
 };
 
 export default PasswordItemReducer;

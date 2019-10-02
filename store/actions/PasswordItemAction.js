@@ -19,3 +19,22 @@ export function addPasswordItemArrOnStoreAction(data){
         payload: data
     }
 }
+
+
+export function updatePasswordItemArrOnStoreAction(data){
+    console.log("updatePasswordItemArrOnStoreAction data => " + data)
+    return{ 
+        type:'UPDATE_PASSWORD_ITEM',
+        payload: data
+    }
+}
+
+export function deletePasswordItemArrOnStoreAction(data){
+    console.log("deletePasswordItemArrOnStoreAction data => " + data)
+    return{ 
+        type:'DELETE_PASSWORD_ITEM',
+        payload: data
+    }
+}
+
+

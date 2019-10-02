@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Alert } from "react-native";
 import { withNavigation } from "react-navigation";
-import { addPasswordItemArrOnStoreAction } from "../store/actions/PasswordItemAction";
+import { addPasswordItemArrOnStoreAction,updatePasswordItemArrOnStoreAction } from "../store/actions/PasswordItemAction";
 import { connect } from "react-redux";
 import { Content, Form, Item, Icon, Label, Input, Button } from "native-base";
 import { List, ListItem, Left, Right, Text, Switch, Picker } from 'native-base';
@@ -94,7 +94,12 @@ class PasswordItemDetail extends Component {
 
     savePasswordItemDetail = passwordItem => {
         console.log("savePasswordItemDetail" + JSON.stringify(passwordItem));
-        this.props.addPasswordItemArrOnStore(passwordItem);
+        if(passwordItem.id === 0 || passwordItem.id === null ){
+          this.props.addPasswordItemArrOnStore(passwordItem);
+        }
+        else{
+          this.props.updatePasswordItemArrOnStore(passwordItem);
+        }
     };
 
   render() {
@@ -230,7 +235,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addPasswordItemArrOnStore: data =>
-      dispatch(addPasswordItemArrOnStoreAction(data))
+      dispatch(addPasswordItemArrOnStoreAction(data)),
+    updatePasswordItemArrOnStore: data =>
+      dispatch(updatePasswordItemArrOnStoreAction(data))
   };
 };
 

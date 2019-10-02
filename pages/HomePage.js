@@ -11,19 +11,27 @@ import {
 class HomePage extends React.Component {
   componentWillMount() {
     /* Data bozulduğunda storage daki datayı temizlemek için aşağıdaki komut çalıştırılabilir. */
-     //clearAsyncStorage();
+    //clearAsyncStorage();
 
     /*
     Uygulama ayağa kalkarken Home page ekrana gelir. Bu component mount olmadan storagedan tüm password listesi çekilir.
     Çekilen passwordler redux ile global stora konur.
     */
+
+   console.log("HomePage retrieveAllData before ->>>" );
     retrieveAllData().then(passwordItemArr => {
+      console.log("HomePage passwordItemArr  ->>>" + passwordItemArr );
       this.props.setPasswordItemArrOnStore(passwordItemArr);
+      console.log("HomePage setPasswordItemArrOnStore after ->>>" );
+      console.log("HomePage retrieveNextSequenceOnStorage after ->>>" );
     });
-    /* Storagedan son sequence'i çek ve +1 ekleyip stora daki değere koy!*/
+    console.log("HomePage retrieveAllData after ->>>" );
     retrieveNextSequenceOnStorage().then(sequence => {
       this.props.setNextSequenceOnStore(sequence);
     });
+  
+    /* Storagedan son sequence'i çek ve +1 ekleyip stora daki değere koy!*/
+    
   }
 
   render() {

@@ -28,8 +28,8 @@ export const retrieveNextSequenceOnStorage = async () => {
     console.log("storage - retrieveSequenceOnStorage");
     const value = await AsyncStorage.getItem(PASSWORD_ITEMS_SEQUENCE);
     if (value !== null) {
-      console.log("retrieveAllData - value" + value);
-      console.log("retrieveAllData - JSON" + JSON.parse(value));
+      console.log("retrieveNextSequenceOnStorage - value" + value);
+      console.log("retrieveNextSequenceOnStorage - JSON" + JSON.parse(value));
       sequence = parseInt(JSON.parse(value)) +  ADD_VALUE;
       return sequence;
     }

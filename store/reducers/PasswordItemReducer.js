@@ -1,54 +1,38 @@
-import {retrieveAllData,saveData, addDataToStorage} from '../../components/StorageOperations';
+import {
+  addDataToStorage,
+  setSequence
+} from "../../components/StorageOperations";
 
 const initialState = {
-    /*PasswordItems: [
-        {
-            name : "Facebook Pass",
-            username: "erkanerkisi@gmail.com",
-            password: "1f3er4t54rt0"
-        },
-        {
-            name : "Twitter Pass1",
-            username: "ahmet@gmail.com",
-            password: "1f3er4t54rt0"
-        },
-        {
-            name : "Ebebek Pass2",
-            username: "yusufkemalozcan@gmail.com",
-            password: "1f3er4t54rt0"
-        },
-        {
-            name : "Instagram Pass3",
-            username: "saricabasak@gmail.com",
-            password: "1f3er4t54rt0"
-        }
-    ]*/
-    PasswordItems:[]
-} 
+  PasswordItems: [],
+  nextSequence: 0
+};
 
 const PasswordItemReducer = (state = initialState, action) => {
-    const newState = {...state};
-    if(action.type === 'SET_ALL_ITEM_STORE'){
-        console.log("PasswordItemReducer - SET_ALL_ITEM_STORE");
-        let passwordItemList = [...newState.PasswordItems];
-        passwordItemList = action.payload
-        newState.PasswordItems = passwordItemList
-        /*retrieveAllData().then((data) => {
-            console.log("PasswordItemReducer JSON.stringify(data) ->>>" + JSON.stringify(data));
-            console.log("PasswordItemReducer data "+ data);
-            newState.PasswordItems = data
-            console.log("PasswordItemReducer JSON.stringify(newState.items) "+ JSON.stringify(newState.items));
-          });*/
+  const newState = { ...state };
+  switch (action.type) {
+    case "SET_ALL_ITEM_STORE": {
+      console.log("PasswordItemReducer - SET_ALL_ITEM_STORE");
+      let passwordItemList = [...newState.PasswordItems];
+      passwordItemList = action.payload;
+      newState.PasswordItems = passwordItemList;
     }
-    else if(action.type === 'ADD_PASSWORD_ITEM'){
-        let passwordItemList = [...newState.PasswordItems];
-        passwordItemList.push(action.payload);
-        newState.PasswordItems = passwordItemList
-        addDataToStorage(passwordItemList);
-        console.log("PasswordItemReducer SAVE_PASSWORD_ITEM "+ JSON.stringify(newState.PasswordItems));
+    case "SET_SEQUENCE_STORE": {
+      newState.nextSequence = action.payload;
     }
+    case "ADD_PASSWORD_ITEM": {
+      let passwordItemList = [...newState.PasswordItems];
+      // global state de tutulan nextSequence herzaman bir sonraki olarak tutulur. Direk al kullan sonrasında storage ı ve store u güncelle!
+      action.payload.id = state.nextSequence;
+      setSequence(state.nextSequence);
+      newState.nextSequence = newState.nextSequence + 1;
 
-    return newState;
-}
+      passwordItemList.push(action.payload);
+      newState.PasswordItems = passwordItemList;
+      addDataToStorage(passwordItemList);
+    }
+  }
+  return newState;
+};
 
 export default PasswordItemReducer;

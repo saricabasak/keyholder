@@ -2,8 +2,6 @@ import React from "react";
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-import { createAppContainer } from "react-navigation";
-import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./store/reducers/index";

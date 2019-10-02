@@ -8,6 +8,7 @@ class PasswordPage extends Component {
     console.log("PasswordPage constructor");
     this.state = {
       passwordItem: {
+        id:0,
         name: '',
         username: '',
         password: ''

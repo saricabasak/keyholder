@@ -34,6 +34,7 @@ const TabNavigator = createMaterialTopTabNavigator(
         tabBarOnPress: ({ navigation, defaultHandler }) => {
           navigation.setParams({
             passworditem: {
+              id:0,
               name: '',
               username: '',
               password: ''

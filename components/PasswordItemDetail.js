@@ -13,6 +13,7 @@ class PasswordItemDetail extends Component {
       console.log('PasswordItemDetail constructor')
       this.state = {
         passwordItem: {
+          id:0,
           name: '',
           username: '',
           password: ''
@@ -82,6 +83,7 @@ class PasswordItemDetail extends Component {
             this.setState(prevState => ({
                 passwordItem: {
                   ...prevState.passwordItem,
+                  id: props.passworditem.id,
                   name: props.passworditem.name,
                   username: props.passworditem.username,
                   password: props.passworditem.password

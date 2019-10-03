@@ -13,27 +13,27 @@ export default class PasswordGenerator extends Component {
       specialValue: true
     };
   }
-  onLengthChange(value: string) {
+  onLengthChange(value) {
     this.setState({
       lengthValue: value
     });
   }
-  onDigitChange(value: string) {
+  onDigitChange(value) {
     this.setState({
       digitValue: value
     });
   }
-  onLowerChange(value: string) {
+  onLowerChange(value) {
     this.setState({
       lowerValue: value
     });
   }
-  onUpperChange(value: string) {
+  onUpperChange(value) {
     this.setState({
       upperValue: value
     });
   }
-  onSpecialChange(value: string) {
+  onSpecialChange(value) {
     this.setState({
       specialValue: value
     });

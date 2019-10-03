@@ -28,7 +28,7 @@ class PasswordItemDetail extends Component {
     }
 
 
-  onNameChange(value: string) {
+  onNameChange(value) {
     this.setState(prevState => ({
       passwordItem: {
         ...prevState.passwordItem,
@@ -36,7 +36,7 @@ class PasswordItemDetail extends Component {
       }
     }));
   }
-  onUsernameChange(value: string) {
+  onUsernameChange(value) {
     this.setState(prevState => ({
       passwordItem: {
         ...prevState.passwordItem,
@@ -44,7 +44,7 @@ class PasswordItemDetail extends Component {
       }
     }));
   }
-  onPasswordChange(value: string) {
+  onPasswordChange(value) {
     this.setState(prevState => ({
       passwordItem: {
         ...prevState.passwordItem,

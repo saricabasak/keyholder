@@ -122,7 +122,7 @@ class PasswordItemDetail extends Component {
         >
       <Form>
         <Item>
-          <Icon name="ios-bookmark" />
+          <Icon name="bookmarks" />
           <Input
             placeholder="Name"
             value={this.state.passwordItem.name}

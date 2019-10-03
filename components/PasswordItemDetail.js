@@ -11,23 +11,28 @@ import { List, ListItem, Left, Right, Text, Switch, Picker } from 'native-base';
 class PasswordItemDetail extends Component {
     constructor(props) {
       super(props);
-      console.log('PasswordItemDetail constructor')
+      console.log('PasswordItemDetail constructor');
       this.state = {
         passwordItem: {
           name: '',
           username: '',
           password: ''
         },
-        lengthValue: 8,
-        digitValue: true,
-        lowerValue: true,
-        upperValue: true,
-        specialValue: true
+        generationParameters: {
+          lengthValue: 8,
+          digitValue: true,
+          lowerValue: true,
+          upperValue: true,
+          specialValue: true
+        }
       };
     }
 
   generatePassword(){
-    PasswordGenerator.generatePassword(this.state.length);
+    console.log('generatePassword called.');
+    PasswordGenerator.generatePassword(
+      this.state.generationParameters
+    );
     //Alert.alert('I don\'t want to bring a password into this world!');
   }
 
@@ -57,29 +62,44 @@ class PasswordItemDetail extends Component {
   }
 
     onLengthChange(value) {
-      this.setState({
-        lengthValue: value
-      });
+      this.setState(prevState => ({
+        generationParameters: {
+          ...prevState.generationParameters,
+          lengthValue: value
+        }
+      }));
     }
     onDigitChange(value) {
-      this.setState({
-        digitValue: value
-      });
+      this.setState(prevState => ({
+        generationParameters: {
+          ...prevState.generationParameters,
+          digitValue: value
+        }
+      }));
     }
     onLowerChange(value) {
-      this.setState({
-        lowerValue: value
-      });
+      this.setState(prevState => ({
+        generationParameters: {
+          ...prevState.generationParameters,
+          lowerValue: value
+        }
+      }));
     }
     onUpperChange(value) {
-      this.setState({
-        upperValue: value
-      });
+      this.setState(prevState => ({
+        generationParameters: {
+          ...prevState.generationParameters,
+          upperValue: value
+        }
+      }));
     }
     onSpecialChange(value) {
-      this.setState({
-        specialValue: value
-      });
+      this.setState(prevState => ({
+        generationParameters: {
+          ...prevState.generationParameters,
+          specialValue: value
+        }
+      }));
     }
 
     componentWillReceiveProps(props) {
@@ -137,7 +157,7 @@ class PasswordItemDetail extends Component {
           />
           <Button
             transparent
-            onPress={() => this.generatePassword.bind(this)}
+            onPress={this.generatePassword.bind(this)}
           >
             <Icon name="ios-create" />
           </Button>
@@ -150,7 +170,7 @@ class PasswordItemDetail extends Component {
             <Picker
               mode="dropdown"
               iosIcon={<Icon name="arrow-down" />}
-              selectedValue={this.state.lengthValue}
+              selectedValue={this.state.generationParameters.lengthValue}
               onValueChange={this.onLengthChange.bind(this)}
             >
               <Picker.Item label="6" value={6} />
@@ -170,7 +190,7 @@ class PasswordItemDetail extends Component {
           </Left>
           <Right>
             <Switch
-              value={this.state.digitValue}
+              value={this.state.generationParameters.digitValue}
               onValueChange={this.onDigitChange.bind(this)}
             />
           </Right>
@@ -181,7 +201,7 @@ class PasswordItemDetail extends Component {
           </Left>
           <Right>
             <Switch
-              value={this.state.lowerValue}
+              value={this.state.generationParameters.lowerValue}
               onValueChange={this.onLowerChange.bind(this)}
             />
           </Right>
@@ -192,7 +212,7 @@ class PasswordItemDetail extends Component {
           </Left>
           <Right>
             <Switch
-              value={this.state.upperValue}
+              value={this.state.generationParameters.upperValue}
               onValueChange={this.onUpperChange.bind(this)}
             />
           </Right>
@@ -203,7 +223,7 @@ class PasswordItemDetail extends Component {
           </Left>
           <Right>
             <Switch
-              value={this.state.specialValue}
+              value={this.state.generationParameters.specialValue}
               onValueChange={this.onSpecialChange.bind(this)}
             />
           </Right>

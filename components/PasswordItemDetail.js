@@ -22,7 +22,8 @@ class PasswordItemDetail extends Component {
         digitValue: true,
         lowerValue: true,
         upperValue: true,
-        specialValue: true
+        specialValue: true,
+        secureText: true
       };
     }
 
@@ -92,6 +93,13 @@ class PasswordItemDetail extends Component {
         }
     }
 
+    toggleShowPassword() {
+      console.log("toggleShowPassword");
+      this.setState({
+        secureText: !this.state.secureText
+      });
+    }
+
     savePasswordItemDetail = passwordItem => {
         console.log("savePasswordItemDetail" + JSON.stringify(passwordItem));
         if(passwordItem.id === 0 || passwordItem.id === null ){
@@ -133,16 +141,16 @@ class PasswordItemDetail extends Component {
           <Icon name="key" />
           <Input
             placeholder="Password"
-            secureTextEntry={true}
+            secureTextEntry={this.state.secureText}
             maxLength={20}
             value={this.state.passwordItem.password}
             onChangeText={this.onPasswordChange.bind(this)}
           />
-          <Button
-            transparent
-            onPress={() => Alert.alert('I don\'t want to bring a password into this world!')}
-          >
-            <Icon name="ios-create" />
+          <Button transparent onPress={this.toggleShowPassword.bind(this)}>
+            <Icon name={this.state.secureText ? "ios-eye" : "ios-eye-off"} />
+          </Button>
+          <Button transparent onPress={() => Alert.alert('I don\'t want to bring a password into this world!')}>
+            <Icon name="ios-create"/>
           </Button>
         </Item>
         <ListItem>

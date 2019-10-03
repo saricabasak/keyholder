@@ -22,7 +22,8 @@ const TabNavigator = createMaterialTopTabNavigator(
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
             <Icon name='home' />
-        )
+        ),
+        swipeEnabled: false
       }
     },
     PasswordPage: {

@@ -133,6 +133,7 @@ class PasswordItemDetail extends Component {
           <Icon name="key" />
           <Input
             placeholder="Password"
+            secureTextEntry={true}
             maxLength={20}
             value={this.state.passwordItem.password}
             onChangeText={this.onPasswordChange.bind(this)}

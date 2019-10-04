@@ -1,116 +1,125 @@
-import React, { Component } from 'react';
-import { Alert } from 'react-native';
-import { Content, List, ListItem, Left, Right, Text, Switch, Button, Item, Picker, Icon } from 'native-base';
+let i = 0;
+let j = 0;
+let k = 0;
+let length;
+let digitLength;
+let lowerLength;
+let upperLength;
+let speacialLength;
+let randomLimit;
+let lengthArray = [];
+let password = [];
 
-export default class PasswordGenerator extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lengthValue: 8,
-      digitValue: true,
-      lowerValue: true,
-      upperValue: true,
-      specialValue: true
-    };
-  }
-  onLengthChange(value) {
-    this.setState({
-      lengthValue: value
-    });
-  }
-  onDigitChange(value) {
-    this.setState({
-      digitValue: value
-    });
-  }
-  onLowerChange(value) {
-    this.setState({
-      lowerValue: value
-    });
-  }
-  onUpperChange(value) {
-    this.setState({
-      upperValue: value
-    });
-  }
-  onSpecialChange(value) {
-    this.setState({
-      specialValue: value
-    });
-  }
+function generatePassword(request) {
+    console.log('generatePassword - findLengthOfEachType');
+    findLengthOfEachType(request);
+    console.log('generatePassword - createPassword');
+    createPassword();
+    return password.toString();
+}
 
-/***************************************************************/
+function findLengthOfEachType(request){
+  console.log('PasswordGenerator - findLengthOfEachType :' + JSON.stringify(request));
+  length = request.lengthValue;
+  digitLength = request.digitValue ? 1 : 0;
+  lowerLength = request.lowerValue ? 1 : 0;
+  upperLength = request.upperValue ? 1 : 0;
+  speacialLength = request.specialValue ? 1 : 0;
 
-  render() {
-    return (
-      <List>
-        <ListItem>
-          <Left>
-            <Text>Length</Text>
-          </Left>
-          <Right>
-            <Picker
-              mode="dropdown"
-              iosIcon={<Icon name="arrow-down" />}
-              selectedValue={this.state.lengthValue}
-              onValueChange={this.onLengthChange.bind(this)}
-            >
-              <Picker.Item label="6" value={6} />
-              <Picker.Item label="8" value={8} />
-              <Picker.Item label="10" value={10} />
-              <Picker.Item label="12" value={12} />
-              <Picker.Item label="14" value={14} />
-              <Picker.Item label="16" value={16} />
-              <Picker.Item label="18" value={18} />
-              <Picker.Item label="20" value={20} />
-            </Picker>
-          </Right>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>Digit</Text>
-          </Left>
-          <Right>
-            <Switch
-              value={this.state.digitValue}
-              onValueChange={this.onDigitChange.bind(this)}
-            />
-          </Right>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>Lowercase</Text>
-          </Left>
-          <Right>
-            <Switch
-              value={this.state.lowerValue}
-              onValueChange={this.onLowerChange.bind(this)}
-            />
-          </Right>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>Uppercase</Text>
-          </Left>
-          <Right>
-            <Switch
-              value={this.state.upperValue}
-              onValueChange={this.onUpperChange.bind(this)}
-            />
-          </Right>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>Special Chars</Text>
-          </Left>
-          <Right>
-            <Switch
-              value={this.state.specialValue}
-              onValueChange={this.onSpecialChange.bind(this)}
-            />
-          </Right>
-        </ListItem>
-      </List>
-    );
+  i = getMinLengthOfEachType(length);
+  j = ( digitLength + lowerLength + upperLength + speacialLength);
+  getFinalLengthOfEachType ();
+
+  k = 0;
+  if (request.digitValue){
+    digitLength = lengthArray[k] + i;
+    k = k + 1;
+    console.log(JSON.stringify(digitLength));
+  }
+  if (request.lowerValue){
+    lowerLength = lengthArray[k] + i;
+    k = k + 1;
+    console.log(JSON.stringify(lowerLength));
+  }
+  if (request.upperValue){
+    upperLength = lengthArray[k] + i;
+    k = k + 1;
+    console.log(JSON.stringify(upperLength));
+  }
+  if (request.specialValue){
+    speacialLength = lengthArray[k] + i;
+    console.log(JSON.stringify(speacialLength));
   }
 }
+
+function getMinLengthOfEachType (length) {
+  return Math.floor(length/5);
+}
+
+function getFinalLengthOfEachType () {
+  lengthArray = [];
+  randomLimit = length - (i*j);
+
+  for(k = 0; k < (j-1); k++){
+   lengthArray.push(generateRandom(randomLimit));
+   randomLimit = randomLimit - lengthArray[k];
+  }
+  lengthArray.push(randomLimit);
+
+  console.log('PasswordGenerator - lengthArray :' + JSON.stringify(lengthArray));
+  lengthArray;
+}
+
+function createPassword () {
+  let key;
+  let digits = [0,1,2,3,4,5,6,7,8,9];
+  let lowers = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n'];
+  let uppers = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N'];
+  let special = ['#','?','+','@','-'];
+
+  for(k = 0; k < digitLength; k++){
+    console.log('k: ' + k );
+    key = generateRandom(digits.length-1);
+    console.log('key: ' + key );
+    password.push(digits[key]);
+  }
+  console.log('PasswordGenerator - createPassword :' + JSON.stringify(password));
+
+  for(k = 0; k < lowerLength; k++){
+    key = generateRandom(lowers.length-1);
+    password.push(lowers[key]);
+  }
+  console.log('PasswordGenerator - createPassword :' + JSON.stringify(password));
+
+  for(k = 0; k < upperLength; k++){
+    key = generateRandom(uppers.length-1);
+    password.push(uppers[key]);
+  }
+  console.log('PasswordGenerator - createPassword :' + JSON.stringify(password));
+
+  for(k = 0; k < speacialLength; k++){
+    key = generateRandom(special.length-1);
+    password.push(special[key]);
+  }
+  console.log('PasswordGenerator - createPassword :' + JSON.stringify(password));
+
+  password.sort(function(a, b){return 0.5 - Math.random()});
+}
+
+function generateRandom (limit) {
+    return Math.floor(Math.random()*limit);
+}
+
+/*
+NOTLAR:
+
+https://www.w3schools.com/js/js_array_sort.asp
+points.sort(function(a, b){return 0.5 - Math.random()});
+
+With clever parameter setting, you can use splice()
+to remove elements without leaving "holes" in the array:
+*/
+
+export default {
+  generatePassword
+};

@@ -3,6 +3,7 @@ import { Alert } from "react-native";
 import { withNavigation } from "react-navigation";
 import { addPasswordItemArrOnStoreAction,updatePasswordItemArrOnStoreAction } from "../store/actions/PasswordItemAction";
 import { connect } from "react-redux";
+import PasswordGenerator from './PasswordGenerator.js';
 import { Content, Form, Item, Icon, Label, Input, Button } from "native-base";
 import { List, ListItem, Left, Right, Text, Switch, Picker } from 'native-base';
 
@@ -18,14 +19,31 @@ class PasswordItemDetail extends Component {
           username: '',
           password: ''
         },
-        lengthValue: 8,
-        digitValue: true,
-        lowerValue: true,
-        upperValue: true,
-        specialValue: true,
+        generationParameters: {
+          lengthValue: 8,
+          digitValue: true,
+          lowerValue: true,
+          upperValue: true,
+          specialValue: true
+        },
         secureText: true
       };
+      this.generatePassword = this.generatePassword.bind(this);
     }
+
+  generatePassword(){
+    console.log('generatePassword called.');
+    let password = PasswordGenerator.generatePassword(
+      this.state.generationParameters
+    );
+    this.setState(prevState => ({
+      passwordItem: {
+        ...prevState.passwordItem,
+        password: password
+      }
+    }));
+    //Alert.alert('I don\'t want to bring a password into this world!');
+  }
 
 
   onNameChange(value) {
@@ -54,29 +72,44 @@ class PasswordItemDetail extends Component {
   }
 
     onLengthChange(value) {
-      this.setState({
-        lengthValue: value
-      });
+      this.setState(prevState => ({
+        generationParameters: {
+          ...prevState.generationParameters,
+          lengthValue: value
+        }
+      }));
     }
     onDigitChange(value) {
-      this.setState({
-        digitValue: value
-      });
+      this.setState(prevState => ({
+        generationParameters: {
+          ...prevState.generationParameters,
+          digitValue: value
+        }
+      }));
     }
     onLowerChange(value) {
-      this.setState({
-        lowerValue: value
-      });
+      this.setState(prevState => ({
+        generationParameters: {
+          ...prevState.generationParameters,
+          lowerValue: value
+        }
+      }));
     }
     onUpperChange(value) {
-      this.setState({
-        upperValue: value
-      });
+      this.setState(prevState => ({
+        generationParameters: {
+          ...prevState.generationParameters,
+          upperValue: value
+        }
+      }));
     }
     onSpecialChange(value) {
-      this.setState({
-        specialValue: value
-      });
+      this.setState(prevState => ({
+        generationParameters: {
+          ...prevState.generationParameters,
+          specialValue: value
+        }
+      }));
     }
 
     componentWillReceiveProps(props) {
@@ -149,7 +182,7 @@ class PasswordItemDetail extends Component {
           <Button transparent onPress={this.toggleShowPassword.bind(this)}>
             <Icon name={this.state.secureText ? "ios-eye" : "ios-eye-off"} />
           </Button>
-          <Button transparent onPress={() => Alert.alert('I don\'t want to bring a password into this world!')}>
+          <Button transparent onPress={this.generatePassword}>
             <Icon name="ios-create"/>
           </Button>
         </Item>
@@ -161,7 +194,7 @@ class PasswordItemDetail extends Component {
             <Picker
               mode="dropdown"
               iosIcon={<Icon name="arrow-down" />}
-              selectedValue={this.state.lengthValue}
+              selectedValue={this.state.generationParameters.lengthValue}
               onValueChange={this.onLengthChange.bind(this)}
             >
               <Picker.Item label="6" value={6} />
@@ -181,7 +214,7 @@ class PasswordItemDetail extends Component {
           </Left>
           <Right>
             <Switch
-              value={this.state.digitValue}
+              value={this.state.generationParameters.digitValue}
               onValueChange={this.onDigitChange.bind(this)}
             />
           </Right>
@@ -192,7 +225,7 @@ class PasswordItemDetail extends Component {
           </Left>
           <Right>
             <Switch
-              value={this.state.lowerValue}
+              value={this.state.generationParameters.lowerValue}
               onValueChange={this.onLowerChange.bind(this)}
             />
           </Right>
@@ -203,7 +236,7 @@ class PasswordItemDetail extends Component {
           </Left>
           <Right>
             <Switch
-              value={this.state.upperValue}
+              value={this.state.generationParameters.upperValue}
               onValueChange={this.onUpperChange.bind(this)}
             />
           </Right>
@@ -214,7 +247,7 @@ class PasswordItemDetail extends Component {
           </Left>
           <Right>
             <Switch
-              value={this.state.specialValue}
+              value={this.state.generationParameters.specialValue}
               onValueChange={this.onSpecialChange.bind(this)}
             />
           </Right>

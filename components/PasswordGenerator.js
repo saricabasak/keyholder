@@ -11,7 +11,9 @@ let lengthArray = [];
 let password = [];
 
 function generatePassword(request) {
+    console.log('generatePassword - findLengthOfEachType');
     findLengthOfEachType(request);
+    console.log('generatePassword - createPassword');
     createPassword();
     return password.toString();
 }
@@ -73,27 +75,31 @@ function createPassword () {
   let digits = [0,1,2,3,4,5,6,7,8,9];
   let lowers = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n'];
   let uppers = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N'];
+  let special = ['#','?','+'];
 
-  for(k = 0; k < (digitLength-1); k+1){
+  for(k = 0; k < digitLength; k++){
     console.log('k: ' + k );
     key = generateRandom(digits.length-1);
     console.log('key: ' + key );
     password.push(digits[key]);
-    digits.splice(key, 1);
   }
   console.log('PasswordGenerator - createPassword :' + JSON.stringify(password));
 
-  for(k = 0; k < (lowerLength-1); k+1){
+  for(k = 0; k < lowerLength; k++){
     key = generateRandom(lowers.length-1);
     password.push(lowers[key]);
-    lowers.splice(key, 1);
   }
   console.log('PasswordGenerator - createPassword :' + JSON.stringify(password));
 
-  for(k = 0; k < (upperLength-1); k+1){
+  for(k = 0; k < upperLength; k++){
     key = generateRandom(uppers.length-1);
     password.push(uppers[key]);
-    uppers.splice(key, 1);
+  }
+  console.log('PasswordGenerator - createPassword :' + JSON.stringify(password));
+
+  for(k = 0; k < speacialLength; k++){
+    key = generateRandom(special.length-1);
+    password.push(special[key]);
   }
   console.log('PasswordGenerator - createPassword :' + JSON.stringify(password));
 

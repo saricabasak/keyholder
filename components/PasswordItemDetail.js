@@ -26,13 +26,20 @@ class PasswordItemDetail extends Component {
           specialValue: true
         }
       };
+      this.generatePassword = this.generatePassword.bind(this);
     }
 
   generatePassword(){
     console.log('generatePassword called.');
-    PasswordGenerator.generatePassword(
+    let password = PasswordGenerator.generatePassword(
       this.state.generationParameters
     );
+    this.setState(prevState => ({
+      passwordItem: {
+        ...prevState.passwordItem,
+        password: password
+      }
+    }));
     //Alert.alert('I don\'t want to bring a password into this world!');
   }
 
@@ -157,7 +164,7 @@ class PasswordItemDetail extends Component {
           />
           <Button
             transparent
-            onPress={this.generatePassword.bind(this)}
+            onPress={this.generatePassword}
           >
             <Icon name="ios-create" />
           </Button>

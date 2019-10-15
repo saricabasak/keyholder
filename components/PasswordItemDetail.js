@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Alert } from "react-native";
 import { withNavigation } from "react-navigation";
 import { addPasswordItemArrOnStoreAction,updatePasswordItemArrOnStoreAction } from "../store/actions/PasswordItemAction";
 import { connect } from "react-redux";
 import PasswordGenerator from './PasswordGenerator.js';
-import { Content, Form, Item, Icon, Label, Input, Button } from "native-base";
-import { List, ListItem, Left, Right, Text, Switch, Picker } from 'native-base';
+import {encrypt,decrypt} from './Encryption';
+import { Content, Form, Item, Icon, Input, Button } from "native-base";
+import { ListItem, Left, Right, Text, Switch, Picker } from 'native-base';
 
 
 class PasswordItemDetail extends Component {
@@ -26,23 +26,22 @@ class PasswordItemDetail extends Component {
           upperValue: true,
           specialValue: true
         },
-        secureText: true
+        secureText: true,
+        decryptedPassword: ''
       };
       this.generatePassword = this.generatePassword.bind(this);
     }
 
   generatePassword(){
     console.log('generatePassword called.');
-    let password = PasswordGenerator.generatePassword(
+    let decryptedPassword = PasswordGenerator.generatePassword(
       this.state.generationParameters
     );
-    this.setState(prevState => ({
-      passwordItem: {
-        ...prevState.passwordItem,
-        password: password
-      }
-    }));
-    //Alert.alert('I don\'t want to bring a password into this world!');
+    console.log('decryptedPassword -> ' + decryptedPassword);
+    //var encryptPassword = encrypt(password,"master key");
+    this.setState({
+      decryptedPassword : decryptedPassword
+    });
   }
 
 
@@ -65,9 +64,9 @@ class PasswordItemDetail extends Component {
   onPasswordChange(value) {
     this.setState(prevState => ({
       passwordItem: {
-        ...prevState.passwordItem,
-        password: value
-      }
+        ...prevState.passwordItem
+      },
+      decryptedPassword: value
     }));
   }
 
@@ -114,6 +113,7 @@ class PasswordItemDetail extends Component {
 
     componentWillReceiveProps(props) {
         if(props.passworditem){
+            const decryptedPassword = decrypt(props.passworditem.password,"master key");
             this.setState(prevState => ({
                 passwordItem: {
                   ...prevState.passwordItem,
@@ -121,7 +121,9 @@ class PasswordItemDetail extends Component {
                   name: props.passworditem.name,
                   username: props.passworditem.username,
                   password: props.passworditem.password
-                }
+                },
+                decryptedPassword : decryptedPassword,
+                secureText: true
             }));
         }
     }
@@ -133,8 +135,12 @@ class PasswordItemDetail extends Component {
       });
     }
 
-    savePasswordItemDetail = passwordItem => {
+    savePasswordItemDetail = (passwordItem,decryptedPassword) => {
         console.log("savePasswordItemDetail" + JSON.stringify(passwordItem));
+        console.log("savePasswordItemDetail passwordItem.password decryptedPassword-> " + decryptedPassword);
+        const encryptPassword = encrypt(decryptedPassword,"master key");
+        passwordItem.password = encryptPassword; 
+        console.log("savePasswordItemDetail passwordItem.password encryptPassword -> " + passwordItem.password);
         if(passwordItem.id === 0 || passwordItem.id === null ){
           this.props.addPasswordItemArrOnStore(passwordItem);
         }
@@ -176,7 +182,7 @@ class PasswordItemDetail extends Component {
             placeholder="Password"
             secureTextEntry={this.state.secureText}
             maxLength={20}
-            value={this.state.passwordItem.password}
+            value={this.state.decryptedPassword}
             onChangeText={this.onPasswordChange.bind(this)}
           />
           <Button transparent onPress={this.toggleShowPassword.bind(this)}>
@@ -256,7 +262,7 @@ class PasswordItemDetail extends Component {
         <Button
           iconLeft
           onPress={() => {
-            this.savePasswordItemDetail(this.state.passwordItem);
+            this.savePasswordItemDetail(this.state.passwordItem,this.state.decryptedPassword);
             this.props.navigation.navigate("HomePage");
           }}
         >

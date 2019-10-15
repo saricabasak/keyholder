@@ -1,11 +1,11 @@
-var AES = require("crypto-js/aes");
+var CryptoJS = require("crypto-js");
 /**
  * Verilen password'ü masterKey ile şifreler
  * @param {*} masterKey 
  */
 export const encrypt = (password, masterKey) => {
-  var encrypted = AES.encrypt(password, masterKey);
-  return encrypted
+  var encrypted = CryptoJS.AES.encrypt(password, masterKey);
+  return encrypted.toString()
 };
 
 /**
@@ -14,6 +14,8 @@ export const encrypt = (password, masterKey) => {
  * @param {*} masterKey 
  */
 export const decrypt = (encryptedPassword,masterKey) => {
-  var decrypted = AES.decrypt(encryptedPassword, masterKey);
-  return decrypted
+  var decryptedBytes = CryptoJS.AES.decrypt(encryptedPassword, masterKey);
+  var decryptedPassword = decryptedBytes.toString(CryptoJS.enc.Utf8);
+  console.log(decryptedPassword);
+  return decryptedPassword
 };

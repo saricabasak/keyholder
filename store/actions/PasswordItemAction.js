@@ -37,4 +37,12 @@ export function deletePasswordItemArrOnStoreAction(data){
     }
 }
 
+export function setMasterKeyAction(data){
+    console.log("setMasterKeyAction data => " + data)
+    return{ 
+        type:'SET_MASTER_KEY',
+        payload: data
+    }
+}
+
 

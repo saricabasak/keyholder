@@ -114,9 +114,10 @@ class PasswordItemDetail extends Component {
 
   componentWillReceiveProps(props) {
     if (props.passworditem) {
+      console.log("decrypt this.props.masterKey -> " + this.props.masterKey);
       const decryptedPassword = decrypt(
         props.passworditem.password,
-        "master key"
+        this.props.masterKey
       );
       this.setState(prevState => ({
         passwordItem: {
@@ -152,7 +153,8 @@ class PasswordItemDetail extends Component {
       "savePasswordItemDetail passwordItem.password decryptedPassword-> " +
         decryptedPassword
     );
-    const encryptPassword = encrypt(decryptedPassword, "master key");
+    console.log("encrypt this.props.masterKey -> " + this.props.masterKey);
+    const encryptPassword = encrypt(decryptedPassword, this.props.masterKey);
     passwordItem.password = encryptPassword;
     console.log(
       "savePasswordItemDetail passwordItem.password encryptPassword -> " +
@@ -298,7 +300,8 @@ class PasswordItemDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    passwordItems: state.PasswordItemReducer.PasswordItems
+    passwordItems: state.PasswordItemReducer.PasswordItems,
+    masterKey : state.PasswordItemReducer.masterKey
   };
 };
 

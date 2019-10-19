@@ -1,53 +1,50 @@
 import React from "react";
-import { createAppContainer } from "react-navigation";
+import { createAppContainer ,StackNavigator} from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
-import { Icon } from 'native-base';
+import { createStackNavigator } from 'react-navigation-stack';
+import { Icon,Root } from "native-base";
 import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
 import PasswordPage from "../pages/PasswordPage";
-import NavigationService from './NavigationService';
+import LoginPage from "../pages/LoginPage";
+import NavigationService from "./NavigationService";
 
 const TabNavigator = createMaterialTopTabNavigator(
   {
     ProfilePage: {
       screen: ProfilePage,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name='person' />
-        )
+        tabBarIcon: ({ tintColor }) => <Icon name="person" />
       }
     },
     HomePage: {
       screen: HomePage,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name='home' />
-        ),
+        tabBarIcon: ({ tintColor }) => <Icon name="home" />,
         swipeEnabled: false
       }
     },
     PasswordPage: {
       screen: PasswordPage,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name='ios-add-circle' />
-        ),
+        tabBarIcon: ({ tintColor }) => <Icon name="ios-add-circle" />,
         tabBarOnPress: ({ navigation, defaultHandler }) => {
           navigation.setParams({
             passworditem: {
-              id:0,
-              name: '',
-              username: '',
-              password: ''
+              id: 0,
+              name: "",
+              username: "",
+              password: ""
             }
           });
           defaultHandler();
         }
       }
     }
-  }, {
+  },
+  {
     initialRouteName: "HomePage",
-    tabBarPosition :'bottom',
+    tabBarPosition: "bottom",
     tabBarOptions: {
       showIcon: true,
       showLabel: false,
@@ -57,20 +54,37 @@ const TabNavigator = createMaterialTopTabNavigator(
       style: {
         backgroundColor: "whitesmoke"
       }
-    },
+    }
   }
 );
 
-const AppContainer = createAppContainer(TabNavigator);
+const RootStack = createStackNavigator({
+  TabNavigator: { screen: TabNavigator },
+  LoginPage: {
+    screen: LoginPage,
+    navigationOptions: {
+      tabBarVisible: false,
+      swipeEnabled: false
+    }
+  }
+}, {
+  headerMode: 'none',
+  initialRouteName: "LoginPage"
+})
+
+
+const AppContainer = createAppContainer(RootStack);
 
 export default class Navigator extends React.Component {
   render() {
     return (
+      <Root>
       <AppContainer
         ref={navigatorRef => {
           NavigationService.setTabNavigator(navigatorRef);
         }}
       />
-    )
+      </Root>
+    );
   }
-};
+}

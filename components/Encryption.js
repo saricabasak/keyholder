@@ -14,8 +14,10 @@ export const encrypt = (password, masterKey) => {
  * @param {*} masterKey 
  */
 export const decrypt = (encryptedPassword,masterKey) => {
+  console.log("decrypt is started");
   var decryptedBytes = CryptoJS.AES.decrypt(encryptedPassword, masterKey);
+  console.log("decrypt decryptedBytes =  " + decryptedBytes);
   var decryptedPassword = decryptedBytes.toString(CryptoJS.enc.Utf8);
-  console.log(decryptedPassword);
+  console.log("decrypt decryptedPassword =  " + decryptedPassword);
   return decryptedPassword
 };

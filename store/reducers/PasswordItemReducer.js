@@ -5,7 +5,8 @@ import {
 
 const initialState = {
   PasswordItems: [],
-  nextSequence: 0
+  nextSequence: 0,
+  masterKey : ""
 };
 
 const PasswordItemReducer = (state = initialState, action) => {
@@ -52,6 +53,10 @@ const PasswordItemReducer = (state = initialState, action) => {
         let filteredPasswordItemArr = passwordItemList.filter( element => element.id !== action.payload.id)
         newState.PasswordItems = filteredPasswordItemArr;
         addDataToStorage(filteredPasswordItemArr);
+        return newState;
+      }
+      case "SET_MASTER_KEY":{
+        newState.masterKey = action.payload
         return newState;
       }
     default:

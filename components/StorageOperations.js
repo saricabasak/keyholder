@@ -2,21 +2,20 @@ import { AsyncStorage } from "react-native";
 
 const PASSWORD_ITEMS = "PASSWORD_ITEMS";
 const PASSWORD_ITEMS_SEQUENCE = "PASSWORD_ITEMS_SEQUENCE";
-const ADD_VALUE = 1; 
-const INITIAL_VALUE = 1; 
+const ADD_VALUE = 1;
+const INITIAL_VALUE = 1;
 
 export const retrieveAllData = async () => {
   try {
-    const emptyArr = []
+    const emptyArr = [];
     console.log("storage - retrieveAllData");
     const value = await AsyncStorage.getItem(PASSWORD_ITEMS);
     if (value !== null) {
       console.log("retrieveAllData - value" + value);
       console.log("retrieveAllData - JSON" + JSON.parse(value));
       return JSON.parse(value);
-    }
-    else {
-        return emptyArr;
+    } else {
+      return emptyArr;
     }
   } catch (e) {
     console.log("error retrieveData All");
@@ -30,11 +29,10 @@ export const retrieveNextSequenceOnStorage = async () => {
     if (value !== null) {
       console.log("retrieveNextSequenceOnStorage - value" + value);
       console.log("retrieveNextSequenceOnStorage - JSON" + JSON.parse(value));
-      sequence = parseInt(JSON.parse(value)) +  ADD_VALUE;
+      sequence = parseInt(JSON.parse(value)) + ADD_VALUE;
       return sequence;
-    }
-    else {
-        return INITIAL_VALUE;
+    } else {
+      return INITIAL_VALUE;
     }
   } catch (e) {
     console.log("storage - retrieveSequenceOnStorage");
@@ -43,8 +41,14 @@ export const retrieveNextSequenceOnStorage = async () => {
 
 export const addDataToStorage = async PasswordItemList => {
   try {
-    console.log("addDataToStorage a geldim setlemeye PasswordItemList -> " + JSON.stringify(PasswordItemList));
-    await AsyncStorage.setItem(PASSWORD_ITEMS,JSON.stringify(PasswordItemList));
+    console.log(
+      "addDataToStorage a geldim setlemeye PasswordItemList -> " +
+        JSON.stringify(PasswordItemList)
+    );
+    await AsyncStorage.setItem(
+      PASSWORD_ITEMS,
+      JSON.stringify(PasswordItemList)
+    );
   } catch (e) {
     console.log("error saving Data -> " + e);
   }
@@ -54,12 +58,44 @@ export const clearAsyncStorage = async () => {
   AsyncStorage.clear();
 };
 
+export const setSequence = async sequence => {
+  console.log("setSequence  -> ");
+  try {
+    await AsyncStorage.setItem(
+      PASSWORD_ITEMS_SEQUENCE,
+      JSON.stringify(sequence)
+    );
+  } catch (error) {
+    console.warn(error);
+  }
+};
 
-export const setSequence = async (sequence) => {
-  console.log("setSequence  -> ")
-    try {
-      await AsyncStorage.setItem(PASSWORD_ITEMS_SEQUENCE,JSON.stringify(sequence));
-    } catch (error) {
-      console.warn(error);
+export const isAnyPasswordDataExistsOnStorage = async () => {
+  returnObject = {
+    data : [],
+    isKeyExists : false
+  }
+  try {
+    console.log("storage - isAnyPasswordDataExistsOnStorage");
+    const value = await AsyncStorage.getItem(PASSWORD_ITEMS);
+    if (value !== null) {
+      console.log("isAnyPasswordDataExistsOnStorage - value" + value);
+      console.log(
+        "isAnyPasswordDataExistsOnStorage - JSON" + JSON.parse(value)
+      );
+      let parsedValue = JSON.parse(value);
+      console.log(
+        "isAnyPasswordDataExistsOnStorage - parsedValue.length -> " +
+          parsedValue.length
+      );
+      if (parsedValue.length > 0) {
+        returnObject.data = parsedValue
+        returnObject.isKeyExists = true
+        return returnObject;
+      }
     }
+      return returnObject;
+  } catch (e) {
+    console.log("error isAnyPasswordDataExistsOnStorage " + e);
+  }
 };

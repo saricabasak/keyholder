@@ -3,6 +3,8 @@ import { Content } from "native-base";
 import { isAnyPasswordDataExistsOnStorage } from "../components/StorageOperations";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp.js";
+import { Image, ImageBackground } from "react-native";
+import Wallpaper from './Wallpaper';
 
 export default class LoginPage extends Component {
   constructor(props) {
@@ -10,7 +12,7 @@ export default class LoginPage extends Component {
     this.state = {
       masterKey: "",
       isKeyExists: false,
-      firstDataForDecrypt:{}
+      firstDataForDecrypt: {}
     };
   }
 
@@ -29,21 +31,17 @@ export default class LoginPage extends Component {
     const isKeyExists = this.state.isKeyExists;
     let renderPage;
     if (isKeyExists) {
-      renderPage = <SignIn firstDataForDecrypt = {this.state.firstDataForDecrypt}/>;
+      renderPage = (
+        <SignIn firstDataForDecrypt={this.state.firstDataForDecrypt} />
+      );
     } else {
       renderPage = <SignUp />;
     }
 
     return (
-      <Content
-        contentContainerStyle={{
-          flex: 1,
-          flexDirection: "column",
-          justifyContent: "space-between"
-        }}
-      >
+      <Wallpaper>
         {renderPage}
-      </Content>
+      </Wallpaper>
     );
   }
 }

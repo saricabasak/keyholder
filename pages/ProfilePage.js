@@ -1,13 +1,21 @@
 import React from "react";
 import { Content, Text } from "native-base";
+import PasswordHeader from "../components/PasswordHeader";
 
 export default class ProfilePage extends React.Component {
-
-  render(){
+  render() {
     return (
-      <Content contentContainerStyle = {{alignItems : 'center', flex: 1, justifyContent: 'center'}}>
+      <PasswordHeader>
+        <Content
+          contentContainerStyle={{
+            alignItems: "center",
+            flex: 1,
+            justifyContent: "center"
+          }}
+        >
           <Text>¯\_(ツ)_/¯</Text>
-      </Content>
-  );
-}
+        </Content>
+      </PasswordHeader>
+    );
+  }
 }

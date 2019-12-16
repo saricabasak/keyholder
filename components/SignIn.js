@@ -1,28 +1,18 @@
 import React, { Component } from "react";
-import {
-  Item,
-  Icon,
-  Input,
-  Button,
-  Text,
-  Toast,
-  Content,
-  Card,
-  CardItem,
-  Container,
-  Body,
-  Left
-} from "native-base";
+import {Item, Input, Button, Text, Toast, Content, Icon, Container, View } from "native-base";
 import { withNavigation } from "react-navigation";
 import { decrypt } from "./Encryption";
 import { connect } from "react-redux";
-import {setMasterKeyAction} from "../store/actions/PasswordItemAction";
+import { setMasterKeyAction } from "../store/actions/PasswordItemAction";
+
+//import { StyleSheet } from "react-native";
 
 class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterKey: ""
+      masterKey: "",
+      secureText: true
     };
     this.onMasterKeyInputChange = this.onMasterKeyInputChange.bind(this);
   }
@@ -54,57 +44,48 @@ class SignIn extends Component {
     }
   };
 
+  toggleShowPassword() {
+    console.log("toggleShowPassword");
+    this.setState({
+      secureText: !this.state.secureText
+    });
+  }
+
   render() {
     return (
-      <Container>
-        <Body>
-          <Left>
-            <Text>
-              Welcome to the best key keeper application ever. Portunus is
-              simple and useful that all apps get inspired from.
-            </Text>
-            <Text></Text>
-            <Text>
-              Please Enter your master key to check all of your passwords.
-            </Text>
-          </Left>
-        </Body>
-        <Content
-          contentContainerStyle={{
-            flex: 1,
-            justifyContent: "space-between"
-          }}
-        >
-          <Card>
-            <CardItem>
-              <Item>
-                <Icon name="key" />
+        <Content contentContainerStyle = {{margin : 10, justifyContent : "center",flex: 1}}>
+            <Item bordered rounded style = {{margin : 5, backgroundColor : '#EBDFDD', opacity : .5, }}>
+            <Icon name="key" color = "#FFFFFF" />
                 <Input
                   placeholder="Enter Master Key"
                   value={this.state.masterKey}
                   onChangeText={this.onMasterKeyInputChange}
-                  secureTextEntry={true}
+                  secureTextEntry={this.state.secureText}
+                  placeholderTextColor = "#FFFFFF"
                 />
-              </Item>
-            </CardItem>
-            <Button onPress={this.onEnterMasterKeyProcessButton}>
+                <Button transparent onPress={this.toggleShowPassword.bind(this)}>
+              <Icon name={this.state.secureText ? "ios-eye" : "ios-eye-off"} />
+            </Button>
+            </Item>
+            <Button onPress={this.onEnterMasterKeyProcessButton} 
+                  style = {{margin : 5, backgroundColor : "#F53F18", justifyContent : "center"}}> 
               <Text>Sign In</Text>
             </Button>
-          </Card>
         </Content>
-      </Container>
-    );
+      )
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setMasterKey: data =>
-      dispatch(setMasterKeyAction(data))
+    setMasterKey: data => dispatch(setMasterKeyAction(data))
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(withNavigation(SignIn));
+export default connect(null, mapDispatchToProps)(withNavigation(SignIn));
+
+/*const styles = StyleSheet.create({
+  screen: {
+    padding: 35
+  }
+});*/

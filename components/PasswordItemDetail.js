@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import PasswordGenerator from "./PasswordGenerator.js";
 import { encrypt, decrypt } from "./Encryption";
 import { Content, Form, Item, Icon, Input, Button } from "native-base";
-import { ListItem, Left, Right, Text, Switch, Picker } from "native-base";
+import { ListItem, Left, Right, Text, Switch, Picker, Toast } from "native-base";
 
 class PasswordItemDetail extends Component {
   constructor(props) {
@@ -28,6 +28,11 @@ class PasswordItemDetail extends Component {
         upperValue: true,
         specialValue: true
       },
+      validation:{
+        nameValidation : false,
+        usernameValidation: false,
+        passwordValidation:false
+      },
       secureText: true,
       decryptedPassword: ""
     };
@@ -46,13 +51,76 @@ class PasswordItemDetail extends Component {
     });
   }
 
+  setNameValidationState = () => {
+    if(this.state.passwordItem.name == ""){
+      this.setState(prevState => ({
+        validation: {
+          ...prevState.validation,
+          nameValidation: true
+        }
+      }));
+    } else{
+      this.setState(prevState => ({
+        validation: {
+          ...prevState.validation,
+          nameValidation: false
+        }
+      }));
+    }
+  }
+  setUsernameValidationState = () => {
+    if(this.state.passwordItem.username == ""){
+      this.setState(prevState => ({
+        validation: {
+          ...prevState.validation,
+          usernameValidation: true
+        }
+      }));
+    }else{
+      this.setState(prevState => ({
+        validation: {
+          ...prevState.validation,
+          usernameValidation: false
+        }
+      }));
+    }
+  }
+  setPasswordValidationState = () => {
+    if(this.state.decryptedPassword == ""){
+      this.setState(prevState => ({
+        validation: {
+          ...prevState.validation,
+          passwordValidation: true
+        }
+      }));
+    }else{
+      this.setState(prevState => ({
+        validation: {
+          ...prevState.validation,
+          passwordValidation: false
+        }
+      }));
+    }
+  }
+
+  nameOnBlur = () => {
+    this.setNameValidationState();
+  }
+
+  usernameOnBlur = () => {
+    this.setUsernameValidationState();
+  }
+  passwordOnBlur = () => {
+    this.setPasswordValidationState();
+  }
+
   onNameChange(value) {
     this.setState(prevState => ({
       passwordItem: {
         ...prevState.passwordItem,
         name: value
       }
-    }));
+    }),this.setNameValidationState);
   }
   onUsernameChange(value) {
     this.setState(prevState => ({
@@ -60,7 +128,8 @@ class PasswordItemDetail extends Component {
         ...prevState.passwordItem,
         username: value
       }
-    }));
+    }),this.setUsernameValidationState);
+    
   }
   onPasswordChange(value) {
     this.setState(prevState => ({
@@ -68,7 +137,7 @@ class PasswordItemDetail extends Component {
         ...prevState.passwordItem
       },
       decryptedPassword: value
-    }));
+    }),this.setPasswordValidationState);
   }
 
   onLengthChange(value) {
@@ -166,6 +235,27 @@ class PasswordItemDetail extends Component {
       this.props.updatePasswordItemArrOnStore(passwordItem);
     }
   };
+    validateAndSave = async () => {      
+      this.setNameValidationState();
+      this.setUsernameValidationState();
+      this.setPasswordValidationState();
+    }
+  save = () => {
+    this.validateAndSave().then(()=> {
+      if(!this.state.validation.nameValidation && !this.state.validation.usernameValidation && !this.state.validation.passwordValidation){
+        this.savePasswordItemDetail(
+          this.state.passwordItem,
+          this.state.decryptedPassword
+        );
+        this.props.navigation.navigate("HomePage");
+      }else{
+        Toast.show({
+          text: "Please fill required fields!",
+          buttonText: "Ok"
+        });
+      }
+    })
+  }
 
   render() {
     console.log(
@@ -181,23 +271,25 @@ class PasswordItemDetail extends Component {
         }}
       >
         <Form>
-          <Item>
+          <Item error={this.state.validation.nameValidation}>
             <Icon name="bookmarks" />
             <Input
               placeholder="Name"
               value={this.state.passwordItem.name}
               onChangeText={this.onNameChange.bind(this)}
+              onBlur = {this.nameOnBlur}
             />
           </Item>
-          <Item>
+          <Item error={this.state.validation.usernameValidation}>
             <Icon name="person" />
             <Input
               placeholder="Username"
               value={this.state.passwordItem.username}
               onChangeText={this.onUsernameChange.bind(this)}
+              onBlur = {this.usernameOnBlur}
             />
           </Item>
-          <Item>
+          <Item error={this.state.validation.passwordValidation}>
             <Icon name="key" />
             <Input
               placeholder="Password"
@@ -205,6 +297,7 @@ class PasswordItemDetail extends Component {
               maxLength={20}
               value={this.state.decryptedPassword}
               onChangeText={this.onPasswordChange.bind(this)}
+              onBlur = {this.passwordOnBlur}
             />
             <Button transparent onPress={this.toggleShowPassword.bind(this)}>
               <Icon name={this.state.secureText ? "ios-eye" : "ios-eye-off"} />
@@ -214,17 +307,18 @@ class PasswordItemDetail extends Component {
             </Button>
           </Item>
           <ListItem>
-            <Left>
+          <Left>
               <Text>Length</Text>
             </Left>
             <Right>
+            <Item picker style={{borderColor: "transparent"}}>
               <Picker
+                style = {{alignItems: 'flex-end', width: 100}}
                 mode="dropdown"
                 iosIcon={<Icon name="arrow-down" />}
                 selectedValue={this.state.generationParameters.lengthValue}
-                onValueChange={this.onLengthChange.bind(this)}
-              >
-                <Picker.Item label="6" value={6} />
+                onValueChange={(value) => this.onLengthChange(value)}>
+                 <Picker.Item label="6" value={6} />
                 <Picker.Item label="8" value={8} />
                 <Picker.Item label="10" value={10} />
                 <Picker.Item label="12" value={12} />
@@ -233,8 +327,9 @@ class PasswordItemDetail extends Component {
                 <Picker.Item label="18" value={18} />
                 <Picker.Item label="20" value={20} />
               </Picker>
+              </Item>
             </Right>
-          </ListItem>
+            </ListItem>
           <ListItem>
             <Left>
               <Text>Digit</Text>
@@ -281,16 +376,9 @@ class PasswordItemDetail extends Component {
           </ListItem>
         </Form>
         <Button
-          iconLeft
-          onPress={() => {
-            this.savePasswordItemDetail(
-              this.state.passwordItem,
-              this.state.decryptedPassword
-            );
-            this.props.navigation.navigate("HomePage");
-          }}
+        style = {{justifyContent : "center"}}
+          onPress={this.save}
         >
-          <Icon name="save" />
           <Text>Save</Text>
         </Button>
       </Content>

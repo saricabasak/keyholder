@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withNavigation } from "react-navigation";
 import PasswordItemDetail from "../components/PasswordItemDetail";
+import PasswordHeader from '../components/PasswordHeader';
 
 class PasswordPage extends Component {
   constructor(props) {
@@ -20,9 +21,9 @@ class PasswordPage extends Component {
     console.log("PasswordPage navigator: " + JSON.stringify(this.props.navigation));
     console.log("PasswordItemDetail called with " + JSON.stringify(this.props.navigation.getParam("passworditem")));
     return (
-        <PasswordItemDetail
-          passworditem={this.props.navigation.getParam("passworditem")}
-        />
+      <PasswordHeader><PasswordItemDetail
+      passworditem={this.props.navigation.getParam("passworditem")}
+    /></PasswordHeader>
     );
   }
 }

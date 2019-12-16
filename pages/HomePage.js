@@ -7,6 +7,7 @@ import {
   clearAsyncStorage,
   retrieveNextSequenceOnStorage
 } from "../components/StorageOperations";
+import PasswordHeader from '../components/PasswordHeader';
 
 class HomePage extends React.Component {
   componentWillMount() {
@@ -39,7 +40,9 @@ class HomePage extends React.Component {
       "HomePage render passwordItems ->>>" +
         JSON.stringify(this.props.passwordItems)
     );
-    return <PasswordItemList passwordItems={this.props.passwordItems} />;
+    return (
+    <PasswordHeader><PasswordItemList passwordItems={this.props.passwordItems} /></PasswordHeader>
+      );
   }
 }
 

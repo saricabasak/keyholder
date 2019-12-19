@@ -13,23 +13,12 @@ import {
 import { Container, View } from "native-base";
 
 export default class PasswordHeader extends Component {
-  /*
-  <Button
-                transparent
-                onPress={() => {
-                  NavigationService.goBack();
-                }}
-              >
-                <Icon name='arrow-back' />
-              </Button>*/
-
   render() {
     return (
       <Container>
         <Header>
           <Body>
-            <Title>Portunus</Title>
-            <Subtitle>You Shall Not Pass!</Subtitle>
+            <Title>{this.props.headerTitle}</Title>
           </Body>
           <Right />
         </Header>

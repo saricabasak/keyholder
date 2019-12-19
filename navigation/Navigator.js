@@ -14,7 +14,17 @@ const TabNavigator = createMaterialTopTabNavigator(
     ProfilePage: {
       screen: ProfilePage,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => <Icon name="person" />
+        tabBarIcon: ({ tintColor }) => <Icon name="person" />,
+        tabBarOnPress: ({ navigation, defaultHandler }) => {
+          navigation.setParams({
+            masterInfo: {
+              currentMasterKey: "",
+              newMasterKey: "",
+              confirmNewMasterKey: ""
+            }
+          });
+          defaultHandler();
+        }
       }
     },
     HomePage: {

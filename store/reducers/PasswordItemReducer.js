@@ -48,6 +48,12 @@ const PasswordItemReducer = (state = initialState, action) => {
         addDataToStorage(passwordItemList);
         return newState;
       }
+      case "UPDATE_PASSWORD_ITEM_LIST": {
+        let passwordItemList = action.payload;
+        newState.PasswordItems = passwordItemList;
+        addDataToStorage(passwordItemList);
+        return newState;
+      }
       case "DELETE_PASSWORD_ITEM": {
         let passwordItemList = [...newState.PasswordItems]
         let filteredPasswordItemArr = passwordItemList.filter( element => element.id !== action.payload.id)

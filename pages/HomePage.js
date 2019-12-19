@@ -1,13 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import PasswordItemList from "../components/PasswordItemList";
-import { setPasswordItemArrOnStoreAction, setNextSequenceOnStoreAction } from "../store/actions/PasswordItemAction";
+import {
+  setPasswordItemArrOnStoreAction,
+  setNextSequenceOnStoreAction
+} from "../store/actions/PasswordItemAction";
 import {
   retrieveAllData,
   clearAsyncStorage,
   retrieveNextSequenceOnStorage
 } from "../components/StorageOperations";
-import PasswordHeader from '../components/PasswordHeader';
+import PasswordHeader from "../components/PasswordHeader";
 
 class HomePage extends React.Component {
   componentWillMount() {
@@ -19,20 +22,19 @@ class HomePage extends React.Component {
     Çekilen passwordler redux ile global stora konur.
     */
 
-   console.log("HomePage retrieveAllData before ->>>" );
+    console.log("HomePage retrieveAllData before ->>>");
     retrieveAllData().then(passwordItemArr => {
-      console.log("HomePage passwordItemArr  ->>>" + passwordItemArr );
+      console.log("HomePage passwordItemArr  ->>>" + passwordItemArr);
       this.props.setPasswordItemArrOnStore(passwordItemArr);
-      console.log("HomePage setPasswordItemArrOnStore after ->>>" );
-      console.log("HomePage retrieveNextSequenceOnStorage after ->>>" );
+      console.log("HomePage setPasswordItemArrOnStore after ->>>");
+      console.log("HomePage retrieveNextSequenceOnStorage after ->>>");
     });
-    console.log("HomePage retrieveAllData after ->>>" );
+    console.log("HomePage retrieveAllData after ->>>");
     retrieveNextSequenceOnStorage().then(sequence => {
       this.props.setNextSequenceOnStore(sequence);
     });
-  
+
     /* Storagedan son sequence'i çek ve +1 ekleyip stora daki değere koy!*/
-    
   }
 
   render() {
@@ -41,8 +43,10 @@ class HomePage extends React.Component {
         JSON.stringify(this.props.passwordItems)
     );
     return (
-    <PasswordHeader><PasswordItemList passwordItems={this.props.passwordItems} /></PasswordHeader>
-      );
+      <PasswordHeader headerTitle="Password List">
+        <PasswordItemList passwordItems={this.props.passwordItems} />
+      </PasswordHeader>
+    );
   }
 }
 
@@ -54,12 +58,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPasswordItemArrOnStore: data => dispatch(setPasswordItemArrOnStoreAction(data)),
-    setNextSequenceOnStore:    data => dispatch(setNextSequenceOnStoreAction(data))
+    setPasswordItemArrOnStore: data =>
+      dispatch(setPasswordItemArrOnStoreAction(data)),
+    setNextSequenceOnStore: data => dispatch(setNextSequenceOnStoreAction(data))
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

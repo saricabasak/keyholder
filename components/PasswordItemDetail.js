@@ -5,10 +5,10 @@ import {
   updatePasswordItemArrOnStoreAction
 } from "../store/actions/PasswordItemAction";
 import { connect } from "react-redux";
-import PasswordGenerator from "./PasswordGenerator.js";
+import PasswordGeneration from "./PasswordGeneration.js";
 import { encrypt, decrypt } from "./Encryption";
-import { Content, Form, Item, Icon, Input, Button } from "native-base";
-import { ListItem, Left, Right, Text, Switch, Picker, Toast } from "native-base";
+import { Content, Form, Item, Icon, Input, Button, Accordion, View, Card, CardItem } from "native-base";
+import { ListItem, Left, Right, Text, Switch, Picker, Toast, Body } from "native-base";
 
 class PasswordItemDetail extends Component {
   constructor(props) {
@@ -129,7 +129,7 @@ class PasswordItemDetail extends Component {
         username: value
       }
     }),this.setUsernameValidationState);
-    
+
   }
   onPasswordChange(value) {
     this.setState(prevState => ({
@@ -216,6 +216,11 @@ class PasswordItemDetail extends Component {
     });
   }
 
+  generatorContent(){
+    return (
+      <PasswordGeneration/>);
+  }
+
   savePasswordItemDetail = (passwordItem, decryptedPassword) => {
     console.log("savePasswordItemDetail" + JSON.stringify(passwordItem));
     console.log(
@@ -235,7 +240,7 @@ class PasswordItemDetail extends Component {
       this.props.updatePasswordItemArrOnStore(passwordItem);
     }
   };
-    validateAndSave = async () => {      
+    validateAndSave = async () => {
       this.setNameValidationState();
       this.setUsernameValidationState();
       this.setPasswordValidationState();
@@ -270,7 +275,9 @@ class PasswordItemDetail extends Component {
           justifyContent: "space-between"
         }}
       >
-        <Form>
+          <Card>
+            <CardItem>
+              <Body>
           <Item error={this.state.validation.nameValidation}>
             <Icon name="bookmarks" />
             <Input
@@ -306,81 +313,22 @@ class PasswordItemDetail extends Component {
               <Icon name="ios-create" />
             </Button>
           </Item>
-          <ListItem>
-          <Left>
-              <Text>Length</Text>
-            </Left>
-            <Right>
-            <Item picker style={{borderColor: "transparent"}}>
-              <Picker
-                style = {{alignItems: 'flex-end', width: 100}}
-                mode="dropdown"
-                iosIcon={<Icon name="arrow-down" />}
-                selectedValue={this.state.generationParameters.lengthValue}
-                onValueChange={(value) => this.onLengthChange(value)}>
-                 <Picker.Item label="6" value={6} />
-                <Picker.Item label="8" value={8} />
-                <Picker.Item label="10" value={10} />
-                <Picker.Item label="12" value={12} />
-                <Picker.Item label="14" value={14} />
-                <Picker.Item label="16" value={16} />
-                <Picker.Item label="18" value={18} />
-                <Picker.Item label="20" value={20} />
-              </Picker>
-              </Item>
-            </Right>
-            </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Digit</Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.digitValue}
-                onValueChange={this.onDigitChange.bind(this)}
-              />
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Lowercase</Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.lowerValue}
-                onValueChange={this.onLowerChange.bind(this)}
-              />
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Uppercase</Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.upperValue}
-                onValueChange={this.onUpperChange.bind(this)}
-              />
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Special Chars</Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.specialValue}
-                onValueChange={this.onSpecialChange.bind(this)}
-              />
-            </Right>
-          </ListItem>
-        </Form>
-        <Button
-        style = {{justifyContent : "center"}}
-          onPress={this.save}
-        >
-          <Text>Save</Text>
-        </Button>
+              </Body>
+          </CardItem>
+            <CardItem>
+          <Accordion
+            dataArray={[{ title: "Password Generator"}]}
+            animation={true}
+            expanded={true}
+            renderContent={this.generatorContent}
+          />
+          </CardItem>
+          </Card>
+          <Button
+          style = {{justifyContent : "center"}}
+            onPress={this.save}>
+            <Text>Save</Text>
+          </Button>
       </Content>
     );
   }

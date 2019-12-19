@@ -21,9 +21,11 @@ class PasswordPage extends Component {
     console.log("PasswordPage navigator: " + JSON.stringify(this.props.navigation));
     console.log("PasswordItemDetail called with " + JSON.stringify(this.props.navigation.getParam("passworditem")));
     return (
-      <PasswordHeader><PasswordItemDetail
-      passworditem={this.props.navigation.getParam("passworditem")}
-    /></PasswordHeader>
+      <PasswordHeader>
+        <PasswordItemDetail
+          passworditem={this.props.navigation.getParam("passworditem")}
+        />
+      </PasswordHeader>
     );
   }
 }

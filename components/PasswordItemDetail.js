@@ -6,10 +6,30 @@ import {
 } from "../store/actions/PasswordItemAction";
 import { connect } from "react-redux";
 import PasswordGeneration from "./PasswordGeneration.js";
-import PasswordGenerator from "./PasswordGenerator";
 import { encrypt, decrypt } from "./Encryption";
-import { Content, Form, Item, Icon, Input, Button, Accordion, View, Card, CardItem } from "native-base";
-import { ListItem, Left, Right, Text, Switch, Picker, Toast, Body } from "native-base";
+import {
+  Content,
+  Form,
+  Item,
+  Icon,
+  Input,
+  Button,
+  Accordion,
+  View,
+  Card,
+  CardItem,
+  ScrollView
+} from "native-base";
+import {
+  ListItem,
+  Left,
+  Right,
+  Text,
+  Switch,
+  Picker,
+  Toast,
+  Body
+} from "native-base";
 
 class PasswordItemDetail extends Component {
   constructor(props) {
@@ -29,31 +49,33 @@ class PasswordItemDetail extends Component {
         upperValue: true,
         specialValue: true
       },
-      validation:{
-        nameValidation : false,
+      validation: {
+        nameValidation: false,
         usernameValidation: false,
-        passwordValidation:false
+        passwordValidation: false
       },
       secureText: true,
       decryptedPassword: ""
     };
+    this.setDecryptedPassword = this.setDecryptedPassword.bind(this);
+    this.generatorContent = this.generatorContent.bind(this);
   }
 
-  setDecryptedPassword = (value) => {
+  setDecryptedPassword(value){
     this.setState({
       decryptedPassword: value
     });
-  }
+  };
 
   setNameValidationState = () => {
-    if(this.state.passwordItem.name == ""){
+    if (this.state.passwordItem.name == "") {
       this.setState(prevState => ({
         validation: {
           ...prevState.validation,
           nameValidation: true
         }
       }));
-    } else{
+    } else {
       this.setState(prevState => ({
         validation: {
           ...prevState.validation,
@@ -61,16 +83,16 @@ class PasswordItemDetail extends Component {
         }
       }));
     }
-  }
+  };
   setUsernameValidationState = () => {
-    if(this.state.passwordItem.username == ""){
+    if (this.state.passwordItem.username == "") {
       this.setState(prevState => ({
         validation: {
           ...prevState.validation,
           usernameValidation: true
         }
       }));
-    }else{
+    } else {
       this.setState(prevState => ({
         validation: {
           ...prevState.validation,
@@ -78,16 +100,16 @@ class PasswordItemDetail extends Component {
         }
       }));
     }
-  }
+  };
   setPasswordValidationState = () => {
-    if(this.state.decryptedPassword == ""){
+    if (this.state.decryptedPassword == "") {
       this.setState(prevState => ({
         validation: {
           ...prevState.validation,
           passwordValidation: true
         }
       }));
-    }else{
+    } else {
       this.setState(prevState => ({
         validation: {
           ...prevState.validation,
@@ -95,43 +117,51 @@ class PasswordItemDetail extends Component {
         }
       }));
     }
-  }
+  };
 
   nameOnBlur = () => {
     this.setNameValidationState();
-  }
+  };
 
   usernameOnBlur = () => {
     this.setUsernameValidationState();
-  }
+  };
   passwordOnBlur = () => {
     this.setPasswordValidationState();
-  }
+  };
 
   onNameChange(value) {
-    this.setState(prevState => ({
-      passwordItem: {
-        ...prevState.passwordItem,
-        name: value
-      }
-    }),this.setNameValidationState);
+    this.setState(
+      prevState => ({
+        passwordItem: {
+          ...prevState.passwordItem,
+          name: value
+        }
+      }),
+      this.setNameValidationState
+    );
   }
   onUsernameChange(value) {
-    this.setState(prevState => ({
-      passwordItem: {
-        ...prevState.passwordItem,
-        username: value
-      }
-    }),this.setUsernameValidationState);
-
+    this.setState(
+      prevState => ({
+        passwordItem: {
+          ...prevState.passwordItem,
+          username: value
+        }
+      }),
+      this.setUsernameValidationState
+    );
   }
   onPasswordChange(value) {
-    this.setState(prevState => ({
-      passwordItem: {
-        ...prevState.passwordItem
-      },
-      decryptedPassword: value
-    }),this.setPasswordValidationState);
+    this.setState(
+      prevState => ({
+        passwordItem: {
+          ...prevState.passwordItem
+        },
+        decryptedPassword: value
+      }),
+      this.setPasswordValidationState
+    );
   }
 
   onLengthChange(value) {
@@ -210,9 +240,10 @@ class PasswordItemDetail extends Component {
     });
   }
 
-  generatorContent(){
+  generatorContent() {
     return (
-      <PasswordGeneration setDecryptedPassword = {this.setDecryptedPassword} />);
+      <PasswordGeneration setDecryptedPassword={this.setDecryptedPassword}/>
+    );
   }
 
   savePasswordItemDetail = (passwordItem, decryptedPassword) => {
@@ -234,27 +265,31 @@ class PasswordItemDetail extends Component {
       this.props.updatePasswordItemArrOnStore(passwordItem);
     }
   };
-    validateAndSave = async () => {
-      this.setNameValidationState();
-      this.setUsernameValidationState();
-      this.setPasswordValidationState();
-    }
+  validateAndSave = async () => {
+    this.setNameValidationState();
+    this.setUsernameValidationState();
+    this.setPasswordValidationState();
+  };
   save = () => {
-    this.validateAndSave().then(()=> {
-      if(!this.state.validation.nameValidation && !this.state.validation.usernameValidation && !this.state.validation.passwordValidation){
+    this.validateAndSave().then(() => {
+      if (
+        !this.state.validation.nameValidation &&
+        !this.state.validation.usernameValidation &&
+        !this.state.validation.passwordValidation
+      ) {
         this.savePasswordItemDetail(
           this.state.passwordItem,
           this.state.decryptedPassword
         );
         this.props.navigation.navigate("HomePage");
-      }else{
+      } else {
         Toast.show({
           text: "Please fill required fields!",
           buttonText: "Ok"
         });
       }
-    })
-  }
+    });
+  };
 
   render() {
     console.log(
@@ -269,60 +304,60 @@ class PasswordItemDetail extends Component {
           justifyContent: "space-between"
         }}
       >
-      <Card>
-                  <CardItem>
-                    <Body>
-          <Item error={this.state.validation.nameValidation}>
-            <Icon name="bookmarks" />
-            <Input
-              placeholder="Name"
-              value={this.state.passwordItem.name}
-              onChangeText={this.onNameChange.bind(this)}
-              onBlur = {this.nameOnBlur}
-            />
-          </Item>
-          <Item error={this.state.validation.usernameValidation}>
-            <Icon name="person" />
-            <Input
-              placeholder="Username"
-              value={this.state.passwordItem.username}
-              onChangeText={this.onUsernameChange.bind(this)}
-              onBlur = {this.usernameOnBlur}
-            />
-          </Item>
-          <Item error={this.state.validation.passwordValidation}>
-            <Icon name="key" />
-            <Input
-              placeholder="Password"
-              secureTextEntry={this.state.secureText}
-              maxLength={20}
-              value={this.state.decryptedPassword}
-              onChangeText={this.onPasswordChange.bind(this)}
-              onBlur = {this.passwordOnBlur}
-            />
-            <Button transparent onPress={this.toggleShowPassword.bind(this)}>
-              <Icon name={this.state.secureText ? "ios-eye" : "ios-eye-off"} />
-            </Button>
-            /*<Button transparent onPress={this.generatePassword}>
-              <Icon name="ios-create" />
-            </Button>*/
-          </Item>
-              </Body>
+        <Card>
+          <CardItem>
+            <Body>
+              <Item error={this.state.validation.nameValidation}>
+                <Icon name="bookmarks" />
+                <Input
+                  placeholder="Name"
+                  value={this.state.passwordItem.name}
+                  onChangeText={this.onNameChange.bind(this)}
+                  onBlur={this.nameOnBlur}
+                />
+              </Item>
+              <Item error={this.state.validation.usernameValidation}>
+                <Icon name="person" />
+                <Input
+                  placeholder="Username"
+                  value={this.state.passwordItem.username}
+                  onChangeText={this.onUsernameChange.bind(this)}
+                  onBlur={this.usernameOnBlur}
+                />
+              </Item>
+              <Item error={this.state.validation.passwordValidation}>
+                <Icon name="key" />
+                <Input
+                  placeholder="Password"
+                  secureTextEntry={this.state.secureText}
+                  maxLength={20}
+                  value={this.state.decryptedPassword}
+                  onChangeText={this.onPasswordChange.bind(this)}
+                  onBlur={this.passwordOnBlur}
+                />
+                <Button
+                  transparent
+                  onPress={this.toggleShowPassword.bind(this)}
+                >
+                  <Icon
+                    name={this.state.secureText ? "ios-eye" : "ios-eye-off"}
+                  />
+                </Button>
+              </Item>
+            </Body>
           </CardItem>
-            <CardItem>
-          <Accordion
-            dataArray={[{ title: "Password Generator"}]}
-            animation={true}
-            expanded={true}
-            renderContent={this.generatorContent}
-          />
+          <CardItem>
+            <Accordion
+              dataArray={[{ title: "Password Generator" }]}
+              animation={true}
+              expanded={true}
+              renderContent={this.generatorContent}
+            />
           </CardItem>
-          </Card>
-          <Button
-          style = {{justifyContent : "center"}}
-            onPress={this.save}>
-            <Text>Save</Text>
-          </Button>
+        </Card>
+        <Button style={{ justifyContent: "center" }} onPress={this.save}>
+          <Text>Save</Text>
+        </Button>
       </Content>
     );
   }
@@ -331,7 +366,7 @@ class PasswordItemDetail extends Component {
 const mapStateToProps = state => {
   return {
     passwordItems: state.PasswordItemReducer.PasswordItems,
-    masterKey : state.PasswordItemReducer.masterKey
+    masterKey: state.PasswordItemReducer.masterKey
   };
 };
 

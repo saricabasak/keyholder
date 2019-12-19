@@ -4,9 +4,10 @@ import { encrypt, decrypt } from "./Encryption";
 import { Content, Form, Item, Icon, Input, Button, Accordion, View } from "native-base";
 import { ListItem, Left, Right, Text, Switch, Picker, Toast } from "native-base";
 
-export default class PasswordItemDetail extends Component {
+export default class PasswordGeneration extends Component {
   constructor(props) {
     super(props);
+    console.log("constructor this.props -> " + JSON.stringify(this.props));
     console.log("PasswordItemDetail constructor");
     this.state = {
       generationParameters: {
@@ -18,16 +19,16 @@ export default class PasswordItemDetail extends Component {
       },
       decryptedPassword: ""
     };
-    this.generatePassword = this.generatePassword.bind(this);
   }
 
-  generatePassword = () => {
+  generatePassword() {
     console.log("generatePassword called.");
     let decryptedPassword = PasswordGenerator.generatePassword(
       this.state.generationParameters
     );
     console.log("decryptedPassword -> " + decryptedPassword);
-    this.props.setdecryptedPassword(decryptedPassword);
+    console.log("this.props -> " + JSON.stringify(this.props));
+    this.props.setDecryptedPassword(decryptedPassword);
   }
 
     onLengthChange(value) {
@@ -78,6 +79,7 @@ export default class PasswordItemDetail extends Component {
             flexDirection: "column",
             justifyContent: "space-between"
           }}
+          scrollEnabled
         >
         <ListItem>
         <Left>
@@ -149,8 +151,8 @@ export default class PasswordItemDetail extends Component {
         </ListItem>
         <Button
         style = {{justifyContent : "center"}}
-          onPress={this.generatePassword}>
-          <Text>Save</Text>
+          onPress={this.generatePassword.bind(this)}>
+          <Text>Generate Password</Text>
         </Button>
         </Content>
       );

@@ -21,15 +21,13 @@ export default class PasswordItemDetail extends Component {
     this.generatePassword = this.generatePassword.bind(this);
   }
 
-  generatePassword() {
+  generatePassword = () => {
     console.log("generatePassword called.");
     let decryptedPassword = PasswordGenerator.generatePassword(
       this.state.generationParameters
     );
     console.log("decryptedPassword -> " + decryptedPassword);
-    this.setState({
-      decryptedPassword: decryptedPassword
-    });
+    this.props.setdecryptedPassword(decryptedPassword);
   }
 
     onLengthChange(value) {
@@ -149,6 +147,11 @@ export default class PasswordItemDetail extends Component {
             />
           </Right>
         </ListItem>
+        <Button
+        style = {{justifyContent : "center"}}
+          onPress={this.generatePassword}>
+          <Text>Save</Text>
+        </Button>
         </Content>
       );
     }

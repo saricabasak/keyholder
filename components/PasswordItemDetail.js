@@ -6,6 +6,7 @@ import {
 } from "../store/actions/PasswordItemAction";
 import { connect } from "react-redux";
 import PasswordGeneration from "./PasswordGeneration.js";
+import PasswordGenerator from "./PasswordGenerator";
 import { encrypt, decrypt } from "./Encryption";
 import { Content, Form, Item, Icon, Input, Button, Accordion, View, Card, CardItem } from "native-base";
 import { ListItem, Left, Right, Text, Switch, Picker, Toast, Body } from "native-base";
@@ -36,18 +37,11 @@ class PasswordItemDetail extends Component {
       secureText: true,
       decryptedPassword: ""
     };
-    this.generatePassword = this.generatePassword.bind(this);
   }
 
-  generatePassword() {
-    console.log("generatePassword called.");
-    let decryptedPassword = PasswordGenerator.generatePassword(
-      this.state.generationParameters
-    );
-    console.log("decryptedPassword -> " + decryptedPassword);
-    //var encryptPassword = encrypt(password,"master key");
+  setDecryptedPassword = (value) => {
     this.setState({
-      decryptedPassword: decryptedPassword
+      decryptedPassword: value
     });
   }
 
@@ -218,7 +212,7 @@ class PasswordItemDetail extends Component {
 
   generatorContent(){
     return (
-      <PasswordGeneration/>);
+      <PasswordGeneration setDecryptedPassword = {this.setDecryptedPassword} />);
   }
 
   savePasswordItemDetail = (passwordItem, decryptedPassword) => {
@@ -275,9 +269,9 @@ class PasswordItemDetail extends Component {
           justifyContent: "space-between"
         }}
       >
-          <Card>
-            <CardItem>
-              <Body>
+      <Card>
+                  <CardItem>
+                    <Body>
           <Item error={this.state.validation.nameValidation}>
             <Icon name="bookmarks" />
             <Input
@@ -309,9 +303,9 @@ class PasswordItemDetail extends Component {
             <Button transparent onPress={this.toggleShowPassword.bind(this)}>
               <Icon name={this.state.secureText ? "ios-eye" : "ios-eye-off"} />
             </Button>
-            <Button transparent onPress={this.generatePassword}>
+            /*<Button transparent onPress={this.generatePassword}>
               <Icon name="ios-create" />
-            </Button>
+            </Button>*/
           </Item>
               </Body>
           </CardItem>

@@ -8,7 +8,8 @@ import {
   Body,
   Title,
   Subtitle,
-  Right
+  Right,
+  Content
 } from "native-base";
 import { Container, View } from "native-base";
 
@@ -22,7 +23,7 @@ export default class PasswordHeader extends Component {
           </Body>
           <Right />
         </Header>
-        {this.props.children}
+        <Content>{this.props.children}</Content>
       </Container>
     );
   }

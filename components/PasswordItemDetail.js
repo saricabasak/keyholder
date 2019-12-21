@@ -15,18 +15,12 @@ import {
   Input,
   Button,
   Accordion,
-  View,
   Card,
   CardItem,
-  ScrollView
+  View
 } from "native-base";
 import {
-  ListItem,
-  Left,
-  Right,
   Text,
-  Switch,
-  Picker,
   Toast,
   Body
 } from "native-base";
@@ -41,13 +35,6 @@ class PasswordItemDetail extends Component {
         name: "",
         username: "",
         password: ""
-      },
-      generationParameters: {
-        lengthValue: 8,
-        digitValue: true,
-        lowerValue: true,
-        upperValue: true,
-        specialValue: true
       },
       validation: {
         nameValidation: false,
@@ -163,48 +150,6 @@ class PasswordItemDetail extends Component {
       this.setPasswordValidationState
     );
   }
-
-  onLengthChange(value) {
-    this.setState(prevState => ({
-      generationParameters: {
-        ...prevState.generationParameters,
-        lengthValue: value
-      }
-    }));
-  }
-  onDigitChange(value) {
-    this.setState(prevState => ({
-      generationParameters: {
-        ...prevState.generationParameters,
-        digitValue: value
-      }
-    }));
-  }
-  onLowerChange(value) {
-    this.setState(prevState => ({
-      generationParameters: {
-        ...prevState.generationParameters,
-        lowerValue: value
-      }
-    }));
-  }
-  onUpperChange(value) {
-    this.setState(prevState => ({
-      generationParameters: {
-        ...prevState.generationParameters,
-        upperValue: value
-      }
-    }));
-  }
-  onSpecialChange(value) {
-    this.setState(prevState => ({
-      generationParameters: {
-        ...prevState.generationParameters,
-        specialValue: value
-      }
-    }));
-  }
-
   componentWillReceiveProps(props) {
     if (props.passworditem) {
       console.log("decrypt this.props.masterKey -> " + this.props.masterKey);
@@ -219,13 +164,6 @@ class PasswordItemDetail extends Component {
           name: props.passworditem.name,
           username: props.passworditem.username,
           password: props.passworditem.password
-        },
-        generationParameters: {
-          lengthValue: 8,
-          digitValue: true,
-          lowerValue: true,
-          upperValue: true,
-          specialValue: true
         },
         decryptedPassword: decryptedPassword,
         secureText: true

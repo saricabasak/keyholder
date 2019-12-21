@@ -8,14 +8,10 @@ import { deletePasswordItemArrOnStoreAction } from "../store/actions/PasswordIte
 
 class PasswordItemList extends Component {
   deletePasswordItemDetail = passwordItem => {
-    console.log("deletePasswordItemDetail" + JSON.stringify(passwordItem));
     this.props.deletePasswordItemArrOnStore(passwordItem);
   };
 
   render() {
-    console.log(
-      "PasswordItemList - render - " + JSON.stringify(this.props.passwordItems)
-    );
     return (
       <SwipeListView
         data={this.props.passwordItems}

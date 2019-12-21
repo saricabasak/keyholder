@@ -24,11 +24,12 @@ import {
   Toast,
   Body
 } from "native-base";
+import {translate} from "../language/TranslateService";
+
 
 class PasswordItemDetail extends Component {
   constructor(props) {
     super(props);
-    console.log("PasswordItemDetail constructor");
     this.state = {
       passwordItem: {
         id: 0,
@@ -109,7 +110,6 @@ class PasswordItemDetail extends Component {
   nameOnBlur = () => {
     this.setNameValidationState();
   };
-
   usernameOnBlur = () => {
     this.setUsernameValidationState();
   };
@@ -150,9 +150,9 @@ class PasswordItemDetail extends Component {
       this.setPasswordValidationState
     );
   }
+
   componentWillReceiveProps(props) {
     if (props.passworditem) {
-      console.log("decrypt this.props.masterKey -> " + this.props.masterKey);
       const decryptedPassword = decrypt(
         props.passworditem.password,
         this.props.masterKey
@@ -172,7 +172,6 @@ class PasswordItemDetail extends Component {
   }
 
   toggleShowPassword() {
-    console.log("toggleShowPassword");
     this.setState({
       secureText: !this.state.secureText
     });
@@ -185,29 +184,21 @@ class PasswordItemDetail extends Component {
   }
 
   savePasswordItemDetail = (passwordItem, decryptedPassword) => {
-    console.log("savePasswordItemDetail" + JSON.stringify(passwordItem));
-    console.log(
-      "savePasswordItemDetail passwordItem.password decryptedPassword-> " +
-        decryptedPassword
-    );
-    console.log("encrypt this.props.masterKey -> " + this.props.masterKey);
     const encryptPassword = encrypt(decryptedPassword, this.props.masterKey);
     passwordItem.password = encryptPassword;
-    console.log(
-      "savePasswordItemDetail passwordItem.password encryptPassword -> " +
-        passwordItem.password
-    );
     if (passwordItem.id === 0 || passwordItem.id === null) {
       this.props.addPasswordItemArrOnStore(passwordItem);
     } else {
       this.props.updatePasswordItemArrOnStore(passwordItem);
     }
   };
+
   validateAndSave = async () => {
     this.setNameValidationState();
     this.setUsernameValidationState();
     this.setPasswordValidationState();
   };
+
   save = () => {
     this.validateAndSave().then(() => {
       if (
@@ -222,18 +213,14 @@ class PasswordItemDetail extends Component {
         this.props.navigation.navigate("HomePage");
       } else {
         Toast.show({
-          text: "Please fill required fields!",
-          buttonText: "Ok"
+          text: translate("password.toastText"),
+          buttonText: translate("password.toastButton")
         });
       }
     });
   };
 
   render() {
-    console.log(
-      "PasswordItemDetail render passworditem:" +
-        JSON.stringify(this.props.passworditem)
-    );
     return (
       <Content
         contentContainerStyle={{
@@ -248,7 +235,7 @@ class PasswordItemDetail extends Component {
               <Item error={this.state.validation.nameValidation}>
                 <Icon name="bookmarks" />
                 <Input
-                  placeholder="Name"
+                  placeholder={translate("password.name")}
                   value={this.state.passwordItem.name}
                   onChangeText={this.onNameChange.bind(this)}
                   onBlur={this.nameOnBlur}
@@ -257,7 +244,7 @@ class PasswordItemDetail extends Component {
               <Item error={this.state.validation.usernameValidation}>
                 <Icon name="person" />
                 <Input
-                  placeholder="Username"
+                  placeholder={translate("password.username")}
                   value={this.state.passwordItem.username}
                   onChangeText={this.onUsernameChange.bind(this)}
                   onBlur={this.usernameOnBlur}
@@ -266,7 +253,7 @@ class PasswordItemDetail extends Component {
               <Item error={this.state.validation.passwordValidation}>
                 <Icon name="key" />
                 <Input
-                  placeholder="Password"
+                  placeholder={translate("password.password")}
                   secureTextEntry={this.state.secureText}
                   maxLength={20}
                   value={this.state.decryptedPassword}
@@ -286,7 +273,7 @@ class PasswordItemDetail extends Component {
           </CardItem>
           <CardItem>
             <Accordion
-              dataArray={[{ title: "Password Generator" }]}
+              dataArray={[{ title: translate("password.generatorHeader") }]}
               animation={true}
               expanded={true}
               renderContent={this.generatorContent}

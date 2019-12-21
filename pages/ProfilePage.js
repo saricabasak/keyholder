@@ -17,11 +17,11 @@ import {
 import { encrypt, decrypt } from "../components/Encryption";
 import { withNavigation } from "react-navigation";
 import PasswordHeader from "../components/PasswordHeader";
+import {translate} from "../language/TranslateService";
 
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
-    console.log("ProfilePage constructor");
     this.state = {
       validation: {
         currentMasterKeyValidation: false,
@@ -37,7 +37,6 @@ class ProfilePage extends React.Component {
       secureTextNewMasterKey: true,
       secureTextConfirmNewMasterKey: true
     };
-    //Bind
     this.onCurrentMasterKeyChange = this.onCurrentMasterKeyChange.bind(this);
     this.onNewMasterKeyValidationChange = this.onNewMasterKeyValidationChange.bind(this);
     this.onConfirmNewMasterKeyValidationChange = this.onConfirmNewMasterKeyValidationChange.bind(this);
@@ -45,21 +44,18 @@ class ProfilePage extends React.Component {
   }
 
   toggleShowCurrentMasterKey() {
-    console.log("toggleShowCurrentMasterKey");
     this.setState({
       secureTextCurrentMasterKey: !this.state.secureTextCurrentMasterKey
     });
   }
 
   toggleShowNewMasterKey() {
-    console.log("toggleShowNewMasterKey");
     this.setState({
       secureTextNewMasterKey: !this.state.secureTextNewMasterKey
     });
   }
 
   toggleShowConfirmNewMasterKey() {
-    console.log("toggleShowConfirmNewMasterKey");
     this.setState({
       secureTextConfirmNewMasterKey: !this.state.secureTextConfirmNewMasterKey
     });
@@ -175,51 +171,46 @@ class ProfilePage extends React.Component {
 
   save = () => {
     this.validateAndSave().then(() => {
-
       if(!(this.state.masterInfo.currentMasterKey == this.props.masterKey)){
         Toast.show({
-          text: "Current master key is wrong!",
-          buttonText: "Ok",
+          text: translate("settings.passwordError"),
+          buttonText: translate("settings.toastButton"),
           duration: this.duration
         });
         return;
       }
       if(!(this.state.masterInfo.newMasterKey == this.state.masterInfo.confirmNewMasterKey)){
         Toast.show({
-          text: "Confirm master key not matched with new master key!",
-          buttonText: "Ok",
+          text: translate("settings.confirmError"),
+          buttonText: translate("settings.toastButton"),
           duration: this.duration
         });
         return;
       }
-    
+
       if (
         this.state.validation.currentMasterKeyValidation ||
         this.state.validation.newMasterKeyValidation ||
         this.state.validation.confirmNewMasterKeyValidation
       ) {
         Toast.show({
-          text: "Please fill required fields!",
-          buttonText: "Ok",
+          text: translate("settings.validationError"),
+          buttonText: translate("settings.toastButton"),
           duration: this.duration
         });
         return;
-        //this.updateAllPasswordItemWithNewMasterKey();
-      } 
-        this.updateAllPasswordItemWithNewMasterKey();
+      }
+      this.updateAllPasswordItemWithNewMasterKey();
         Toast.show({
-          text: "New master key has been changed successfully!",
-          buttonText: "Ok",
+          text: translate("settings.successMessage"),
+          buttonText: translate("settings.toastButton"),
           duration: this.duration
         });
-        this.props.navigation.navigate("HomePage");
+        this.props.navigation.navigate(translate("pages.home"));
     });
   };
 
   updateAllPasswordItemWithNewMasterKey = () => {
-    console.log(
-      "updateAllPasswordItemWithNewMasterKey => " + this.props.passwordItems
-    );
     let _passwordItems = [...this.props.passwordItems];
     _passwordItems.map(element => {
       let decryptedPassword = decrypt(element.password, this.props.masterKey);
@@ -235,7 +226,7 @@ class ProfilePage extends React.Component {
 
   render() {
     return (
-      <PasswordHeader headerTitle="Settings">
+      <PasswordHeader headerTitle={translate("settings.header")}>
         <Content
           contentContainerStyle={{
             flex: 1,
@@ -248,7 +239,7 @@ class ProfilePage extends React.Component {
             <Item error={this.state.validation.currentMasterKeyValidation}>
               <Icon name="key" />
               <Input
-                placeholder="Current Master Key"
+                placeholder={translate("settings.current")}
                 value={this.state.masterInfo.currentMasterKey}
                 onChangeText={this.onCurrentMasterKeyChange}
                 onBlur={this.currentMasterKeyOnBlur}
@@ -261,7 +252,7 @@ class ProfilePage extends React.Component {
             <Item error={this.state.validation.newMasterKeyValidation}>
               <Icon name="key" />
               <Input
-                placeholder="New Master Key"
+                placeholder={translate("settings.new")}
                 value={this.state.masterInfo.newMasterKey}
                 onChangeText={this.onNewMasterKeyValidationChange}
                 onBlur={this.newMasterKeyOnBlur}
@@ -274,7 +265,7 @@ class ProfilePage extends React.Component {
             <Item error={this.state.validation.confirmNewMasterKeyValidation}>
               <Icon name="key" />
               <Input
-                placeholder="Confirm New Master Key"
+                placeholder={translate("settings.confirm")}
                 value={this.state.masterInfo.confirmNewMasterKey}
                 onChangeText={this.onConfirmNewMasterKeyValidationChange}
                 onBlur={this.confirmNewMasterKeyOnBlur}
@@ -286,7 +277,7 @@ class ProfilePage extends React.Component {
             </Item>
           </Form>
           <Button style={{ justifyContent: "center" }} onPress={this.save}>
-            <Text>Save</Text>
+            <Text>{translate("settings.saveButton")}</Text>
           </Button>
         </Content>
       </PasswordHeader>

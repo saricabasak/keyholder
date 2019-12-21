@@ -1,7 +1,46 @@
 {
-    "passwordpage" : {
-        "name" : "İsim",
-        "username" : "Kullanıcı Adı",
-        "password" : "Parola"
-    }
+  "signUp" : {
+    "passwordInput" : "Specify Master Key",
+    "signUpButton" : "Sign Up"
+  },
+  "signIn" : {
+    "passwordError" : "Wrong master key try again!",
+    "passwordInput" : "Enter Master Key",
+    "signInButton" : "Sign In",
+    "toastButton" : "OK"
+  },
+  "password" : {
+      "header" : "Password",
+      "name" : "Name",
+      "username" : "User Name",
+      "password" : "Password",
+      "notes" : "Notes",
+      "length" : "Length",
+      "digit" : "Digit",
+      "lowerCase" : "Lowercase",
+      "upperCase" : "UpperCase",
+      "specialChars" : "Special Chars",
+      "generatorHeader" : "Password Generator",
+      "generatorButton" : "Generate Password",
+      "validationError" : "Please fill required fields!",
+      "toastButton" : "OK"
+  },
+  "home" : {
+    "header" : "Password List"
+  },
+  "settings" : {
+    "header" : "Settings",
+    "current" : "Current Master Key",
+    "new" : "New Master Key",
+    "confirm" : "Confirm New Master Key",
+    "passwordError" : "Current master key is wrong!",
+    "confirmError" : "Confirm master key not matched with new master key!",
+    "validationError" : "Please fill required fields!",
+    "successMessage" : "Master key has been changed successfully!",
+    "toastButton" : "OK",
+    "saveButton" : "Save"
+  },
+  "pages" : {
+    "home" : "HomePage"
   }
+}

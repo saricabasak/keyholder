@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { withNavigation } from "react-navigation";
 import PasswordItemDetail from "../components/PasswordItemDetail";
 import PasswordHeader from "../components/PasswordHeader";
+import {translate} from "../language/TranslateService";
 
 class PasswordPage extends Component {
   constructor(props) {
     super(props);
-    console.log("PasswordPage constructor");
     this.state = {
       passwordItem: {
         id: 0,
@@ -18,15 +18,8 @@ class PasswordPage extends Component {
   }
 
   render() {
-    console.log(
-      "PasswordPage navigator: " + JSON.stringify(this.props.navigation)
-    );
-    console.log(
-      "PasswordItemDetail called with " +
-        JSON.stringify(this.props.navigation.getParam("passworditem"))
-    );
     return (
-      <PasswordHeader headerTitle = "New Password Item">
+      <PasswordHeader headerTitle = {translate("password.header")}>
         <PasswordItemDetail
           passworditem={this.props.navigation.getParam("passworditem")}
         />

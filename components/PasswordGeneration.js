@@ -21,12 +21,12 @@ import {
   Picker,
   Toast
 } from "native-base";
+import {translate} from "../language/TranslateService";
+
 
 export default class PasswordGeneration extends Component {
   constructor(props) {
     super(props);
-    console.log("constructor this.props -> " + JSON.stringify(this.props));
-    console.log("PasswordItemDetail constructor");
     this.state = {
       generationParameters: {
         lengthValue: 8,
@@ -40,12 +40,9 @@ export default class PasswordGeneration extends Component {
   }
 
   generatePassword() {
-    console.log("generatePassword called.");
     let decryptedPassword = PasswordGenerator.generatePassword(
       this.state.generationParameters
     );
-    console.log("decryptedPassword -> " + decryptedPassword);
-    console.log("this.props -> " + JSON.stringify(this.props));
     this.props.setDecryptedPassword(decryptedPassword);
   }
 
@@ -102,7 +99,7 @@ export default class PasswordGeneration extends Component {
         <List>
           <ListItem>
             <Left>
-              <Text>Length</Text>
+              <Text>{translate("password.length")}</Text>
             </Left>
             <Right>
               <Item picker style={{ borderColor: "transparent" }}>
@@ -127,7 +124,7 @@ export default class PasswordGeneration extends Component {
           </ListItem>
           <ListItem>
             <Left>
-              <Text>Digit</Text>
+              <Text>{translate("password.digit")}</Text>
             </Left>
             <Right>
               <Switch
@@ -138,7 +135,7 @@ export default class PasswordGeneration extends Component {
           </ListItem>
           <ListItem>
             <Left>
-              <Text>Lowercase</Text>
+              <Text>{translate("password.lowerCase")}</Text>
             </Left>
             <Right>
               <Switch
@@ -149,7 +146,7 @@ export default class PasswordGeneration extends Component {
           </ListItem>
           <ListItem>
             <Left>
-              <Text>Uppercase</Text>
+              <Text>{translate("password.upperCase")}</Text>
             </Left>
             <Right>
               <Switch
@@ -160,62 +157,7 @@ export default class PasswordGeneration extends Component {
           </ListItem>
           <ListItem>
             <Left>
-              <Text>Special Chars</Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.specialValue}
-                onValueChange={this.onSpecialChange.bind(this)}
-              />
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Special Chars</Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.specialValue}
-                onValueChange={this.onSpecialChange.bind(this)}
-              />
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Special Chars</Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.specialValue}
-                onValueChange={this.onSpecialChange.bind(this)}
-              />
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Special Chars</Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.specialValue}
-                onValueChange={this.onSpecialChange.bind(this)}
-              />
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Special Chars</Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.specialValue}
-                onValueChange={this.onSpecialChange.bind(this)}
-              />
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>Special Chars</Text>
+              <Text>{translate("password.specialChars")}</Text>
             </Left>
             <Right>
               <Switch
@@ -229,7 +171,7 @@ export default class PasswordGeneration extends Component {
           style={{ justifyContent: "center" }}
           onPress={this.generatePassword.bind(this)}
         >
-          <Text>Generate Password</Text>
+          <Text>{translate("password.generatorButton")}</Text>
         </Button>
       </Content>
     );

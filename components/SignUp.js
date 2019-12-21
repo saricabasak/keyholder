@@ -3,6 +3,7 @@ import {Item, Input, Button, Text, Toast, Content, Icon } from "native-base";
 import { withNavigation } from "react-navigation";
 import { connect } from "react-redux";
 import {setMasterKeyAction} from "../store/actions/PasswordItemAction";
+import {translate} from "../language/TranslateService";
 
 class SignUp extends Component {
   constructor(props) {
@@ -24,8 +25,8 @@ class SignUp extends Component {
     this.props.setMasterKey(this.state.masterKey);
     this.props.navigation.navigate("HomePage");
   };
+
   toggleShowPassword() {
-    console.log("toggleShowPassword");
     this.setState({
       secureText: !this.state.secureText
     });
@@ -37,7 +38,7 @@ class SignUp extends Component {
       <Item bordered rounded style = {{margin : 5, backgroundColor : '#EBDFDD', opacity : .5, }}>
       <Icon name="key" color = "#FFFFFF" />
           <Input
-            placeholder="Specify Master Key"
+            placeholder={translate("signUp.passwordInput")}
             value={this.state.masterKey}
             onChangeText={this.onMasterKeyInputChange}
             secureTextEntry={this.state.secureText}
@@ -47,14 +48,15 @@ class SignUp extends Component {
               <Icon name={this.state.secureText ? "ios-eye" : "ios-eye-off"} />
             </Button>
       </Item>
-      <Button onPress={this.onSpecifyMasterKeyProcessButton} 
-            style = {{margin : 5, backgroundColor : "#F53F18", justifyContent : 'center'}}> 
-        <Text>Sign Up</Text>
+      <Button onPress={this.onSpecifyMasterKeyProcessButton}
+            style = {{margin : 5, backgroundColor : "#F53F18", justifyContent : 'center'}}>
+        <Text>{translate("signUp.signUpButton")}</Text>
       </Button>
   </Content>
     );
   }
 }
+
 const mapDispatchToProps = dispatch => {
   return {
     setMasterKey: data =>

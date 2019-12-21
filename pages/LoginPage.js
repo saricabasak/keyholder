@@ -5,7 +5,7 @@ import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp.js";
 import { Image, ImageBackground } from "react-native";
 import Wallpaper from './Wallpaper';
-import { clearAsyncStorage } from "../components/StorageOperations";
+//import { clearAsyncStorage } from "../components/StorageOperations";
 
 export default class LoginPage extends Component {
   constructor(props) {
@@ -19,7 +19,6 @@ export default class LoginPage extends Component {
 
   componentWillMount() {
     //clearAsyncStorage();
-    console.log("Login componentWillMount is running");
     isAnyPasswordDataExistsOnStorage().then(response => {
       if (response) {
         this.setState({

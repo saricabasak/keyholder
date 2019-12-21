@@ -10,7 +10,6 @@ function generatePassword(request) {
 }
 
 function findLengthOfEachType(request){
-  console.log('PasswordGenerator - findLengthOfEachType :' + JSON.stringify(request));
   length = request.lengthValue;
   digitLength = request.digitValue ? 1 : 0;
   lowerLength = request.lowerValue ? 1 : 0;
@@ -84,7 +83,6 @@ function createPassword () {
     password.push(special[key]);
   }
 
-  console.log('PasswordGenerator - createPassword :' + JSON.stringify(password));
   return password.sort(function(a, b){return 0.5 - Math.random()}).join('');
 }
 

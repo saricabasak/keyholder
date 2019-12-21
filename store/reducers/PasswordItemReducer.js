@@ -6,7 +6,8 @@ import {
 const initialState = {
   PasswordItems: [],
   nextSequence: 0,
-  masterKey : ""
+  masterKey : "",
+  language : "en"
 };
 
 const PasswordItemReducer = (state = initialState, action) => {

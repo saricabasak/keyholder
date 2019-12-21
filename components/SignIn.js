@@ -4,6 +4,7 @@ import { withNavigation } from "react-navigation";
 import { decrypt } from "./Encryption";
 import { connect } from "react-redux";
 import { setMasterKeyAction } from "../store/actions/PasswordItemAction";
+import {translate} from "../language/TranslateService";
 
 //import { StyleSheet } from "react-native";
 
@@ -52,6 +53,7 @@ class SignIn extends Component {
   }
 
   render() {
+    console.log("TRANSLATRE ->>> " + translate("passwordpage.name"));
     return (
         <Content contentContainerStyle = {{margin : 10, justifyContent : "center",flex: 1}}>
             <Item bordered rounded style = {{margin : 5, backgroundColor : '#EBDFDD', opacity : .5, }}>

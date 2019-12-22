@@ -33,7 +33,7 @@ class PasswordItemList extends Component {
               flex: 1,
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "space-between"
+              justifyContent: "flex-end"
             }}
             danger
             onPress={() => {
@@ -43,13 +43,14 @@ class PasswordItemList extends Component {
             <Icon name="trash" />
           </Button>
         )}
-        leftOpenValue={50}
-        rightOpenValue={0}
-        disableLeftSwipe
+        leftOpenValue={0}
+        rightOpenValue={-50}
+        disableRightSwipe
         closeOnRowOpen={true}
         closeOnRowPress={true}
         closeOnScroll={true}
         closeOnRowBeginSwipe={true}
+        
       />
     );
   }

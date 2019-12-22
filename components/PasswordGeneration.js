@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import PasswordGenerator from "./PasswordGenerator.js";
-import { encrypt, decrypt } from "./Encryption";
 import {
   Content,
-  Form,
   Item,
   Icon,
-  Input,
   Button,
-  Accordion,
-  View,
   List
 } from "native-base";
 import {
@@ -18,8 +13,7 @@ import {
   Right,
   Text,
   Switch,
-  Picker,
-  Toast
+  Picker
 } from "native-base";
 import {translate} from "../language/TranslateService";
 
@@ -167,7 +161,7 @@ export default class PasswordGeneration extends Component {
             </Right>
           </ListItem>
         </List>
-        <Button
+        <Button success
           style={{ justifyContent: "center" }}
           onPress={this.generatePassword.bind(this)}
         >

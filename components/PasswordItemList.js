@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, Button, Icon } from "native-base";
 import { connect } from "react-redux";
-import { FlatList } from "react-native";
 import PasswordItem from "./PasswordItem";
 import { SwipeListView } from "react-native-swipe-list-view";
 import { deletePasswordItemArrOnStoreAction } from "../store/actions/PasswordItemAction";

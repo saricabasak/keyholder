@@ -42,6 +42,7 @@ const TabNavigator = createMaterialTopTabNavigator(
           navigation.setParams({
             passworditem: {
               id: 0,
+              category:"",
               name: "",
               username: "",
               password: ""

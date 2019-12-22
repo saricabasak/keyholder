@@ -43,6 +43,7 @@ const PasswordItemReducer = (state = initialState, action) => {
                 element.name = action.payload.name
                 element.username =action.payload.username
                 element.password = action.payload.password
+                element.category = action.payload.category
             }
         })
         newState.PasswordItems = passwordItemList;

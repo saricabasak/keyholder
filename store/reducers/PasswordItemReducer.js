@@ -6,15 +6,16 @@ import {
 const initialState = {
   PasswordItems: [],
   nextSequence: 0,
-  masterKey : "",
-  language : "en"
+  masterKey: "",
+  language: "en"
 };
 
 const PasswordItemReducer = (state = initialState, action) => {
-  const newState = { ...state };
+  const newState = {
+    ...state
+  };
   switch (action.type) {
     case "SET_ALL_ITEM_STORE": {
-      console.log("PasswordItemReducer - SET_ALL_ITEM_STORE");
       let passwordItemList = [...newState.PasswordItems];
       passwordItemList = action.payload;
       newState.PasswordItems = passwordItemList;
@@ -26,7 +27,6 @@ const PasswordItemReducer = (state = initialState, action) => {
     }
     case "ADD_PASSWORD_ITEM": {
       let passwordItemList = [...newState.PasswordItems];
-      // global state de tutulan nextSequence herzaman bir sonraki olarak tutulur. Direk al kullan sonrasında storage ı ve store u güncelle!
       action.payload.id = state.nextSequence;
       setSequence(state.nextSequence);
       newState.nextSequence = newState.nextSequence + 1;
@@ -43,6 +43,7 @@ const PasswordItemReducer = (state = initialState, action) => {
                 element.name = action.payload.name
                 element.username =action.payload.username
                 element.password = action.payload.password
+                element.notes = action.payload.notes
                 element.category = action.payload.category
             }
         })

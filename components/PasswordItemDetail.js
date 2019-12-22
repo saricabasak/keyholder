@@ -7,19 +7,8 @@ import {
 import { connect } from "react-redux";
 import PasswordGeneration from "./PasswordGeneration.js";
 import { encrypt, decrypt } from "./Encryption";
-import {
-  Content,
-  Item,
-  Icon,
-  Input,
-  Button,
-  Accordion,
-  Card,
-  CardItem,
-  Picker,
-  ListItem
-} from "native-base";
-import { Text, Toast, Body } from "native-base";
+import { Content, Item, Icon, Input, Button, Accordion } from "native-base";
+import { Text, Toast, Body, View, Card, CardItem, Picker } from "native-base";
 import { translate } from "../language/TranslateService";
 
 class PasswordItemDetail extends Component {
@@ -31,7 +20,8 @@ class PasswordItemDetail extends Component {
         category: "",
         name: "",
         username: "",
-        password: ""
+        password: "",
+        notes: "",
       },
       validation: {
         nameValidation: false,
@@ -180,6 +170,16 @@ class PasswordItemDetail extends Component {
       this.setPasswordValidationState
     );
   }
+  onNotesChange(value) {
+    this.setState(
+      prevState => ({
+        passwordItem: {
+          ...prevState.passwordItem,
+          notes: value
+        }
+      })
+    );
+  }
 
   componentWillReceiveProps(props) {
     if (props.passworditem) {
@@ -194,6 +194,7 @@ class PasswordItemDetail extends Component {
           name: props.passworditem.name,
           username: props.passworditem.username,
           password: props.passworditem.password,
+          notes: props.passworditem.notes,
           category: props.passworditem.category
         },
         decryptedPassword: decryptedPassword,
@@ -243,7 +244,7 @@ class PasswordItemDetail extends Component {
           this.state.passwordItem,
           this.state.decryptedPassword
         );
-        this.props.navigation.navigate("HomePage");
+        this.props.navigation.navigate(translate("pages.home"));
       } else {
         Toast.show({
           text: translate("password.validationError"),
@@ -255,7 +256,7 @@ class PasswordItemDetail extends Component {
 
   render() {
     return (
-      <Content
+      <View
         contentContainerStyle={{
           flex: 1,
           flexDirection: "column",
@@ -273,7 +274,7 @@ class PasswordItemDetail extends Component {
                 onValueChange={value => this.onCategoryChange(value)}
                 onBlur={this.categoryOnBlur}
                 placeholder="Select Category"
-                
+
               >
                 <Picker.Item
                   label={translate("password.category.Other")}
@@ -309,7 +310,7 @@ class PasswordItemDetail extends Component {
           <CardItem>
             <Body>
               <Item error={this.state.validation.nameValidation}>
-                <Icon name="bookmarks" />
+                <Icon name="bookmark" />
                 <Input
                   placeholder={translate("password.name")}
                   value={this.state.passwordItem.name}
@@ -345,6 +346,14 @@ class PasswordItemDetail extends Component {
                   />
                 </Button>
               </Item>
+              <Item>
+                <Icon name="paper" />
+                <Input
+                  placeholder={translate("password.notes")}
+                  value={this.state.passwordItem.notes}
+                  onChangeText={this.onNotesChange.bind(this)}
+                />
+              </Item>
             </Body>
           </CardItem>
           <CardItem>
@@ -357,9 +366,9 @@ class PasswordItemDetail extends Component {
           </CardItem>
         </Card>
         <Button style={{ justifyContent: "center" }} onPress={this.save}>
-          <Text>Save</Text>
+          <Text>{translate("password.saveButton")}</Text>
         </Button>
-      </Content>
+      </View>
     );
   }
 }

@@ -45,7 +45,8 @@ const TabNavigator = createMaterialTopTabNavigator(
               category:"",
               name: "",
               username: "",
-              password: ""
+              password: "",
+              notes: ""
             }
           });
           defaultHandler();

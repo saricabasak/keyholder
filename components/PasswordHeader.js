@@ -1,17 +1,6 @@
 import React, { Component } from "react";
 import NavigationService from "../navigation/NavigationService.js";
-import {
-  Header,
-  Left,
-  Button,
-  Icon,
-  Body,
-  Title,
-  Subtitle,
-  Right,
-  Content
-} from "native-base";
-import { Container, View } from "native-base";
+import { Container, Header, Body, Title,  Right, Content } from "native-base";
 
 export default class PasswordHeader extends Component {
   render() {

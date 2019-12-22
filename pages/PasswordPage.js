@@ -12,7 +12,8 @@ class PasswordPage extends Component {
         id: 0,
         name: "",
         username: "",
-        password: ""
+        password: "",
+        notes: ""
       }
     };
   }

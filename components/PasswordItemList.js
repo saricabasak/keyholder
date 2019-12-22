@@ -1,15 +1,28 @@
 import React, { Component } from "react";
-import { View, Button, Icon } from "native-base";
+import { View, Button, Icon, Toast } from "native-base";
 import { connect } from "react-redux";
 import { FlatList } from "react-native";
 import PasswordItem from "./PasswordItem";
 import { SwipeListView } from "react-native-swipe-list-view";
+import {translate} from "../language/TranslateService";
 import { deletePasswordItemArrOnStoreAction } from "../store/actions/PasswordItemAction";
 
 class PasswordItemList extends Component {
   deletePasswordItemDetail = passwordItem => {
     this.props.deletePasswordItemArrOnStore(passwordItem);
   };
+
+  componentDidMount(){
+    console.log(this.props.passwordItems);
+    const items = this.props.passwordItems;
+    if (!(Array.isArray(items) && items.length)) {
+      Toast.show({
+        text: translate("password.addHint"),
+        buttonText: translate("password.addHintButton"),
+        duration: 5000
+      });
+    }
+  }
 
   render() {
     return (

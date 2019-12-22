@@ -1,26 +1,9 @@
 import React, { Component } from "react";
 import PasswordGenerator from "./PasswordGenerator.js";
 import { encrypt, decrypt } from "./Encryption";
-import {
-  Content,
-  Form,
-  Item,
-  Icon,
-  Input,
-  Button,
-  Accordion,
-  View,
-  List
-} from "native-base";
-import {
-  ListItem,
-  Left,
-  Right,
-  Text,
-  Switch,
-  Picker,
-  Toast
-} from "native-base";
+import { Content, Form, Item, Icon, Input } from "native-base";
+import { Button, Accordion, View, List, ListItem } from "native-base";
+import { Left, Right, Text, Switch, Picker, Toast } from "native-base";
 import {translate} from "../language/TranslateService";
 
 

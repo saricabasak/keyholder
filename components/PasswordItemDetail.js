@@ -35,7 +35,8 @@ class PasswordItemDetail extends Component {
         id: 0,
         name: "",
         username: "",
-        password: ""
+        password: "",
+        notes: "",
       },
       validation: {
         nameValidation: false,
@@ -150,6 +151,16 @@ class PasswordItemDetail extends Component {
       this.setPasswordValidationState
     );
   }
+  onNotesChange(value) {
+    this.setState(
+      prevState => ({
+        passwordItem: {
+          ...prevState.passwordItem,
+          notes: value
+        }
+      })
+    );
+  }
 
   componentWillReceiveProps(props) {
     if (props.passworditem) {
@@ -163,7 +174,8 @@ class PasswordItemDetail extends Component {
           id: props.passworditem.id,
           name: props.passworditem.name,
           username: props.passworditem.username,
-          password: props.passworditem.password
+          password: props.passworditem.password,
+          notes: props.passworditem.notes
         },
         decryptedPassword: decryptedPassword,
         secureText: true
@@ -210,7 +222,7 @@ class PasswordItemDetail extends Component {
           this.state.passwordItem,
           this.state.decryptedPassword
         );
-        this.props.navigation.navigate("HomePage");
+        this.props.navigation.navigate(translate("pages.home"));
       } else {
         Toast.show({
           text: translate("password.toastText"),
@@ -222,7 +234,7 @@ class PasswordItemDetail extends Component {
 
   render() {
     return (
-      <Content
+      <View
         contentContainerStyle={{
           flex: 1,
           flexDirection: "column",
@@ -233,7 +245,7 @@ class PasswordItemDetail extends Component {
           <CardItem>
             <Body>
               <Item error={this.state.validation.nameValidation}>
-                <Icon name="bookmarks" />
+                <Icon name="bookmark" />
                 <Input
                   placeholder={translate("password.name")}
                   value={this.state.passwordItem.name}
@@ -269,6 +281,14 @@ class PasswordItemDetail extends Component {
                   />
                 </Button>
               </Item>
+              <Item>
+                <Icon name="paper" />
+                <Input
+                  placeholder={translate("password.notes")}
+                  value={this.state.passwordItem.notes}
+                  onChangeText={this.onNotesChange.bind(this)}
+                />
+              </Item>
             </Body>
           </CardItem>
           <CardItem>
@@ -281,9 +301,9 @@ class PasswordItemDetail extends Component {
           </CardItem>
         </Card>
         <Button style={{ justifyContent: "center" }} onPress={this.save}>
-          <Text>Save</Text>
+          <Text>{translate("password.saveButton")}</Text>
         </Button>
-      </Content>
+      </View>
     );
   }
 }

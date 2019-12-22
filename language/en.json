@@ -23,7 +23,10 @@
       "generatorHeader" : "Password Generator",
       "generatorButton" : "Generate Password",
       "validationError" : "Please fill required fields!",
-      "toastButton" : "OK"
+      "toastButton" : "OK",
+      "saveButton" : "Save",
+      "addHint" : "Press here to add a new password",
+      "addHintButton" : "V"
   },
   "home" : {
     "header" : "Password List"

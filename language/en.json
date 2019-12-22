@@ -21,6 +21,8 @@
       "upperCase" : "UpperCase",
       "specialChars" : "Special Chars",
       "generatorHeader" : "Password Generator",
+      "changeMasterKeyHeader" : "Change Master Key",
+      "changeLanguageHeader" : "Change Language",
       "generatorButton" : "Generate Password",
       "validationError" : "Please fill required fields!",
       "toastButton" : "OK",
@@ -51,5 +53,9 @@
   },
   "pages" : {
     "home" : "HomePage"
-  }
+  },
+    "language":{
+        "turkish" : "Turkish",
+        "english" : "English"
+    }
 }

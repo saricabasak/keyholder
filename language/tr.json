@@ -1,7 +1,62 @@
 {
-    "passwordpage" : {
+    "signUp" : {
+      "passwordInput" : "Ana Parola Tanımla",
+      "signUpButton" : "Katıl"
+    },
+    "signIn" : {
+      "passwordError" : "Wrong master key try again!",
+      "passwordInput" : "Enter Master Key",
+      "signInButton" : "Sign In",
+      "toastButton" : "OK"
+    },
+    "password" : {
+        "header" : "Parola",
         "name" : "İsim",
-        "username" : "Kullanıcı Adı",
-        "password" : "Parola"
+        "username" : "Kullanıcı İsmi",
+        "password" : "Parola",
+        "notes" : "Notlar",
+        "length" : "Uzunluk",
+        "digit" : "Digit",
+        "lowerCase" : "Lowercase",
+        "upperCase" : "UpperCase",
+        "specialChars" : "Special Chars",
+        "generatorHeader" : "Password Generator",
+        "changeMasterKeyHeader" : "Change Master Key",
+        "changeLanguageHeader" : "Change Language",
+        "generatorButton" : "Generate Password",
+        "validationError" : "Please fill required fields!",
+        "toastButton" : "OK",
+        "category" : {
+          "Other" : "Other",
+          "SocialMedia" : "Social Media",
+          "Finance" :"Finance", 
+          "Shopping":"Shopping",
+          "Travel" : "Travel",
+          "Game":"Game",
+          "Education" : "Education"
+          }
+    },
+    "home" : {
+      "header" : "Password List"
+    },
+    "settings" : {
+      "header" : "Ayarlar",
+      "current" : "Current Master Key",
+      "new" : "New Master Key",
+      "confirm" : "Confirm New Master Key",
+      "passwordError" : "Current master key is wrong!",
+      "confirmError" : "Confirm master key not matched with new master key!",
+      "validationError" : "Please fill required fields!",
+      "successMessage" : "Master key has been changed successfully!",
+      "toastButton" : "OK",
+      "saveButton" : "Save"
+    },
+    "pages" : {
+      "home" : "HomePage"
+    },
+    "language":{
+        "turkish" : "Türkçe",
+        "english" : "İngilizce"
     }
   }
+  

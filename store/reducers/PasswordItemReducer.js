@@ -67,6 +67,10 @@ const PasswordItemReducer = (state = initialState, action) => {
         newState.masterKey = action.payload
         return newState;
       }
+      case "UPDATE_LANGUAGE":{
+        newState.language = action.payload
+        return newState;
+      }
     default:
       return newState;
   }

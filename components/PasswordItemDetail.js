@@ -261,6 +261,7 @@ class PasswordItemDetail extends Component {
           flexDirection: "column",
           justifyContent: "space-between"
         }}
+        enableAutomaticScroll= {false}
       >
         <Card>
           <CardItem style={{ marginBottom: -10 }}>

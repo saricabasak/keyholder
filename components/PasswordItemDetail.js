@@ -7,19 +7,8 @@ import {
 import { connect } from "react-redux";
 import PasswordGeneration from "./PasswordGeneration.js";
 import { encrypt, decrypt } from "./Encryption";
-import {
-  Content,
-  Item,
-  Icon,
-  Input,
-  Button,
-  Accordion,
-  Card,
-  CardItem,
-  Picker,
-  ListItem
-} from "native-base";
-import { Text, Toast, Body } from "native-base";
+import { Content, Item, Icon, Input, Button, Accordion } from "native-base";
+import { Text, Toast, Body, View, Card, CardItem, Picker } from "native-base";
 import { translate } from "../language/TranslateService";
 
 class PasswordItemDetail extends Component {

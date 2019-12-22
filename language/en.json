@@ -26,7 +26,16 @@
       "toastButton" : "OK",
       "saveButton" : "Save",
       "addHint" : "Press here to add a new password",
-      "addHintButton" : "V"
+      "addHintButton" : "V",
+      "category" : {
+        "Other" : "Other",
+        "SocialMedia" : "Social Media",
+        "Finance" :"Finance",
+        "Shopping":"Shopping",
+        "Travel" : "Travel",
+        "Game":"Game",
+        "Education" : "Education"
+        }
   },
   "home" : {
     "header" : "Password List"

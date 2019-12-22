@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, Button, Icon, Toast } from "native-base";
 import { connect } from "react-redux";
-import { FlatList } from "react-native";
 import PasswordItem from "./PasswordItem";
 import { SwipeListView } from "react-native-swipe-list-view";
 import {translate} from "../language/TranslateService";
@@ -46,7 +45,7 @@ class PasswordItemList extends Component {
               flex: 1,
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "space-between"
+              justifyContent: "flex-end"
             }}
             danger
             onPress={() => {
@@ -56,13 +55,14 @@ class PasswordItemList extends Component {
             <Icon name="trash" />
           </Button>
         )}
-        leftOpenValue={50}
-        rightOpenValue={0}
-        disableLeftSwipe
+        leftOpenValue={0}
+        rightOpenValue={-50}
+        disableRightSwipe
         closeOnRowOpen={true}
         closeOnRowPress={true}
         closeOnScroll={true}
         closeOnRowBeginSwipe={true}
+        
       />
     );
   }

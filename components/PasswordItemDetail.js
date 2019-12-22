@@ -9,7 +9,6 @@ import PasswordGeneration from "./PasswordGeneration.js";
 import { encrypt, decrypt } from "./Encryption";
 import {
   Content,
-  Form,
   Item,
   Icon,
   Input,
@@ -17,15 +16,11 @@ import {
   Accordion,
   Card,
   CardItem,
-  View
+  Picker,
+  ListItem
 } from "native-base";
-import {
-  Text,
-  Toast,
-  Body
-} from "native-base";
-import {translate} from "../language/TranslateService";
-
+import { Text, Toast, Body } from "native-base";
+import { translate } from "../language/TranslateService";
 
 class PasswordItemDetail extends Component {
   constructor(props) {
@@ -33,6 +28,7 @@ class PasswordItemDetail extends Component {
     this.state = {
       passwordItem: {
         id: 0,
+        category: "",
         name: "",
         username: "",
         password: "",
@@ -41,7 +37,8 @@ class PasswordItemDetail extends Component {
       validation: {
         nameValidation: false,
         usernameValidation: false,
-        passwordValidation: false
+        passwordValidation: false,
+        categoryValidation: false
       },
       secureText: true,
       decryptedPassword: ""
@@ -50,10 +47,28 @@ class PasswordItemDetail extends Component {
     this.generatorContent = this.generatorContent.bind(this);
   }
 
-  setDecryptedPassword(value){
+  setDecryptedPassword(value) {
     this.setState({
       decryptedPassword: value
     });
+  }
+
+  setCategoryValidationState = () => {
+    if (this.state.passwordItem.category == "") {
+      this.setState(prevState => ({
+        validation: {
+          ...prevState.validation,
+          categoryValidation: true
+        }
+      }));
+    } else {
+      this.setState(prevState => ({
+        validation: {
+          ...prevState.validation,
+          categoryValidation: false
+        }
+      }));
+    }
   };
 
   setNameValidationState = () => {
@@ -111,12 +126,27 @@ class PasswordItemDetail extends Component {
   nameOnBlur = () => {
     this.setNameValidationState();
   };
+  categoryOnBlur = () => {
+    this.setCategoryValidationState();
+  };
   usernameOnBlur = () => {
     this.setUsernameValidationState();
   };
   passwordOnBlur = () => {
     this.setPasswordValidationState();
   };
+
+  onCategoryChange(value) {
+    this.setState(
+      prevState => ({
+        passwordItem: {
+          ...prevState.passwordItem,
+          category: value
+        }
+      }),
+      this.setCategoryValidationState
+    );
+  }
 
   onNameChange(value) {
     this.setState(
@@ -175,7 +205,8 @@ class PasswordItemDetail extends Component {
           name: props.passworditem.name,
           username: props.passworditem.username,
           password: props.passworditem.password,
-          notes: props.passworditem.notes
+          notes: props.passworditem.notes,
+          category: props.passworditem.category
         },
         decryptedPassword: decryptedPassword,
         secureText: true
@@ -191,7 +222,7 @@ class PasswordItemDetail extends Component {
 
   generatorContent() {
     return (
-      <PasswordGeneration setDecryptedPassword={this.setDecryptedPassword}/>
+      <PasswordGeneration setDecryptedPassword={this.setDecryptedPassword} />
     );
   }
 
@@ -209,6 +240,7 @@ class PasswordItemDetail extends Component {
     this.setNameValidationState();
     this.setUsernameValidationState();
     this.setPasswordValidationState();
+    this.setCategoryValidationState();
   };
 
   save = () => {
@@ -216,7 +248,8 @@ class PasswordItemDetail extends Component {
       if (
         !this.state.validation.nameValidation &&
         !this.state.validation.usernameValidation &&
-        !this.state.validation.passwordValidation
+        !this.state.validation.passwordValidation &&
+        !this.state.validation.categoryValidation
       ) {
         this.savePasswordItemDetail(
           this.state.passwordItem,
@@ -225,7 +258,7 @@ class PasswordItemDetail extends Component {
         this.props.navigation.navigate(translate("pages.home"));
       } else {
         Toast.show({
-          text: translate("password.toastText"),
+          text: translate("password.validationError"),
           buttonText: translate("password.toastButton")
         });
       }
@@ -240,8 +273,51 @@ class PasswordItemDetail extends Component {
           flexDirection: "column",
           justifyContent: "space-between"
         }}
+        enableAutomaticScroll= {false}
       >
         <Card>
+          <CardItem style={{ marginBottom: -10 }}>
+            <Item error={this.state.validation.categoryValidation} style={{ flex: 1 }}>
+              <Icon name="ios-list" />
+              <Picker
+                mode="dropdown"
+                selectedValue={this.state.passwordItem.category}
+                onValueChange={value => this.onCategoryChange(value)}
+                onBlur={this.categoryOnBlur}
+                placeholder="Select Category"
+
+              >
+                <Picker.Item
+                  label={translate("password.category.Other")}
+                  value="other"
+                />
+                <Picker.Item
+                  label={translate("password.category.SocialMedia")}
+                  value="socialmedia"
+                />
+                <Picker.Item
+                  label={translate("password.category.Finance")}
+                  value="finance"
+                />
+                <Picker.Item
+                  label={translate("password.category.Shopping")}
+                  value="shopping"
+                />
+                <Picker.Item
+                  label={translate("password.category.Travel")}
+                  value="travel"
+                />
+                <Picker.Item
+                  label={translate("password.category.Game")}
+                  value="game"
+                />
+                <Picker.Item
+                  label={translate("password.category.Education")}
+                  value="education"
+                />
+              </Picker>
+            </Item>
+          </CardItem>
           <CardItem>
             <Body>
               <Item error={this.state.validation.nameValidation}>

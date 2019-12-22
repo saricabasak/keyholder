@@ -150,7 +150,7 @@ export default class PasswordGeneration extends Component {
             </Right>
           </ListItem>
         </List>
-        <Button
+        <Button success
           style={{ justifyContent: "center" }}
           onPress={this.generatePassword.bind(this)}
         >

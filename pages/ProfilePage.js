@@ -234,6 +234,7 @@ class ProfilePage extends React.Component {
             justifyContent: "space-between",
             marginTop: 20
           }}
+          enableAutomaticScroll= {false}
         >
           <Form>
             <Item error={this.state.validation.currentMasterKeyValidation}>

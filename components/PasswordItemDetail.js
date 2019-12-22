@@ -228,6 +228,7 @@ class PasswordItemDetail extends Component {
     this.setNameValidationState();
     this.setUsernameValidationState();
     this.setPasswordValidationState();
+    this.setCategoryValidationState();
   };
 
   save = () => {

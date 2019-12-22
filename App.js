@@ -2,13 +2,9 @@ import React from "react";
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-import { createStore } from "redux";
 import { Provider } from "react-redux";
-import reducer from "./store/reducers/index";
-import PasswordHeader from "./components/PasswordHeader";
 import Navigator from "./navigation/Navigator";
-
-const store = createStore(reducer);
+import store from './store/store';
 
 export default class App extends React.Component {
   constructor(props) {

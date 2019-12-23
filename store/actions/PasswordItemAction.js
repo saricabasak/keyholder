@@ -50,11 +50,8 @@ export function setMasterKeyAction(data){
 }
 
 export function updateLanguageAction(data){
-    console.log("updateLanguageAction data => " + data)
-    return{ 
+    return{
         type:'UPDATE_LANGUAGE',
         payload: data
     }
 }
-
-

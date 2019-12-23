@@ -23,8 +23,6 @@ class SignIn extends Component {
   }
 
   onEnterMasterKeyProcessButton = () => {
-    // Master key doğru mu kontrolü lazım
-    console.log("masterkey -> " + this.state.masterKey);
     let decryptedPassword = decrypt(
       this.props.firstDataForDecrypt.password,
       this.state.masterKey

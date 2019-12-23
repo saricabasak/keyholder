@@ -7,7 +7,6 @@ var _ = require('lodash');
 export function translate (fieldName){
 
   const state = store.getState();
-  console.log("store -> " + JSON.stringify(state) )
   const language = state.PasswordItemReducer.language;
   if(language == "en"){
     return _.get(en,fieldName);

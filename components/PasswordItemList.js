@@ -7,10 +7,12 @@ import {translate} from "../language/TranslateService";
 import { deletePasswordItemArrOnStoreAction } from "../store/actions/PasswordItemAction";
 
 class PasswordItemList extends Component {
+
   deletePasswordItemDetail = passwordItem => {
     this.props.deletePasswordItemArrOnStore(passwordItem);
   };
 
+  /*
   componentDidMount(){
     const items = this.props.passwordItems;
     if (!(Array.isArray(items) && items.length)) {
@@ -21,6 +23,7 @@ class PasswordItemList extends Component {
       });
     }
   }
+  */
 
   render() {
     return (

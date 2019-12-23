@@ -12,7 +12,6 @@ class PasswordItemList extends Component {
   };
 
   componentDidMount(){
-    console.log(this.props.passwordItems);
     const items = this.props.passwordItems;
     if (!(Array.isArray(items) && items.length)) {
       Toast.show({
@@ -62,7 +61,7 @@ class PasswordItemList extends Component {
         closeOnRowPress={true}
         closeOnScroll={true}
         closeOnRowBeginSwipe={true}
-        
+
       />
     );
   }

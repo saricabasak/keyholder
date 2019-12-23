@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Container } from "native-base";
 import PasswordItemList from "../components/PasswordItemList";
 import {
   setPasswordItemArrOnStoreAction,
@@ -10,7 +11,7 @@ import {
   clearAsyncStorage,
   retrieveNextSequenceOnStorage
 } from "../components/StorageOperations";
-import PasswordHeader from "../components/PasswordHeader";
+import KeyHolderHeader from "../components/KeyHolderHeader";
 import {translate} from "../language/TranslateService";
 
 
@@ -27,9 +28,10 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <PasswordHeader headerTitle={translate("home.header")}>
+      <Container>
+        <KeyHolderHeader headerTitle={translate("home.header")}/>
         <PasswordItemList passwordItems={this.props.passwordItems} />
-      </PasswordHeader>
+      </Container>
     );
   }
 }

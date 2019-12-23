@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { withNavigation } from "react-navigation";
+import { Container, Content } from "native-base";
 import PasswordItemDetail from "../components/PasswordItemDetail";
-import PasswordHeader from "../components/PasswordHeader";
+import KeyHolderHeader from "../components/KeyHolderHeader";
 import {translate} from "../language/TranslateService";
 
 class PasswordPage extends Component {
@@ -21,11 +22,12 @@ class PasswordPage extends Component {
 
   render() {
     return (
-      <PasswordHeader headerTitle = {translate("password.header")}>
+      <Container>
+        <KeyHolderHeader headerTitle = {translate("password.header")}/>
         <PasswordItemDetail
           passworditem={this.props.navigation.getParam("passworditem")}
         />
-      </PasswordHeader>
+      </Container>
     );
   }
 }

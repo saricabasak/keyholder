@@ -7,7 +7,7 @@ import {
 import { connect } from "react-redux";
 import PasswordGeneration from "./PasswordGeneration.js";
 import { encrypt, decrypt } from "./Encryption";
-import { Content, Item, Icon, Input, Button, Accordion } from "native-base";
+import { Content, Item, Icon, Input, Button, Accordion, Textarea } from "native-base";
 import { Text, Toast, Body, View, Card, CardItem, Picker } from "native-base";
 import { translate } from "../language/TranslateService";
 
@@ -21,7 +21,7 @@ class PasswordItemDetail extends Component {
         name: "",
         username: "",
         password: "",
-        notes: "",
+        notes: ""
       },
       validation: {
         nameValidation: false,
@@ -256,16 +256,15 @@ class PasswordItemDetail extends Component {
 
   render() {
     return (
-      <View
+      <Content
         contentContainerStyle={{
           flex: 1,
           flexDirection: "column",
           justifyContent: "space-between"
         }}
-        enableAutomaticScroll= {false}
       >
         <Card>
-          <CardItem style={{ marginBottom: -10 }}>
+          <CardItem>
             <Item error={this.state.validation.categoryValidation} style={{ flex: 1 }}>
               <Icon name="ios-list" />
               <Picker
@@ -274,7 +273,6 @@ class PasswordItemDetail extends Component {
                 onValueChange={value => this.onCategoryChange(value)}
                 onBlur={this.categoryOnBlur}
                 placeholder="Select Category"
-
               >
                 <Picker.Item
                   label={translate("password.category.Other")}
@@ -308,7 +306,6 @@ class PasswordItemDetail extends Component {
             </Item>
           </CardItem>
           <CardItem>
-            <Body>
               <Item error={this.state.validation.nameValidation}>
                 <Icon name="bookmark" />
                 <Input
@@ -318,6 +315,8 @@ class PasswordItemDetail extends Component {
                   onBlur={this.nameOnBlur}
                 />
               </Item>
+            </CardItem>
+            <CardItem>
               <Item error={this.state.validation.usernameValidation}>
                 <Icon name="person" />
                 <Input
@@ -327,6 +326,8 @@ class PasswordItemDetail extends Component {
                   onBlur={this.usernameOnBlur}
                 />
               </Item>
+            </CardItem>
+            <CardItem>
               <Item error={this.state.validation.passwordValidation}>
                 <Icon name="key" />
                 <Input
@@ -346,6 +347,8 @@ class PasswordItemDetail extends Component {
                   />
                 </Button>
               </Item>
+            </CardItem>
+            <CardItem>
               <Item>
                 <Icon name="paper" />
                 <Input
@@ -354,7 +357,6 @@ class PasswordItemDetail extends Component {
                   onChangeText={this.onNotesChange.bind(this)}
                 />
               </Item>
-            </Body>
           </CardItem>
           <CardItem>
             <Accordion
@@ -368,7 +370,7 @@ class PasswordItemDetail extends Component {
         <Button style={{ justifyContent: "center" }} onPress={this.save}>
           <Text>{translate("password.saveButton")}</Text>
         </Button>
-      </View>
+      </Content>
     );
   }
 }

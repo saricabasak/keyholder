@@ -12,7 +12,8 @@ import {
   ListItem,
   Left,
   Right,
-  Radio
+  Radio,
+  Container
 } from "native-base";
 import { connect } from "react-redux";
 import {
@@ -22,7 +23,7 @@ import {
 } from "../store/actions/PasswordItemAction";
 import { encrypt, decrypt } from "../components/Encryption";
 import { withNavigation } from "react-navigation";
-import PasswordHeader from "../components/PasswordHeader";
+import KeyHolderHeader from "../components/KeyHolderHeader";
 import { translate } from "../language/TranslateService";
 
 class ProfilePage extends React.Component {
@@ -383,7 +384,8 @@ class ProfilePage extends React.Component {
 
   render() {
     return (
-      <PasswordHeader headerTitle={translate("settings.header")}>
+      <Container>
+        <KeyHolderHeader headerTitle={translate("settings.header")}/>
         <Accordion
           dataArray={[{ title: translate("password.changeMasterKeyHeader") }]}
           animation={true}
@@ -396,7 +398,7 @@ class ProfilePage extends React.Component {
           expanded={true}
           renderContent={this.changeLanguagePage}
         />
-      </PasswordHeader>
+      </Container>
     );
   }
 }

@@ -71,14 +71,7 @@ export default class PasswordGeneration extends Component {
   }
   render() {
     return (
-      <Content
-        contentContainerStyle={{
-          flex: 1,
-          flexDirection: "column",
-          justifyContent: "space-between"
-        }}
-        scrollEnabled
-      >
+      <View>
         <List>
           <ListItem>
             <Left>
@@ -156,7 +149,7 @@ export default class PasswordGeneration extends Component {
         >
           <Text>{translate("password.generatorButton")}</Text>
         </Button>
-      </Content>
+      </View>
     );
   }
 }

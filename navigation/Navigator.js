@@ -4,15 +4,15 @@ import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from 'react-navigation-stack';
 import { Icon,Root } from "native-base";
 import HomePage from "../pages/HomePage";
-import ProfilePage from "../pages/ProfilePage";
+import SettingsPage from "../pages/SettingsPage";
 import PasswordPage from "../pages/PasswordPage";
 import LoginPage from "../pages/LoginPage";
 import NavigationService from "./NavigationService";
 
 const TabNavigator = createMaterialTopTabNavigator(
   {
-    ProfilePage: {
-      screen: ProfilePage,
+    SettingsPage: {
+      screen: SettingsPage,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => <Icon name="person" />,
         tabBarOnPress: ({ navigation, defaultHandler }) => {

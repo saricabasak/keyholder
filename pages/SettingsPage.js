@@ -1,18 +1,11 @@
 import React from "react";
 import {
-  Content,
+  CardItem,
   Text,
   Form,
-  Item,
-  Icon,
-  Input,
-  Button,
   Toast,
+  Button,
   Accordion,
-  ListItem,
-  Left,
-  Right,
-  Radio,
   Container
 } from "native-base";
 import { connect } from "react-redux";
@@ -25,8 +18,10 @@ import { encrypt, decrypt } from "../components/Encryption";
 import { withNavigation } from "react-navigation";
 import KeyHolderHeader from "../components/KeyHolderHeader";
 import { translate } from "../language/TranslateService";
+import PasswordInput from "../components/inputs/PasswordInput";
+import LanguageContentPage from "./LanguageContentPage";
 
-class ProfilePage extends React.Component {
+class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -243,161 +238,108 @@ class ProfilePage extends React.Component {
     this.props.setMasterKey(this.state.masterInfo.newMasterKey);
   };
 
-  onPressedEnglishRadio=()=>{
+  onPressedEnglishRadio = () => {
     this.setState({
-      enRadio  : true,
-      trRadio  : false
-    })
-  }
-  onPressedTurkishRadio=()=>{
+      enRadio: true,
+      trRadio: false
+    });
+  };
+  onPressedTurkishRadio = () => {
     this.setState({
-      trRadio  : true,
+      trRadio: true,
       enRadio: false
-    })
-  }
+    });
+  };
 
-  saveLanguage = ()=> {
+  saveLanguage = () => {
     this.props.updateLanguage(this.state.enRadio ? "en" : "tr");
     Toast.show({
       text: translate("settings.successMessage"),
       buttonText: translate("settings.toastButton"),
       duration: this.duration
     });
-  }
+  };
 
-
-  changeLanguagePage = () =>  {
+  returnLanguageContentPage = () => {
     return (
-      <Content
-        contentContainerStyle={{
-          flex: 1,
-          flexDirection: "column",
-          justifyContent: "space-between"
-          }}
-        enableAutomaticScroll={false}
-      >
-        <ListItem onPress = {this.onPressedEnglishRadio}>
-          <Left>
-            <Text>{translate("language.english")}</Text>
-          </Left>
-          <Right>
-            <Radio selected={this.state.enRadio} />
-          </Right>
-        </ListItem>
-        <ListItem onPress = {this.onPressedTurkishRadio}>
-          <Left>
-            <Text>{translate("language.turkish")}</Text>
-          </Left>
-          <Right>
-            <Radio selected={this.state.trRadio} />
-          </Right>
-        </ListItem>
-        <Button style={{ justifyContent: "center" }} onPress={this.saveLanguage}>
-          <Text>{translate("settings.saveButton")}</Text>
-        </Button>
-      </Content>
+      <LanguageContentPage
+        onPressedEnglishRadio={this.onPressedEnglishRadio}
+        enRadio={this.state.enRadio}
+        onPressedTurkishRadio={this.onPressedTurkishRadio}
+        trRadio={this.state.trRadio}
+        buttonStyle={{ justifyContent: "center" }}
+        saveLanguage={this.saveLanguage}
+        buttonText={translate("settings.saveButton")}
+      />
     );
-  }
+  };
 
   changePasswordPage() {
     return (
-      <Content
-        contentContainerStyle={{
-          flex: 1,
-          flexDirection: "column",
-          justifyContent: "space-between"
-        }}
-        enableAutomaticScroll={false}
-      >
-        <Form>
-          <Item error={this.state.validation.currentMasterKeyValidation}>
-            <Icon name="key" />
-            <Input
-              placeholder={translate("settings.current")}
-              value={this.state.masterInfo.currentMasterKey}
-              onChangeText={this.onCurrentMasterKeyChange}
-              onBlur={this.currentMasterKeyOnBlur}
-              secureTextEntry={this.state.secureTextCurrentMasterKey}
-            />
-            <Button
-              transparent
-              onPress={this.toggleShowCurrentMasterKey.bind(this)}
-            >
-              <Icon
-                name={
-                  this.state.secureTextCurrentMasterKey
-                    ? "ios-eye"
-                    : "ios-eye-off"
-                }
-              />
-            </Button>
-          </Item>
-          <Item error={this.state.validation.newMasterKeyValidation}>
-            <Icon name="key" />
-            <Input
-              placeholder={translate("settings.new")}
-              value={this.state.masterInfo.newMasterKey}
-              onChangeText={this.onNewMasterKeyValidationChange}
-              onBlur={this.newMasterKeyOnBlur}
-              secureTextEntry={this.state.secureTextNewMasterKey}
-            />
-            <Button
-              transparent
-              onPress={this.toggleShowNewMasterKey.bind(this)}
-            >
-              <Icon
-                name={
-                  this.state.secureTextNewMasterKey ? "ios-eye" : "ios-eye-off"
-                }
-              />
-            </Button>
-          </Item>
-          <Item error={this.state.validation.confirmNewMasterKeyValidation}>
-            <Icon name="key" />
-            <Input
-              placeholder={translate("settings.confirm")}
-              value={this.state.masterInfo.confirmNewMasterKey}
-              onChangeText={this.onConfirmNewMasterKeyValidationChange}
-              onBlur={this.confirmNewMasterKeyOnBlur}
-              secureTextEntry={this.state.secureTextConfirmNewMasterKey}
-            />
-            <Button
-              transparent
-              onPress={this.toggleShowConfirmNewMasterKey.bind(this)}
-            >
-              <Icon
-                name={
-                  this.state.secureTextConfirmNewMasterKey
-                    ? "ios-eye"
-                    : "ios-eye-off"
-                }
-              />
-            </Button>
-          </Item>
-        </Form>
-        <Button style={{ justifyContent: "center" }} onPress={this.savePassword}>
+      <Form>
+        <PasswordInput
+          itemErrorFlag={this.state.validation.currentMasterKeyValidation}
+          inputPlaceholder={translate("settings.current")}
+          inputValue={this.state.masterInfo.currentMasterKey}
+          inputOnChangeText={this.onCurrentMasterKeyChange}
+          inputOnBlur={this.currentMasterKeyOnBlur}
+          inputSecureTextEntry={this.state.secureTextCurrentMasterKey}
+          buttonTransparent={true}
+          buttonTogglePassword={this.toggleShowCurrentMasterKey.bind(this)}
+          iconEyeFlag={this.state.secureTextCurrentMasterKey}
+        />
+        <PasswordInput
+          itemErrorFlag={this.state.validation.newMasterKeyValidation}
+          inputPlaceholder={translate("settings.new")}
+          inputValue={this.state.masterInfo.newMasterKey}
+          inputOnChangeText={this.onNewMasterKeyValidationChange}
+          inputOnBlur={this.newMasterKeyOnBlur}
+          inputSecureTextEntry={this.state.secureTextNewMasterKey}
+          buttonTransparent={true}
+          buttonTogglePassword={this.toggleShowNewMasterKey.bind(this)}
+          iconEyeFlag={this.state.secureTextNewMasterKey}
+        />
+        <PasswordInput
+          itemErrorFlag={this.state.validation.confirmNewMasterKeyValidation}
+          inputPlaceholder={translate("settings.confirm")}
+          inputValue={this.state.masterInfo.confirmNewMasterKey}
+          inputOnChangeText={this.onConfirmNewMasterKeyValidationChange}
+          inputOnBlur={this.confirmNewMasterKeyOnBlur}
+          inputSecureTextEntry={this.state.secureTextConfirmNewMasterKey}
+          buttonTransparent={true}
+          buttonTogglePassword={this.toggleShowConfirmNewMasterKey.bind(this)}
+          iconEyeFlag={this.state.secureTextConfirmNewMasterKey}
+        />
+        <Button
+          style={{ justifyContent: "center", marginTop : 5 }}
+          onPress={this.savePassword}
+        >
           <Text>{translate("settings.saveButton")}</Text>
         </Button>
-      </Content>
+      </Form>
     );
   }
 
   render() {
     return (
       <Container>
-        <KeyHolderHeader headerTitle={translate("settings.header")}/>
-        <Accordion
-          dataArray={[{ title: translate("password.changeMasterKeyHeader") }]}
-          animation={true}
-          expanded={true}
-          renderContent={this.changePasswordPage}
-        />
-        <Accordion
-          dataArray={[{ title: translate("password.changeLanguageHeader") }]}
-          animation={true}
-          expanded={true}
-          renderContent={this.changeLanguagePage}
-        />
+        <KeyHolderHeader headerTitle={translate("settings.header")} />
+        <CardItem>
+          <Accordion
+            dataArray={[{ title: translate("password.changeMasterKeyHeader") }]}
+            animation={true}
+            expanded={true}
+            renderContent={this.changePasswordPage}
+          />
+        </CardItem>
+        <CardItem>
+          <Accordion
+            dataArray={[{ title: translate("password.changeLanguageHeader") }]}
+            animation={true}
+            expanded={true}
+            renderContent={this.returnLanguageContentPage}
+          />
+        </CardItem>
       </Container>
     );
   }
@@ -422,4 +364,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withNavigation(ProfilePage));
+)(withNavigation(SettingsPage));

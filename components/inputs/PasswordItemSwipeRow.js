@@ -1,36 +1,54 @@
-import React, { Component } from 'react';
-import { ListItem, Left, Right, Text, Icon } from 'native-base';
-import { withNavigation } from 'react-navigation';
+import React, { Component } from "react";
+import { Button, Icon, Input, Item, View, Text } from "native-base";
+import { SwipeRow } from "react-native-swipe-list-view";
 import { StyleSheet, Dimensions } from "react-native";
 
+import PasswordItem from "../PasswordItem";
 
-class PasswordItem extends Component {
-    render() {
-      console.log("PasswordItem render started")
-      console.log("PasswordItem this.props.key : "+ this.props._key)
-      console.log("PasswordItem this.props.passworditem : "+ JSON.stringify(this.props.passworditem))
-        return (
-            <ListItem
-              key = {this.props._key}
-              button
-              onPress = {() => {
-                this.props.navigation.navigate('PasswordPage', {
-                  passworditem: this.props.passworditem
-                })
-              }}
-            >
-              <Left>
-                <Text>{this.props.passworditem.name}</Text>
-              </Left>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-        );
-    }
+class PasswordItemSwipeRow extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    console.log("PasswordItemSwipeRow render started");
+    console.log("PasswordItemSwipeRow this.props.key : " + this.props._key);
+    console.log(
+      "PasswordItemSwipeRow this.props.passworditem : " +
+        JSON.stringify(this.props.passworditem)
+    );
+    return (
+      <SwipeRow
+        leftOpenValue={0}
+        rightOpenValue={-50}
+        disableRightSwipe
+        closeOnRowOpen={true}
+        closeOnRowPress={true}
+        closeOnScroll={true}
+        closeOnRowBeginSwipe={true}
+      >
+        <View >
+        <Button 
+        style={{
+              flex: 1,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "flex-end"
+            }}
+            danger
+            onPress={() => {
+              this.props.rightButtonOnPress(this.props.passworditem);
+            }}
+          >
+            <Icon name="trash" />
+          </Button>
+        </View>
+        <View style={{ backgroundColor: "white" }}>
+            <PasswordItem key={this.props.passworditem.id} passworditem={this.props.passworditem} />
+        </View>
+      </SwipeRow>
+    );
+  }
 }
-
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
@@ -111,4 +129,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withNavigation(PasswordItem);
+export default PasswordItemSwipeRow;

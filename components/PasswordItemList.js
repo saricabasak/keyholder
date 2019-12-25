@@ -1,72 +1,40 @@
 import React, { Component } from "react";
-import { View, Button, Icon, Toast } from "native-base";
+import { View, Button, Icon, Toast, Content } from "native-base";
 import { connect } from "react-redux";
-import PasswordItem from "./PasswordItem";
 import { SwipeListView } from "react-native-swipe-list-view";
-import {translate} from "../language/TranslateService";
+import { translate } from "../language/TranslateService";
 import { deletePasswordItemArrOnStoreAction } from "../store/actions/PasswordItemAction";
+import CategorizedSubList from "./inputs/CategorizedSubList";
+
+var _ = require("lodash");
 
 class PasswordItemList extends Component {
-
   deletePasswordItemDetail = passwordItem => {
     this.props.deletePasswordItemArrOnStore(passwordItem);
   };
 
-  /*
-  componentDidMount(){
-    const items = this.props.passwordItems;
-    if (!(Array.isArray(items) && items.length)) {
-      Toast.show({
-        text: translate("password.addHint"),
-        buttonText: translate("password.addHintButton"),
-        duration: 5000
-      });
-    }
-  }
-  */
+  renderCategories = () => {
+    console.log("renderCategories started")
+    var uniqueArray = _.uniq(_.map(this.props.passwordItems, "category"));
+    console.log("renderCategories uniqueArray: " + JSON.stringify(uniqueArray))
+    var returnObject  = uniqueArray.map(uniq => {
+      console.log("renderCategories forEach: " + uniq)
+      data = _.filter(this.props.passwordItems,(e) => e.category == uniq);
+      console.log("renderCategories CategorizedSubList data: " + JSON.stringify(data))
+      return (
+        <CategorizedSubList
+          key = {uniq}
+          data={data}
+          categoryName = {uniq}
+          deletePasswordItemDetail={this.deletePasswordItemDetail}
+        />
+      );
+    });
+    return returnObject;
+  };
 
   render() {
-    return (
-      <SwipeListView
-        data={this.props.passwordItems}
-        keyExtractor={(rowData, index) => {
-          return rowData.id.toString();
-        }}
-        renderItem={(rowData, rowMap) => (
-          <View
-            style={{
-              backgroundColor: "white"
-            }}
-          >
-            <PasswordItem key={rowData.item.id} passworditem={rowData.item} />
-          </View>
-        )}
-        renderHiddenItem={(rowData, rowMap) => (
-          <Button
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-end"
-            }}
-            danger
-            onPress={() => {
-              this.deletePasswordItemDetail(rowData.item);
-            }}
-          >
-            <Icon name="trash" />
-          </Button>
-        )}
-        leftOpenValue={0}
-        rightOpenValue={-50}
-        disableRightSwipe
-        closeOnRowOpen={true}
-        closeOnRowPress={true}
-        closeOnScroll={true}
-        closeOnRowBeginSwipe={true}
-
-      />
-    );
+    return <Content>{this.renderCategories()}</Content>;
   }
 }
 

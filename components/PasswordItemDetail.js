@@ -7,9 +7,18 @@ import {
 import { connect } from "react-redux";
 import PasswordGeneration from "./PasswordGeneration.js";
 import { encrypt, decrypt } from "./Encryption";
-import { Content, Item, Icon, Input, Button, Accordion, Textarea } from "native-base";
+import {
+  Content,
+  Item,
+  Icon,
+  Input,
+  Button,
+  Accordion,
+  Textarea
+} from "native-base";
 import { Text, Toast, Body, View, Card, CardItem, Picker } from "native-base";
 import { translate } from "../language/TranslateService";
+import Categories from "./Categories";
 
 class PasswordItemDetail extends Component {
   constructor(props) {
@@ -171,14 +180,12 @@ class PasswordItemDetail extends Component {
     );
   }
   onNotesChange(value) {
-    this.setState(
-      prevState => ({
-        passwordItem: {
-          ...prevState.passwordItem,
-          notes: value
-        }
-      })
-    );
+    this.setState(prevState => ({
+      passwordItem: {
+        ...prevState.passwordItem,
+        notes: value
+      }
+    }));
   }
 
   componentWillReceiveProps(props) {
@@ -256,6 +263,16 @@ class PasswordItemDetail extends Component {
     });
   };
 
+  renderCategories = () => {
+    var cat = Categories();
+    var returnObject = cat.map(c => {
+      return (
+        <Picker.Item label={translate("password.category." + c)} value={c} key = {c} />
+      );
+    });
+    return returnObject
+  };
+
   render() {
     return (
       <Content
@@ -267,7 +284,10 @@ class PasswordItemDetail extends Component {
       >
         <Card>
           <CardItem>
-            <Item error={this.state.validation.categoryValidation} style={{ flex: 1 }}>
+            <Item
+              error={this.state.validation.categoryValidation}
+              style={{ flex: 1 }}
+            >
               <Icon name="ios-list" />
               <Picker
                 mode="dropdown"
@@ -276,89 +296,59 @@ class PasswordItemDetail extends Component {
                 onBlur={this.categoryOnBlur}
                 placeholder="Select Category"
               >
-                <Picker.Item
-                  label={translate("password.category.Other")}
-                  value="other"
-                />
-                <Picker.Item
-                  label={translate("password.category.SocialMedia")}
-                  value="socialmedia"
-                />
-                <Picker.Item
-                  label={translate("password.category.Finance")}
-                  value="finance"
-                />
-                <Picker.Item
-                  label={translate("password.category.Shopping")}
-                  value="shopping"
-                />
-                <Picker.Item
-                  label={translate("password.category.Travel")}
-                  value="travel"
-                />
-                <Picker.Item
-                  label={translate("password.category.Game")}
-                  value="game"
-                />
-                <Picker.Item
-                  label={translate("password.category.Education")}
-                  value="education"
-                />
+                {this.renderCategories()}
               </Picker>
             </Item>
           </CardItem>
           <CardItem>
-              <Item error={this.state.validation.nameValidation}>
-                <Icon name="bookmark" />
-                <Input
-                  placeholder={translate("password.name")}
-                  value={this.state.passwordItem.name}
-                  onChangeText={this.onNameChange.bind(this)}
-                  onBlur={this.nameOnBlur}
+            <Item error={this.state.validation.nameValidation}>
+              <Icon name="bookmark" />
+              <Input
+                placeholder={translate("password.name")}
+                value={this.state.passwordItem.name}
+                onChangeText={this.onNameChange.bind(this)}
+                onBlur={this.nameOnBlur}
+              />
+            </Item>
+          </CardItem>
+          <CardItem>
+            <Item error={this.state.validation.usernameValidation}>
+              <Icon name="person" />
+              <Input
+                placeholder={translate("password.username")}
+                value={this.state.passwordItem.username}
+                onChangeText={this.onUsernameChange.bind(this)}
+                onBlur={this.usernameOnBlur}
+              />
+            </Item>
+          </CardItem>
+          <CardItem>
+            <Item error={this.state.validation.passwordValidation}>
+              <Icon name="key" />
+              <Input
+                placeholder={translate("password.password")}
+                secureTextEntry={this.state.secureText}
+                maxLength={20}
+                value={this.state.decryptedPassword}
+                onChangeText={this.onPasswordChange.bind(this)}
+                onBlur={this.passwordOnBlur}
+              />
+              <Button transparent onPress={this.toggleShowPassword.bind(this)}>
+                <Icon
+                  name={this.state.secureText ? "ios-eye" : "ios-eye-off"}
                 />
-              </Item>
-            </CardItem>
-            <CardItem>
-              <Item error={this.state.validation.usernameValidation}>
-                <Icon name="person" />
-                <Input
-                  placeholder={translate("password.username")}
-                  value={this.state.passwordItem.username}
-                  onChangeText={this.onUsernameChange.bind(this)}
-                  onBlur={this.usernameOnBlur}
-                />
-              </Item>
-            </CardItem>
-            <CardItem>
-              <Item error={this.state.validation.passwordValidation}>
-                <Icon name="key" />
-                <Input
-                  placeholder={translate("password.password")}
-                  secureTextEntry={this.state.secureText}
-                  maxLength={20}
-                  value={this.state.decryptedPassword}
-                  onChangeText={this.onPasswordChange.bind(this)}
-                  onBlur={this.passwordOnBlur}
-                />
-                <Button
-                  transparent
-                  onPress={this.toggleShowPassword.bind(this)}
-                >
-                  <Icon
-                    name={this.state.secureText ? "ios-eye" : "ios-eye-off"}
-                  />
-                </Button>
-              </Item>
-            </CardItem>
-            <CardItem>
-              <Item>
-                <Icon name="paper" />
-                <Input
-                  placeholder={translate("password.notes")}
-                  value={this.state.passwordItem.notes}
-                  onChangeText={this.onNotesChange.bind(this)}
-                />
-              </Item>
+              </Button>
+            </Item>
+          </CardItem>
+          <CardItem>
+            <Item>
+              <Icon name="paper" />
+              <Input
+                placeholder={translate("password.notes")}
+                value={this.state.passwordItem.notes}
+                onChangeText={this.onNotesChange.bind(this)}
+              />
+            </Item>
           </CardItem>
           <CardItem>
             <Accordion

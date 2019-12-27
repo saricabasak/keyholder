@@ -3,7 +3,7 @@ import { ListItem, Left, Right, Text, Icon } from 'native-base';
 import { withNavigation } from 'react-navigation';
 
 
-class PasswordItem extends Component {
+class PasswordItemRow extends Component {
     render() {
       //console.log("PasswordItem render started")
       //console.log("PasswordItem this.props.key : "+ this.props._key)
@@ -29,4 +29,4 @@ class PasswordItem extends Component {
     }
 }
 
-export default withNavigation(PasswordItem);
+export default withNavigation(PasswordItemRow);

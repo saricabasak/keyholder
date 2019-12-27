@@ -25,7 +25,7 @@ class PasswordItemList extends Component {
         <CategorizedSubList
           key = {uniq}
           data={data}
-          categoryName = {uniq}
+          categoryName = {translate("password.category." + uniq)}
           deletePasswordItemDetail={this.deletePasswordItemDetail}
         />
       );

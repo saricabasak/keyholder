@@ -30,13 +30,13 @@
       "addHint" : "Press here to add a new password",
       "addHintButton" : "V",
       "category" : {
-        "Other" : "Other",
-        "SocialMedia" : "Social Media",
-        "Finance" :"Finance",
-        "Shopping":"Shopping",
-        "Travel" : "Travel",
-        "Game":"Game",
-        "Education" : "Education"
+        "other" : "Other",
+        "socialMedia" : "Social Media",
+        "finance" :"Finance",
+        "shopping":"Shopping",
+        "travel" : "Travel",
+        "game":"Game",
+        "education" : "Education"
         }
   },
   "home" : {

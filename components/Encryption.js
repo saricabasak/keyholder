@@ -5,7 +5,7 @@ var CryptoJS = require("crypto-js");
  */
 export const encrypt = (password, masterKey) => {
   var encrypted = CryptoJS.AES.encrypt(password, masterKey);
-  return encrypted.toString()
+  return encrypted.toString();
 };
 
 /**
@@ -13,8 +13,13 @@ export const encrypt = (password, masterKey) => {
  * Açamama durumuda olacak nasıl bir şey olacağını bilemiyorum hata mı alacak yoksa farklı bir değer mi dönecek göreceğiz.
  * @param {*} masterKey
  */
-export const decrypt = (encryptedPassword,masterKey) => {
+export const decrypt = (encryptedPassword, masterKey) => {
   var decryptedBytes = CryptoJS.AES.decrypt(encryptedPassword, masterKey);
-  var decryptedPassword = decryptedBytes.toString(CryptoJS.enc.Utf8);
-  return decryptedPassword
+  try {
+    var decryptedPassword;
+    decryptedPassword = decryptedBytes.toString(CryptoJS.enc.Utf8);
+  } catch (error) {
+    console.log("error -> " + error);
+  }
+  return decryptedPassword;
 };

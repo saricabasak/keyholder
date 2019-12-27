@@ -4,8 +4,9 @@ import { withNavigation } from "react-navigation";
 import { connect } from "react-redux";
 import {setMasterKeyAction} from "../store/actions/PasswordItemAction";
 import {translate} from "../language/TranslateService";
+import PasswordInput from '../components/inputs/PasswordInput';
 
-class SignUp extends Component {
+class SignUpPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,19 +36,17 @@ class SignUp extends Component {
   render() {
     return (
       <Content contentContainerStyle = {{margin : 10, justifyContent : "center",flex: 1}}>
-      <Item bordered rounded style = {{margin : 5, backgroundColor : '#EBDFDD', opacity : .5, }}>
-      <Icon name="key" color = "#FFFFFF" />
-          <Input
-            placeholder={translate("signUp.passwordInput")}
-            value={this.state.masterKey}
-            onChangeText={this.onMasterKeyInputChange}
-            secureTextEntry={this.state.secureText}
-            placeholderTextColor = "#FFFFFF"
-          />
-          <Button transparent onPress={this.toggleShowPassword.bind(this)}>
-              <Icon name={this.state.secureText ? "ios-eye" : "ios-eye-off"} />
-            </Button>
-      </Item>
+        <PasswordInput
+          itemStyle = {{margin : 5, backgroundColor : '#EBDFDD', opacity : .5, }}
+          itemErrorFlag={false}
+          inputPlaceholder={translate("signUp.passwordInput")}
+          inputValue={this.state.masterKey}
+          inputOnChangeText={this.onMasterKeyInputChange}
+          inputSecureTextEntry={this.state.secureText}
+          buttonTransparent={true}
+          buttonTogglePassword={this.toggleShowPassword.bind(this)}
+          iconEyeFlag={this.state.secureText}
+        />
       <Button onPress={this.onSpecifyMasterKeyProcessButton}
             style = {{margin : 5, backgroundColor : "#F53F18", justifyContent : 'center'}}>
         <Text>{translate("signUp.signUpButton")}</Text>
@@ -67,4 +66,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(withNavigation(SignUp));
+)(withNavigation(SignUpPage));

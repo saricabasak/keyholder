@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Content } from "native-base";
 import { isAnyPasswordDataExistsOnStorage } from "../components/StorageOperations";
-import SignIn from "../components/SignIn";
-import SignUp from "../components/SignUp.js";
+import SignInPage from "./SignInPage";
+import SignUpPage from "./SignUpPage.js";
 import { Image, ImageBackground } from "react-native";
 import Wallpaper from './Wallpaper';
 //import { clearAsyncStorage } from "../components/StorageOperations";
@@ -33,10 +33,10 @@ export default class LoginPage extends Component {
     let renderPage;
     if (isKeyExists) {
       renderPage = (
-        <SignIn firstDataForDecrypt={this.state.firstDataForDecrypt} />
+        <SignInPage firstDataForDecrypt={this.state.firstDataForDecrypt} />
       );
     } else {
-      renderPage = <SignUp />;
+      renderPage = <SignUpPage />;
     }
 
     return (

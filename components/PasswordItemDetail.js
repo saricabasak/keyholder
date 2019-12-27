@@ -182,6 +182,8 @@ class PasswordItemDetail extends Component {
   }
 
   componentWillReceiveProps(props) {
+    //console.log("nextProps : " + props)
+    //console.log("nextProps : " + JSON.stringify(props))
     if (props.passworditem) {
       const decryptedPassword = decrypt(
         props.passworditem.password,

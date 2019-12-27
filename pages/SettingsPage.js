@@ -42,15 +42,39 @@ class SettingsPage extends React.Component {
       enRadio: true
     };
     this.onCurrentMasterKeyChange = this.onCurrentMasterKeyChange.bind(this);
-    this.onNewMasterKeyValidationChange = this.onNewMasterKeyValidationChange.bind(
-      this
-    );
-    this.onConfirmNewMasterKeyValidationChange = this.onConfirmNewMasterKeyValidationChange.bind(
-      this
-    );
+    this.onNewMasterKeyChange = this.onNewMasterKeyChange.bind(this);
+    this.onConfirmNewMasterKeyChange = this.onConfirmNewMasterKeyChange.bind(this);
     this.changePasswordPage = this.changePasswordPage.bind(this);
     this.duration = 3000;
   }
+
+  componentWillReceiveProps(nextProps){
+    //console.log("nextProps : " + nextProps)
+    console.log("nextProps : " + JSON.stringify(nextProps))
+    var masterInfo = this.props.navigation.getParam("masterInfo");
+    console.log("componentWillReceiveProps this.props.masterKey-> "+ this.props.masterKey)
+    //console.log("nextProps master key -> " + nextProps. )
+    if (nextProps && masterInfo) {
+      this.setState(prevState => ({
+        masterInfo: {
+          ...prevState.masterInfo,
+          currentMasterKey: masterInfo.currentMasterKey,
+          newMasterKey: masterInfo.newMasterKey,
+          confirmNewMasterKey: masterInfo.confirmNewMasterKey
+        },
+        validation: {
+          ...prevState.validation,
+          currentMasterKeyValidation: masterInfo.currentMasterKeyValidation,
+          newMasterKeyValidation: masterInfo.newMasterKeyValidation,
+          confirmNewMasterKeyValidation: masterInfo.confirmNewMasterKeyValidation
+        },
+        secureTextCurrentMasterKey: true,
+        secureTextNewMasterKey: true,
+        secureTextConfirmNewMasterKey: true
+      }));
+    }
+  }
+  
 
   toggleShowCurrentMasterKey() {
     this.setState({
@@ -148,7 +172,7 @@ class SettingsPage extends React.Component {
     );
   }
 
-  onNewMasterKeyValidationChange(value) {
+  onNewMasterKeyChange(value) {
     this.setState(
       prevState => ({
         masterInfo: {
@@ -160,7 +184,7 @@ class SettingsPage extends React.Component {
     );
   }
 
-  onConfirmNewMasterKeyValidationChange(value) {
+  onConfirmNewMasterKeyChange(value) {
     this.setState(
       prevState => ({
         masterInfo: {
@@ -179,6 +203,9 @@ class SettingsPage extends React.Component {
   };
 
   savePassword = () => {
+    console.log("this.state.masterInfo.newMasterKey -> "+ this.state.masterInfo.newMasterKey)
+    console.log("this.props.masterKey -> "+ this.props.masterKey)
+    
     this.validateAndSave().then(() => {
       if (!(this.state.masterInfo.currentMasterKey == this.props.masterKey)) {
         Toast.show({
@@ -234,8 +261,9 @@ class SettingsPage extends React.Component {
       );
       element.password = encryptedPassword;
     });
-    this.props.updatePasswordItemListArrOnStore(_passwordItems);
     this.props.setMasterKey(this.state.masterInfo.newMasterKey);
+    this.props.updatePasswordItemListArrOnStore(_passwordItems);
+    console.log("this.props.setMasterKey AFTERRRRRRRRRRRRRRRRRRRR this.props.masterKey-> "+ this.props.masterKey)
   };
 
   onPressedEnglishRadio = () => {
@@ -292,7 +320,7 @@ class SettingsPage extends React.Component {
           itemErrorFlag={this.state.validation.newMasterKeyValidation}
           inputPlaceholder={translate("settings.new")}
           inputValue={this.state.masterInfo.newMasterKey}
-          inputOnChangeText={this.onNewMasterKeyValidationChange}
+          inputOnChangeText={this.onNewMasterKeyChange}
           inputOnBlur={this.newMasterKeyOnBlur}
           inputSecureTextEntry={this.state.secureTextNewMasterKey}
           buttonTransparent={true}
@@ -303,7 +331,7 @@ class SettingsPage extends React.Component {
           itemErrorFlag={this.state.validation.confirmNewMasterKeyValidation}
           inputPlaceholder={translate("settings.confirm")}
           inputValue={this.state.masterInfo.confirmNewMasterKey}
-          inputOnChangeText={this.onConfirmNewMasterKeyValidationChange}
+          inputOnChangeText={this.onConfirmNewMasterKeyChange}
           inputOnBlur={this.confirmNewMasterKeyOnBlur}
           inputSecureTextEntry={this.state.secureTextConfirmNewMasterKey}
           buttonTransparent={true}

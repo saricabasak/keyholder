@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Button, Icon, Input, Item, View, Text } from "native-base";
+import {
+  Button,
+  Icon,
+  Input,
+  Item,
+  View,
+  Text,
+  ListItem,
+  Right
+} from "native-base";
 import { SwipeRow } from "react-native-swipe-list-view";
 import { StyleSheet, Dimensions } from "react-native";
 
@@ -10,12 +19,8 @@ class PasswordItemSwipeRow extends Component {
     super(props);
   }
   render() {
-    console.log("PasswordItemSwipeRow render started");
-    console.log("PasswordItemSwipeRow this.props.key : " + this.props._key);
-    console.log(
-      "PasswordItemSwipeRow this.props.passworditem : " +
-        JSON.stringify(this.props.passworditem)
-    );
+    //console.log("PasswordItemSwipeRow render started");
+    //console.log("PasswordItemSwipeRow this.props.key : " + this.props._key);
     return (
       <SwipeRow
         leftOpenValue={0}
@@ -26,13 +31,12 @@ class PasswordItemSwipeRow extends Component {
         closeOnScroll={true}
         closeOnRowBeginSwipe={true}
       >
-        <View >
-        <Button 
-        style={{
-              flex: 1,
+        <View>
+          <Button
+            style={{
+              justifyContent: "flex-end",
               flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-end"
+              alignItems: "center"
             }}
             danger
             onPress={() => {
@@ -42,8 +46,12 @@ class PasswordItemSwipeRow extends Component {
             <Icon name="trash" />
           </Button>
         </View>
+
         <View style={{ backgroundColor: "white" }}>
-            <PasswordItem key={this.props.passworditem.id} passworditem={this.props.passworditem} />
+          <PasswordItem
+            key={this.props.passworditem.id}
+            passworditem={this.props.passworditem}
+          />
         </View>
       </SwipeRow>
     );

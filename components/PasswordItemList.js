@@ -14,13 +14,13 @@ class PasswordItemList extends Component {
   };
 
   renderCategories = () => {
-    console.log("renderCategories started")
+    //console.log("renderCategories started")
     var uniqueArray = _.uniq(_.map(this.props.passwordItems, "category"));
-    console.log("renderCategories uniqueArray: " + JSON.stringify(uniqueArray))
+    //console.log("renderCategories uniqueArray: " + JSON.stringify(uniqueArray))
     var returnObject  = uniqueArray.map(uniq => {
-      console.log("renderCategories forEach: " + uniq)
+      //console.log("renderCategories forEach: " + uniq)
       data = _.filter(this.props.passwordItems,(e) => e.category == uniq);
-      console.log("renderCategories CategorizedSubList data: " + JSON.stringify(data))
+      //console.log("renderCategories CategorizedSubList data: " + JSON.stringify(data))
       return (
         <CategorizedSubList
           key = {uniq}

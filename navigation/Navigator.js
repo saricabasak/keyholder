@@ -17,11 +17,19 @@ const TabNavigator = createMaterialTopTabNavigator(
         tabBarIcon: ({ tintColor }) => <Icon name="person" />,
         tabBarOnPress: ({ navigation, defaultHandler }) => {
           navigation.setParams({
+            validation: {
+              currentMasterKeyValidation: false,
+              newMasterKeyValidation: false,
+              confirmNewMasterKeyValidation: false
+            },
             masterInfo: {
               currentMasterKey: "",
               newMasterKey: "",
               confirmNewMasterKey: ""
-            }
+            },
+            secureTextCurrentMasterKey: true,
+            secureTextNewMasterKey: true,
+            secureTextConfirmNewMasterKey: true
           });
           defaultHandler();
         }

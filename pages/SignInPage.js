@@ -10,7 +10,7 @@ import {
   Container,
   View
 } from "native-base";
-import PasswordInput from '../components/inputs/PasswordInput';
+import PasswordInput from '../components/inputs/PasswordInput'; 
 import { withNavigation } from "react-navigation";
 import { decrypt } from "../components/Encryption";
 import { connect } from "react-redux";

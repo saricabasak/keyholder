@@ -16,6 +16,14 @@ export default class LoginPage extends Component {
     };
   }
 
+  resetApp =()=>{
+    this.setState({
+      masterKey: "",
+      isKeyExists: false,
+      firstDataForDecrypt: {}
+    })
+  }
+
   componentWillMount() {
     //clearAsyncStorage();
     isAnyPasswordDataExistsOnStorage().then(response => {
@@ -32,7 +40,7 @@ export default class LoginPage extends Component {
     let renderPage;
     if (isKeyExists) {
       renderPage = (
-        <SignInPage firstDataForDecrypt={this.state.firstDataForDecrypt} />
+        <SignInPage firstDataForDecrypt={this.state.firstDataForDecrypt} onPressedReset = {this.resetApp} />
       );
     } else {
       renderPage = <SignUpPage />;

@@ -26,6 +26,7 @@
         "generatorButton" : "Generate Password",
         "validationError" : "Please fill required fields!",
         "toastButton" : "OK",
+        "resetSuccess" : "Uygulama başarılı bir şekilde sıfırlanmıştır",
         "category" : {
           "other" : "Other",
           "socialMedia" : "Social Media",

@@ -16,6 +16,7 @@ import { decrypt } from "../components/Encryption";
 import { connect } from "react-redux";
 import { setMasterKeyAction } from "../store/actions/PasswordItemAction";
 import { translate } from "../language/TranslateService";
+import ResetApplication from '../components/ResetApplication';
 
 class SignInPage extends Component {
   constructor(props) {
@@ -42,7 +43,8 @@ class SignInPage extends Component {
     if (!decryptedPassword) {
       Toast.show({
         text: translate("signIn.passwordError"),
-        buttonText: translate("signIn.toastButton")
+        buttonText: translate("signIn.toastButton"),
+        type: "danger"
       });
     } else {
       this.props.setMasterKey(this.state.masterKey);
@@ -86,6 +88,7 @@ class SignInPage extends Component {
         >
           <Text>{translate("signIn.signInButton")}</Text>
         </Button>
+        <ResetApplication onPress ={this.props.onPressedReset}/>
       </Content>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Button, Icon, Toast, Content } from "native-base";
+import { Content } from "native-base";
 import { connect } from "react-redux";
 import { SwipeListView } from "react-native-swipe-list-view";
 import { translate } from "../language/TranslateService";

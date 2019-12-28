@@ -16,7 +16,7 @@ import {
   Accordion,
   Textarea
 } from "native-base";
-import { Text, Toast, Body, View, Card, CardItem, Picker } from "native-base";
+import { Text, Toast, Card, CardItem, Picker } from "native-base";
 import { translate } from "../language/TranslateService";
 import Categories from "./Categories";
 
@@ -257,7 +257,8 @@ class PasswordItemDetail extends Component {
       } else {
         Toast.show({
           text: translate("password.validationError"),
-          buttonText: translate("password.toastButton")
+          buttonText: translate("password.toastButton"),
+          type: "danger"
         });
       }
     });

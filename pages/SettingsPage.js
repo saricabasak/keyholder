@@ -248,7 +248,7 @@ class SettingsPage extends React.Component {
       }
       this.updateAllPasswordItemWithNewMasterKey();
       Toast.show({
-        text: translate("settings.successMessage"),
+        text: translate("settings.masterKeySuccessMessage"),
         buttonText: translate("settings.toastButton"),
         duration: this.duration,
         type: "success"
@@ -288,7 +288,7 @@ class SettingsPage extends React.Component {
   saveLanguage = () => {
     this.props.updateLanguage(this.state.enRadio ? "en" : "tr");
     Toast.show({
-      text: translate("settings.successMessage"),
+      text: translate("settings.languageSuccessMessage"),
       buttonText: translate("settings.toastButton"),
       duration: this.duration,
       type: "success"
@@ -315,6 +315,7 @@ class SettingsPage extends React.Component {
         <PasswordInput
           itemErrorFlag={this.state.validation.currentMasterKeyValidation}
           inputPlaceholder={translate("settings.current")}
+          placeholderTextColor = {{backgroundColor: "red"}}
           inputValue={this.state.masterInfo.currentMasterKey}
           inputOnChangeText={this.onCurrentMasterKeyChange}
           inputOnBlur={this.currentMasterKeyOnBlur}

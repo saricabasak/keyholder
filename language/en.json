@@ -29,6 +29,7 @@
       "saveButton" : "Save",
       "addHint" : "Press here to add a new password",
       "addHintButton" : "V",
+      "resetSuccess" : "You have reset your application successfully",
       "category" : {
         "other" : "Other",
         "socialMedia" : "Social Media",

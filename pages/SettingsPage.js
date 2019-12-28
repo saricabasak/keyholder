@@ -211,7 +211,8 @@ class SettingsPage extends React.Component {
         Toast.show({
           text: translate("settings.passwordError"),
           buttonText: translate("settings.toastButton"),
-          duration: this.duration
+          duration: this.duration,
+          type: "danger"
         });
         return;
       }
@@ -224,7 +225,8 @@ class SettingsPage extends React.Component {
         Toast.show({
           text: translate("settings.confirmError"),
           buttonText: translate("settings.toastButton"),
-          duration: this.duration
+          duration: this.duration,
+          type: "danger"
         });
         return;
       }
@@ -237,7 +239,8 @@ class SettingsPage extends React.Component {
         Toast.show({
           text: translate("settings.validationError"),
           buttonText: translate("settings.toastButton"),
-          duration: this.duration
+          duration: this.duration,
+          type: "danger"
         });
         return;
       }
@@ -245,7 +248,8 @@ class SettingsPage extends React.Component {
       Toast.show({
         text: translate("settings.successMessage"),
         buttonText: translate("settings.toastButton"),
-        duration: this.duration
+        duration: this.duration,
+        type: "success"
       });
       this.props.navigation.navigate(translate("pages.home"));
     });
@@ -284,7 +288,8 @@ class SettingsPage extends React.Component {
     Toast.show({
       text: translate("settings.successMessage"),
       buttonText: translate("settings.toastButton"),
-      duration: this.duration
+      duration: this.duration,
+      type: "success"
     });
   };
 

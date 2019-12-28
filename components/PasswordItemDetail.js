@@ -283,12 +283,12 @@ class PasswordItemDetail extends Component {
         }}
       >
         <Card>
-          <CardItem>
+          <CardItem style={{backgroundColor:"#4B4B46"}}>
             <Item
               error={this.state.validation.categoryValidation}
               style={{ flex: 1 }}
             >
-              <Icon name="ios-list" />
+              <Icon name="ios-list" style={{color:"#FFB61E"}}/>
               <Picker
                 mode="dropdown"
                 selectedValue={this.state.passwordItem.category}
@@ -300,9 +300,9 @@ class PasswordItemDetail extends Component {
               </Picker>
             </Item>
           </CardItem>
-          <CardItem>
+          <CardItem style={{backgroundColor:"#4B4B46"}}>
             <Item error={this.state.validation.nameValidation}>
-              <Icon name="bookmark" />
+              <Icon name="bookmark" style={{color:"#FFB61E"}}/>
               <Input
                 placeholder={translate("password.name")}
                 value={this.state.passwordItem.name}
@@ -311,9 +311,9 @@ class PasswordItemDetail extends Component {
               />
             </Item>
           </CardItem>
-          <CardItem>
+          <CardItem style={{backgroundColor:"#4B4B46"}}>
             <Item error={this.state.validation.usernameValidation}>
-              <Icon name="person" />
+              <Icon name="person" style={{color:"#FFB61E"}}/>
               <Input
                 placeholder={translate("password.username")}
                 value={this.state.passwordItem.username}
@@ -322,9 +322,9 @@ class PasswordItemDetail extends Component {
               />
             </Item>
           </CardItem>
-          <CardItem>
+          <CardItem style={{backgroundColor:"#4B4B46"}}>
             <Item error={this.state.validation.passwordValidation}>
-              <Icon name="key" />
+              <Icon name="key" style={{color:"#FFB61E"}}/>
               <Input
                 placeholder={translate("password.password")}
                 secureTextEntry={this.state.secureText}
@@ -336,13 +336,14 @@ class PasswordItemDetail extends Component {
               <Button transparent onPress={this.toggleShowPassword.bind(this)}>
                 <Icon
                   name={this.state.secureText ? "ios-eye" : "ios-eye-off"}
+                  style={{color:"#21638C"}}
                 />
               </Button>
             </Item>
           </CardItem>
-          <CardItem>
+          <CardItem style={{backgroundColor:"#4B4B46"}}>
             <Item>
-              <Icon name="paper" />
+              <Icon name="paper" style={{color:"#FFB61E"}}/>
               <Input
                 placeholder={translate("password.notes")}
                 value={this.state.passwordItem.notes}
@@ -350,16 +351,17 @@ class PasswordItemDetail extends Component {
               />
             </Item>
           </CardItem>
-          <CardItem>
+          <CardItem style={{backgroundColor:"#4B4B46"}}>
             <Accordion
               dataArray={[{ title: translate("password.generatorHeader") }]}
               animation={true}
               expanded={true}
               renderContent={this.generatorContent}
+              headerStyle={{ backgroundColor:"#7D7D78"}}
             />
           </CardItem>
         </Card>
-        <Button style={{ justifyContent: "center" }} onPress={this.save}>
+        <Button style={{ justifyContent: "center", backgroundColor:"#D96236" }} onPress={this.save}>
           <Text>{translate("password.saveButton")}</Text>
         </Button>
       </Content>

@@ -47,7 +47,7 @@ class PasswordItemSwipeRow extends Component {
           </Button>
         </View>
 
-        <View style={{ backgroundColor: "white" }}>
+        <View style={{ backgroundColor: "#4B4B46" }}>
           <PasswordItemRow
             key={this.props.passworditem.id}
             passworditem={this.props.passworditem}

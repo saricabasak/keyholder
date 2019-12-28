@@ -3,8 +3,7 @@ import { Content } from "native-base";
 import { isAnyPasswordDataExistsOnStorage } from "../components/StorageOperations";
 import SignInPage from "./SignInPage";
 import SignUpPage from "./SignUpPage.js";
-import { Image, ImageBackground } from "react-native";
-import Wallpaper from './Wallpaper';
+import KeyHolderContainer from '../components/KeyHolderContainer';
 //import { clearAsyncStorage } from "../components/StorageOperations";
 
 export default class LoginPage extends Component {
@@ -40,9 +39,9 @@ export default class LoginPage extends Component {
     }
 
     return (
-      <Wallpaper>
+      <KeyHolderContainer>
         {renderPage}
-      </Wallpaper>
+      </KeyHolderContainer>
     );
   }
 }

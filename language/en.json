@@ -57,8 +57,15 @@
   "pages" : {
     "home" : "HomePage"
   },
-    "language":{
-        "turkish" : "Turkish",
-        "english" : "English"
-    }
+  "language":{
+      "turkish" : "Turkish",
+      "english" : "English"
+  },
+  "Other": "ios-cafe",
+  "Social Media": "ios-chatbubbles",
+  "Finance": "ios-card",
+  "Shopping": "ios-cart",
+  "Travel": "ios-paper-plane",
+  "Game": "logo-game-controller-b",
+  "Education": "ios-journal"
 }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { ListItem, List, Left, Right, Radio, Text } from "native-base";
+import { ListItem, List, Text, Icon } from "native-base";
 import PasswordItemSwipeRow from './PasswordItemSwipeRow';
+import { translate } from "../../language/TranslateService";
 
 class CategorizedSubList extends Component {
   constructor(props) {
@@ -26,8 +27,17 @@ class CategorizedSubList extends Component {
   render() {
     return (
       <List>
-        <ListItem key = {this.props.categoryName} itemDivider>
-          <Text>{this.props.categoryName}</Text>
+        <ListItem
+          key = {this.props.categoryName}
+          itemDivider
+          style={{backgroundColor:"#32322D"}}>
+          <Icon
+            name={translate(this.props.categoryName)}
+            style={{width:"10%", color:"#FFB61E"}}/>
+          <Text
+            style={{color:"#FFB61E", fontWeight:"bold"}}>
+            {this.props.categoryName}
+          </Text>
         </ListItem>
         {this.renderItems(this.props.data)}
       </List>

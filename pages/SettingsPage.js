@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  View,
   CardItem,
   Text,
   Form,
@@ -20,6 +21,7 @@ import KeyHolderHeader from "../components/KeyHolderHeader";
 import { translate } from "../language/TranslateService";
 import PasswordInput from "../components/inputs/PasswordInput";
 import LanguageContentPage from "./LanguageContentPage";
+import PageContainer from '../components/PageContainer';
 
 class SettingsPage extends React.Component {
   constructor(props) {
@@ -74,7 +76,7 @@ class SettingsPage extends React.Component {
       }));
     }
   }
-  
+
 
   toggleShowCurrentMasterKey() {
     this.setState({
@@ -205,7 +207,7 @@ class SettingsPage extends React.Component {
   savePassword = () => {
     console.log("this.state.masterInfo.newMasterKey -> "+ this.state.masterInfo.newMasterKey)
     console.log("this.props.masterKey -> "+ this.props.masterKey)
-    
+
     this.validateAndSave().then(() => {
       if (!(this.state.masterInfo.currentMasterKey == this.props.masterKey)) {
         Toast.show({
@@ -295,7 +297,7 @@ class SettingsPage extends React.Component {
         enRadio={this.state.enRadio}
         onPressedTurkishRadio={this.onPressedTurkishRadio}
         trRadio={this.state.trRadio}
-        buttonStyle={{ justifyContent: "center" }}
+        buttonStyle={{ justifyContent: "center", backgroundColor:"#D96236" }}
         saveLanguage={this.saveLanguage}
         buttonText={translate("settings.saveButton")}
       />
@@ -339,7 +341,10 @@ class SettingsPage extends React.Component {
           iconEyeFlag={this.state.secureTextConfirmNewMasterKey}
         />
         <Button
-          style={{ justifyContent: "center", marginTop : 5 }}
+          style={{
+            justifyContent: "center",
+            marginTop : 5,
+            backgroundColor:"#D96236" }}
           onPress={this.savePassword}
         >
           <Text>{translate("settings.saveButton")}</Text>
@@ -350,25 +355,29 @@ class SettingsPage extends React.Component {
 
   render() {
     return (
-      <Container>
+      <PageContainer>
         <KeyHolderHeader headerTitle={translate("settings.header")} />
-        <CardItem>
+        <CardItem style={{backgroundColor:"#32322D"}}>
           <Accordion
             dataArray={[{ title: translate("password.changeMasterKeyHeader") }]}
             animation={true}
             expanded={true}
             renderContent={this.changePasswordPage}
+            headerStyle={{ backgroundColor: "#4B4B46"}}
+            style={{backgroundColor:"#64645F", color:"#FFB61E"}}
           />
         </CardItem>
-        <CardItem>
+        <CardItem style={{backgroundColor:"#32322D", color:"#FFB61E"}}>
           <Accordion
             dataArray={[{ title: translate("password.changeLanguageHeader") }]}
             animation={true}
             expanded={true}
             renderContent={this.returnLanguageContentPage}
+            headerStyle={{ backgroundColor: "#4B4B46", color:"#FFB61E"}}
+            style={{backgroundColor:"#64645F", color:"#FFB61E"}}
           />
         </CardItem>
-      </Container>
+      </PageContainer>
     );
   }
 }

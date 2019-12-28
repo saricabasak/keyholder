@@ -13,6 +13,7 @@ import {
 } from "../components/StorageOperations";
 import KeyHolderHeader from "../components/KeyHolderHeader";
 import {translate} from "../language/TranslateService";
+import PageContainer from '../components/PageContainer';
 
 
 class HomePage extends React.Component {
@@ -28,10 +29,10 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <Container>
+      <PageContainer>
         <KeyHolderHeader headerTitle={translate("home.header")}/>
         <PasswordItemList passwordItems={this.props.passwordItems} />
-      </Container>
+      </PageContainer>
     );
   }
 }

@@ -24,7 +24,7 @@ class LanguageContentPage extends Component {
           style={this.props.buttonStyle}
           onPress={this.props.saveLanguage}
         >
-          <Text>{this.props.buttonText}</Text>
+          <Text style={{color:"#1D1D1B", fontWeight:"bold"}}>{this.props.buttonText}</Text>
         </Button>
       </View>
     );

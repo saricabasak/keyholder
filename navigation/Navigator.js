@@ -14,7 +14,8 @@ const TabNavigator = createMaterialTopTabNavigator(
     SettingsPage: {
       screen: SettingsPage,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => <Icon name="person" />,
+        tabBarIcon: ({ tintColor }) =>
+          <Icon name="person" style={{color:"#D96236"}}/>,
         tabBarOnPress: ({ navigation, defaultHandler }) => {
           navigation.setParams({
             validation: {
@@ -38,14 +39,16 @@ const TabNavigator = createMaterialTopTabNavigator(
     HomePage: {
       screen: HomePage,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => <Icon name="home" />,
+        tabBarIcon: ({ tintColor }) =>
+          <Icon name="home" style={{color:"#D96236"}}/>,
         swipeEnabled: false
       }
     },
     PasswordPage: {
       screen: PasswordPage,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => <Icon name="ios-add-circle" />,
+        tabBarIcon: ({ tintColor }) =>
+          <Icon name="ios-add-circle" style={{color:"#D96236"}}/>,
         tabBarOnPress: ({ navigation, defaultHandler }) => {
           navigation.setParams({
             passworditem: {
@@ -69,10 +72,10 @@ const TabNavigator = createMaterialTopTabNavigator(
       showIcon: true,
       showLabel: false,
       indicatorStyle: {
-        backgroundColor: "black"
+        backgroundColor: "#D96236"
       },
       style: {
-        backgroundColor: "whitesmoke"
+        backgroundColor: "#1D1D1B"
       }
     }
   }

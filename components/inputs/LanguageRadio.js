@@ -12,7 +12,9 @@ class LanguageRadio extends Component {
           <Text>{this.props.leftText}</Text>
         </Left>
         <Right>
-          <Radio selected={this.props.radioSelectedFlag} />
+          <Radio
+            color={"#21638C"} 
+            selected={this.props.radioSelectedFlag} />
         </Right>
       </ListItem>
     );

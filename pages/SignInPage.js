@@ -86,7 +86,9 @@ class SignInPage extends Component {
             justifyContent: "center"
           }}
         >
-          <Text>{translate("signIn.signInButton")}</Text>
+          <Text style={{color:"#C8C8BE"}}>
+            {translate("signIn.signInButton")}
+          </Text>
         </Button>
         <ResetApplication onPress ={this.props.onPressedReset}/>
       </Content>

@@ -47,9 +47,16 @@ class SignUpPage extends Component {
           buttonTogglePassword={this.toggleShowPassword.bind(this)}
           iconEyeFlag={this.state.secureText}
         />
-      <Button onPress={this.onSpecifyMasterKeyProcessButton}
-            style = {{margin : 5, backgroundColor : "#F53F18", justifyContent : 'center'}}>
-        <Text>{translate("signUp.signUpButton")}</Text>
+      <Button
+        onPress={this.onSpecifyMasterKeyProcessButton}
+        style = {{
+          margin : 5,
+          backgroundColor : "#D96236",
+          justifyContent : 'center'}}
+      >
+        <Text style={{color:"#C8C8BE"}}>
+          {translate("signUp.signUpButton")}
+        </Text>
       </Button>
   </Content>
     );

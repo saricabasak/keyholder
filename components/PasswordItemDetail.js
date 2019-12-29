@@ -268,7 +268,11 @@ class PasswordItemDetail extends Component {
     var cat = Categories();
     var returnObject = cat.map(c => {
       return (
-        <Picker.Item label={translate("password.category." + c)} value={c} key = {c} />
+        <Picker.Item
+          label={translate("password.category." + c)}
+          value={c}
+          key = {c}
+        />
       );
     });
     return returnObject
@@ -296,6 +300,17 @@ class PasswordItemDetail extends Component {
                 onValueChange={value => this.onCategoryChange(value)}
                 onBlur={this.categoryOnBlur}
                 placeholder="Select Category"
+                placeholderTextColor="#FFB61E"
+                textStyle={{ color: "#FFB61E" }}
+                itemStyle={{
+                  marginLeft: 0,
+                  paddingLeft: 10,
+                  backgroundColor: "#4B4B46"
+                }}
+                headerStyle={{ backgroundColor: "#32322D" }}
+                headerBackButtonTextStyle={{ color: "#21638C" }}
+                headerTitleStyle={{ color: "#D96236" }}
+                itemTextStyle={{ color: '#FFB61E' }}
               >
                 {this.renderCategories()}
               </Picker>
@@ -309,6 +324,8 @@ class PasswordItemDetail extends Component {
                 value={this.state.passwordItem.name}
                 onChangeText={this.onNameChange.bind(this)}
                 onBlur={this.nameOnBlur}
+                placeholderTextColor="#FFB61E"
+                style={{color:"#FFB61E"}}
               />
             </Item>
           </CardItem>
@@ -320,6 +337,8 @@ class PasswordItemDetail extends Component {
                 value={this.state.passwordItem.username}
                 onChangeText={this.onUsernameChange.bind(this)}
                 onBlur={this.usernameOnBlur}
+                placeholderTextColor="#FFB61E"
+                style={{color:"#FFB61E"}}
               />
             </Item>
           </CardItem>
@@ -333,6 +352,8 @@ class PasswordItemDetail extends Component {
                 value={this.state.decryptedPassword}
                 onChangeText={this.onPasswordChange.bind(this)}
                 onBlur={this.passwordOnBlur}
+                placeholderTextColor="#FFB61E"
+                style={{color:"#FFB61E"}}
               />
               <Button transparent onPress={this.toggleShowPassword.bind(this)}>
                 <Icon
@@ -349,6 +370,8 @@ class PasswordItemDetail extends Component {
                 placeholder={translate("password.notes")}
                 value={this.state.passwordItem.notes}
                 onChangeText={this.onNotesChange.bind(this)}
+                placeholderTextColor="#FFB61E"
+                style={{color:"#FFB61E"}}
               />
             </Item>
           </CardItem>

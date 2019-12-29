@@ -19,7 +19,10 @@ class PasswordInput extends Component {
           transparent={this.props.buttonTransparent}
           onPress={this.props.buttonTogglePassword}
         >
-          <Icon name={this.props.iconEyeFlag ? "ios-eye" : "ios-eye-off"} />
+          <Icon
+            name={this.props.iconEyeFlag ? "ios-eye" : "ios-eye-off"}
+            style={{color:"#21638C"}}
+          />
         </Button>
       </Item>
     );

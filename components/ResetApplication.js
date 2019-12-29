@@ -22,7 +22,7 @@ export default class ResetApplication extends Component {
   render() {
     return (
       <Text onPress={this.reset}>
-        Reset Application
+        Forget master key?
       </Text>
     );
   }

@@ -74,7 +74,7 @@ export default class PasswordGeneration extends Component {
         <List>
           <ListItem>
             <Left>
-              <Text>{translate("password.length")}</Text>
+              <Text style={{color:"#C8C8BE"}}>{translate("password.length")}</Text>
             </Left>
             <Right>
               <Item picker style={{ borderColor: "transparent" }}>
@@ -99,54 +99,61 @@ export default class PasswordGeneration extends Component {
           </ListItem>
           <ListItem>
             <Left>
-              <Text>{translate("password.digit")}</Text>
+              <Text style={{color:"#C8C8BE"}}>{translate("password.digit")}</Text>
             </Left>
             <Right>
               <Switch
                 value={this.state.generationParameters.digitValue}
                 onValueChange={this.onDigitChange.bind(this)}
+                trackColor={{true: '#21638C', false: '#4B4B46'}}
               />
             </Right>
           </ListItem>
           <ListItem>
             <Left>
-              <Text>{translate("password.lowerCase")}</Text>
+              <Text style={{color:"#C8C8BE"}}>{translate("password.lowerCase")}</Text>
             </Left>
             <Right>
               <Switch
                 value={this.state.generationParameters.lowerValue}
                 onValueChange={this.onLowerChange.bind(this)}
+                trackColor={{true: '#21638C', false: '#4B4B46'}}
               />
             </Right>
           </ListItem>
           <ListItem>
             <Left>
-              <Text>{translate("password.upperCase")}</Text>
+              <Text style={{color:"#C8C8BE"}}>{translate("password.upperCase")}</Text>
             </Left>
             <Right>
               <Switch
                 value={this.state.generationParameters.upperValue}
                 onValueChange={this.onUpperChange.bind(this)}
+                trackColor={{true: '#21638C', false: '#4B4B46'}}
               />
             </Right>
           </ListItem>
           <ListItem>
             <Left>
-              <Text>{translate("password.specialChars")}</Text>
+              <Text style={{color:"#C8C8BE"}}>{translate("password.specialChars")}</Text>
             </Left>
             <Right>
               <Switch
                 value={this.state.generationParameters.specialValue}
                 onValueChange={this.onSpecialChange.bind(this)}
+                trackColor={{true: '#21638C', false: '#4B4B46'}}
               />
             </Right>
           </ListItem>
         </List>
         <Button success
-          style={{ justifyContent: "center" }}
+          style={{
+            justifyContent: "center",
+            backgroundColor:"#D96236",
+            margin:5 }}
           onPress={this.generatePassword.bind(this)}
         >
-          <Text>{translate("password.generatorButton")}</Text>
+          <Text style={{color:"#C8C8BE"}}>{translate("password.generatorButton")}</Text>
         </Button>
       </View>
     );

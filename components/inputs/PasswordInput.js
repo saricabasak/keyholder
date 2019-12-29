@@ -10,6 +10,7 @@ class PasswordInput extends Component {
       <Item error={this.props.itemErrorFlag} itemStyle = {this.props.itemStyle}>
         <Input
           placeholder={this.props.inputPlaceholder}
+          placeholderTextColor="black"
           value={this.props.inputValue}
           onChangeText={this.props.inputOnChangeText}
           onBlur={this.props.inputOnBlur}

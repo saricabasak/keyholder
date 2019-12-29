@@ -51,7 +51,8 @@
     "passwordError" : "Current master key is wrong!",
     "confirmError" : "Confirm master key not matched with new master key!",
     "validationError" : "Please fill required fields!",
-    "successMessage" : "Master key has been changed successfully!",
+    "masterKeySuccessMessage" : "Master key has been changed successfully!",
+    "languageSuccessMessage" : "Language has been changed successfully!",
     "toastButton" : "OK",
     "saveButton" : "Save"
   },

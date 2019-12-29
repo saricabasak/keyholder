@@ -21,7 +21,7 @@ export default class ResetApplication extends Component {
 
   render() {
     return (
-      <Text onPress={this.reset}>
+      <Text onPress={this.reset} style = {this.props.style}>
         Reset Application
       </Text>
     );

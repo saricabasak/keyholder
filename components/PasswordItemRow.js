@@ -19,7 +19,7 @@ class PasswordItemRow extends Component {
               }}
             >
               <Left>
-                <Text>{this.props.passworditem.name}</Text>
+                <Text style = {{color: 'white'}}>{this.props.passworditem.name}</Text>
               </Left>
               <Right>
                 <Icon name="arrow-forward" />

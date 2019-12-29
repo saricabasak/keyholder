@@ -68,7 +68,8 @@ const TabNavigator = createMaterialTopTabNavigator(
   {
     initialRouteName: "HomePage",
     tabBarPosition: "bottom",
-    tabBarOptions: {
+    tabBarOptions: { 
+      iconStyle:{height: 30},
       showIcon: true,
       showLabel: false,
       indicatorStyle: {

@@ -7,7 +7,12 @@
     "passwordError" : "Wrong master key try again!",
     "passwordInput" : "Enter Master Key",
     "signInButton" : "Sign In",
-    "toastButton" : "OK"
+    "toastButton" : "OK",
+    "resetButton" : "Reset Application",
+    "resetTitle" : "Resetting Application",
+    "resetContent" : "Once you reset your app, there is no going back and lose your all data. Still want to do that?",
+    "resetOk" : "Proceed",
+    "resetCancel" : "Cancel"
   },
   "password" : {
       "header" : "Password",

@@ -10,20 +10,27 @@ import {
   Container,
   View
 } from "native-base";
-import PasswordInput from '../components/inputs/PasswordInput';
+import PasswordInput from "../components/inputs/PasswordInput";
 import { withNavigation } from "react-navigation";
 import { decrypt } from "../components/Encryption";
 import { connect } from "react-redux";
 import { setMasterKeyAction } from "../store/actions/PasswordItemAction";
 import { translate } from "../language/TranslateService";
-import ResetApplication from '../components/ResetApplication';
+import ResetApplication from "../components/ResetApplication";
+import Dialog, {
+  DialogTitle,
+  DialogContent,
+  DialogButton,
+  DialogFooter
+} from "react-native-popup-dialog";
 
 class SignInPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       masterKey: "",
-      secureText: true
+      secureText: true,
+      visible: false
     };
     this.onMasterKeyInputChange = this.onMasterKeyInputChange.bind(this);
   }
@@ -58,6 +65,21 @@ class SignInPage extends Component {
     });
   }
 
+  onPressedResetDialog = () => {
+    this.setState({ visible: true });
+  };
+  reset = () => {
+    //Are you sure? make popup to be sure you want to reset?
+    clearAsyncStorage().then(() => {
+      this.props.onPress();
+      Toast.show({
+        text: translate("password.resetSuccess"),
+        buttonText: translate("password.toastButton"),
+        type: "success"
+      });
+    });
+  };
+
   render() {
     return (
       <Content
@@ -90,7 +112,40 @@ class SignInPage extends Component {
             {translate("signIn.signInButton")}
           </Text>
         </Button>
-        <ResetApplication onPress ={this.props.onPressedReset}/>
+        <Button
+          onPress={this.onPressedResetDialog}
+          style={{
+            margin: 5,
+            backgroundColor: "#D96236",
+            justifyContent: "center"
+          }}
+        >
+          <Text>{translate("signIn.resetButton")}</Text>
+        </Button>
+        <Dialog
+          dialogTitle={<DialogTitle title= {translate("signIn.resetTitle")} />}
+          visible={this.state.visible}
+          onTouchOutside={() => {
+            this.setState({ visible: false });
+          }}
+          footer={
+            <DialogFooter>
+              <DialogButton
+                text={translate("signIn.resetCancel")}
+                onPress={() => {
+                  this.setState({ visible: false });
+                }}
+              />
+              <DialogButton text={translate("signIn.resetOk")} onPress={this.reset} />
+            </DialogFooter>
+          }
+        >
+          <DialogContent>
+            <Text>
+              {translate("signIn.resetContent")}
+            </Text>
+          </DialogContent>
+        </Dialog>
       </Content>
     );
   }

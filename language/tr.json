@@ -7,7 +7,12 @@
       "passwordError" : "Wrong master key try again!",
       "passwordInput" : "Enter Master Key",
       "signInButton" : "Sign In",
-      "toastButton" : "OK"
+      "toastButton" : "OK",
+      "resetButton" : "Uygulamayı Sıfırlayın",
+      "resetTitle" : "Uygulama Sıfırlama",
+      "resetContent" : "Bir kere sıfırladıktan sonra geri dönüş olmayacak ve tüm datayı silmiş olacaksın. Yine de devam etmek istiyor musun?",
+      "resetOk" : "Sıfırla",
+      "resetCancel" : "İptal"
     },
     "password" : {
         "header" : "Parola",

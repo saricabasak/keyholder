@@ -21,13 +21,8 @@ export default class ResetApplication extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <Text onPress={this.reset}>
-        Forget master key?
-=======
       <Text onPress={this.reset} style = {this.props.style}>
         Reset Application
->>>>>>> 95430f0ba3d61736a701557de223a2af20caf58a
       </Text>
     );
   }

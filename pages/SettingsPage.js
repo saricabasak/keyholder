@@ -302,7 +302,7 @@ class SettingsPage extends React.Component {
         enRadio={this.state.enRadio}
         onPressedTurkishRadio={this.onPressedTurkishRadio}
         trRadio={this.state.trRadio}
-        buttonStyle={{ justifyContent: "center", backgroundColor:"#D96236" }}
+        buttonStyle={{ justifyContent: "center", marginTop : 3,backgroundColor:"#D96236" }}
         saveLanguage={this.saveLanguage}
         buttonText={translate("settings.saveButton")}
       />
@@ -349,7 +349,7 @@ class SettingsPage extends React.Component {
         <Button
           style={{
             justifyContent: "center",
-            marginTop : 5,
+            marginTop : 3,
             backgroundColor:"#D96236" }}
           onPress={this.savePassword}
         >
@@ -369,8 +369,8 @@ class SettingsPage extends React.Component {
             animation={true}
             expanded={true}
             renderContent={this.changePasswordPage}
-            headerStyle={{ backgroundColor: "#4B4B46"}}
             style={{backgroundColor:"#64645F", color:"#FFB61E"}}
+            headerStyle = {{color : "#FFB61E"}}
           />
         </CardItem>
         <CardItem style={{backgroundColor:"#32322D", color:"#FFB61E"}}>

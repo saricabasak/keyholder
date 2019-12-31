@@ -4,9 +4,13 @@ import { isAnyPasswordDataExistsOnStorage } from "../components/StorageOperation
 import SignInPage from "./SignInPage";
 import SignUpPage from "./SignUpPage.js";
 import KeyHolderContainer from '../components/KeyHolderContainer';
+import { connect } from "react-redux";
+import { updateLanguageAction } from "../store/actions/PasswordItemAction";
 //import { clearAsyncStorage } from "../components/StorageOperations";
-
-export default class LoginPage extends Component {
+import {
+  retrieveLanguageOnStorage
+} from "../components/StorageOperations";
+ class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +30,11 @@ export default class LoginPage extends Component {
 
   componentWillMount() {
     //clearAsyncStorage();
+
+    retrieveLanguageOnStorage().then(res => {
+      this.props.updateLanguageOnStore(res);
+    });
+
     isAnyPasswordDataExistsOnStorage().then(response => {
       if (response) {
         this.setState({
@@ -53,3 +62,11 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateLanguageOnStore: data => dispatch(updateLanguageAction(data))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LoginPage);

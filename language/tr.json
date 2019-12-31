@@ -4,9 +4,9 @@
       "signUpButton" : "Katıl"
     },
     "signIn" : {
-      "passwordError" : "Wrong master key try again!",
-      "passwordInput" : "Enter Master Key",
-      "signInButton" : "Sign In",
+      "passwordError" : "Yanlış parola tekrar deneyiniz!",
+      "passwordInput" : "Ana Parolanızı Giriniz",
+      "signInButton" : "Giriş",
       "toastButton" : "OK",
       "resetButton" : "Uygulamayı Sıfırlayın",
       "resetTitle" : "Uygulama Sıfırlama",
@@ -21,42 +21,42 @@
         "password" : "Parola",
         "notes" : "Notlar",
         "length" : "Uzunluk",
-        "digit" : "Digit",
-        "lowerCase" : "Lowercase",
-        "upperCase" : "UpperCase",
-        "specialChars" : "Special Chars",
-        "generatorHeader" : "Password Generator",
-        "changeMasterKeyHeader" : "Change Master Key",
-        "changeLanguageHeader" : "Change Language",
-        "generatorButton" : "Generate Password",
-        "validationError" : "Please fill required fields!",
+        "digit" : "Hane",
+        "lowerCase" : "Küçük Harf",
+        "upperCase" : "Büyük Harf",
+        "specialChars" : "Özel Karakter",
+        "generatorHeader" : "Parola Oluşturma",
+        "changeMasterKeyHeader" : "Ana Parola Değiştir",
+        "changeLanguageHeader" : "Dil Değiştir",
+        "generatorButton" : "Parolayı Oluştur",
+        "validationError" : "Gerekli alanları doldurunuz",
         "toastButton" : "OK",
         "resetSuccess" : "Uygulama başarılı bir şekilde sıfırlanmıştır",
         "category" : {
-          "other" : "Other",
-          "socialMedia" : "Social Media",
-          "finance" :"Finance", 
-          "shopping":"Shopping",
-          "travel" : "Travel",
-          "game":"Game",
-          "education" : "Education"
+          "other" : "Diğer",
+          "socialMedia" : "Sosyal Medya",
+          "finance" :"Finans", 
+          "shopping":"Alışveriş",
+          "travel" : "Gezi",
+          "game":"Oyun",
+          "education" : "Eğitim"
           }
     },
     "home" : {
-      "header" : "Password List"
+      "header" : "Parola Listesi"
     },
     "settings" : {
       "header" : "Ayarlar",
-      "current" : "Current Master Key",
-      "new" : "New Master Key",
-      "confirm" : "Confirm New Master Key",
-      "passwordError" : "Current master key is wrong!",
-      "confirmError" : "Confirm master key not matched with new master key!",
-      "validationError" : "Please fill required fields!",
-      "masterKeySuccessMessage" : "Master key has been changed successfully!",
-      "languageSuccessMessage" : "Language has been changed successfully!",
-      "toastButton" : "OK",
-      "saveButton" : "Save"
+      "current" : "Şuanli Ana Parola",
+      "new" : "Yeni Ana Parola",
+      "confirm" : "Yeni Ana Parola tekrar",
+      "passwordError" : "Şuanki ana parola yanlış",
+      "confirmError" : "Yeni parola ve tekrarı uyuşmamaktadır",
+      "validationError" : "Gerekli alanları doldurunuz",
+      "masterKeySuccessMessage" : "Ana Parola başarılı şekilde değiştirilmiştir.",
+      "languageSuccessMessage" : "Dil seçeneği başarılı şekilde değiştirilmiştir.",
+      "toastButton" : "Tamam",
+      "saveButton" : "Kaydet"
     },
     "pages" : {
       "home" : "HomePage"
@@ -64,6 +64,13 @@
     "language":{
         "turkish" : "Türkçe",
         "english" : "İngilizce"
-    }
+    },
+    "Diğer": "ios-cafe",
+    "Sosyal Medya": "ios-chatbubbles",
+    "Finans": "ios-card",
+    "Alışveriş": "ios-cart",
+    "Gezi": "ios-paper-plane",
+    "Oyun": "logo-game-controller-b",
+    "Eğitim": "ios-journal"
   }
   

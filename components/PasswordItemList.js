@@ -25,6 +25,7 @@ class PasswordItemList extends Component {
         <CategorizedSubList
           key = {uniq}
           data={data}
+          categoryIcon = {translate(uniq)}
           categoryName = {translate("password.category." + uniq)}
           deletePasswordItemDetail={this.deletePasswordItemDetail}
         />
@@ -38,6 +39,13 @@ class PasswordItemList extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    language: state.PasswordItemReducer.language
+  };
+};
+
+
 const mapDispatchToProps = dispatch => {
   return {
     deletePasswordItemArrOnStore: data =>
@@ -45,4 +53,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(PasswordItemList);
+export default connect(mapStateToProps, mapDispatchToProps)(PasswordItemList);

@@ -2,8 +2,10 @@ import { AsyncStorage } from "react-native";
 
 const PASSWORD_ITEMS = "PASSWORD_ITEMS";
 const PASSWORD_ITEMS_SEQUENCE = "PASSWORD_ITEMS_SEQUENCE";
+const LANGUAGE = "LANGUAGE";
 const ADD_VALUE = 1;
 const INITIAL_VALUE = 1;
+const DEFAULT_LANGUAGE = "en";
 
 export const retrieveAllData = async () => {
   try {
@@ -33,6 +35,20 @@ export const retrieveNextSequenceOnStorage = async () => {
   }
 };
 
+export const retrieveLanguageOnStorage = async () => {
+  try {
+    const language = await AsyncStorage.getItem(LANGUAGE);
+    if (language !== null) {
+      return JSON.parse(language);
+    } else {
+      setLanguage(DEFAULT_LANGUAGE);
+      return DEFAULT_LANGUAGE;
+    }
+  } catch (e) {
+    console.log("ERROR!!!");
+  }
+};
+
 export const addDataToStorage = async PasswordItemList => {
   try {
     await AsyncStorage.setItem(
@@ -53,6 +69,17 @@ export const setSequence = async sequence => {
     await AsyncStorage.setItem(
       PASSWORD_ITEMS_SEQUENCE,
       JSON.stringify(sequence)
+    );
+  } catch (error) {
+    console.warn(error);
+  }
+};
+
+export const setLanguage = async lan => {
+  try {
+    await AsyncStorage.setItem(
+      LANGUAGE,
+      JSON.stringify(lan)
     );
   } catch (error) {
     console.warn(error);

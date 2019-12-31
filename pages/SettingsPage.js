@@ -22,6 +22,8 @@ import { translate } from "../language/TranslateService";
 import PasswordInput from "../components/inputs/PasswordInput";
 import LanguageContentPage from "./LanguageContentPage";
 import PageContainer from '../components/PageContainer';
+import { setLanguage } from "../components/StorageOperations";
+
 
 class SettingsPage extends React.Component {
   constructor(props) {
@@ -40,8 +42,8 @@ class SettingsPage extends React.Component {
       secureTextCurrentMasterKey: true,
       secureTextNewMasterKey: true,
       secureTextConfirmNewMasterKey: true,
-      trRadio: false,
-      enRadio: true
+      trRadio: this.props.language=="tr" ? true: false,
+      enRadio: this.props.language=="en" ? true: false
     };
     this.onCurrentMasterKeyChange = this.onCurrentMasterKeyChange.bind(this);
     this.onNewMasterKeyChange = this.onNewMasterKeyChange.bind(this);
@@ -286,7 +288,9 @@ class SettingsPage extends React.Component {
   };
 
   saveLanguage = () => {
-    this.props.updateLanguage(this.state.enRadio ? "en" : "tr");
+    var language = this.state.enRadio ? "en" : "tr";
+    this.props.updateLanguage(language);
+    setLanguage(language);
     Toast.show({
       text: translate("settings.languageSuccessMessage"),
       buttonText: translate("settings.toastButton"),
@@ -296,6 +300,7 @@ class SettingsPage extends React.Component {
   };
 
   returnLanguageContentPage = () => {
+    
     return (
       <LanguageContentPage
         onPressedEnglishRadio={this.onPressedEnglishRadio}
@@ -391,7 +396,8 @@ class SettingsPage extends React.Component {
 const mapStateToProps = state => {
   return {
     passwordItems: state.PasswordItemReducer.PasswordItems,
-    masterKey: state.PasswordItemReducer.masterKey
+    masterKey: state.PasswordItemReducer.masterKey,
+    language: state.PasswordItemReducer.language
   };
 };
 
@@ -400,7 +406,7 @@ const mapDispatchToProps = dispatch => {
     updatePasswordItemListArrOnStore: data =>
       dispatch(updatePasswordItemListArrOnStoreAction(data)),
     setMasterKey: data => dispatch(setMasterKeyAction(data)),
-    updateLanguage: data => dispatch(updateLanguageAction(data))
+    updateLanguage: data => dispatch(updateLanguageAction(data)),
   };
 };
 

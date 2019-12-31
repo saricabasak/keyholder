@@ -23,6 +23,7 @@ import Dialog, {
   DialogButton,
   DialogFooter
 } from "react-native-popup-dialog";
+import {clearAsyncStorage} from '../components/StorageOperations';
 
 class SignInPage extends Component {
   constructor(props) {
@@ -69,9 +70,10 @@ class SignInPage extends Component {
     this.setState({ visible: true });
   };
   reset = () => {
+    this.setState({ visible: false });
     //Are you sure? make popup to be sure you want to reset?
     clearAsyncStorage().then(() => {
-      this.props.onPress();
+      this.props.onPressedReset();
       Toast.show({
         text: translate("password.resetSuccess"),
         buttonText: translate("password.toastButton"),

@@ -9,6 +9,7 @@ class PasswordItemRow extends Component {
             <ListItem
               key = {this.props._key}
               button
+              style = {{borderBottomColor : "#32322D"}}
               onPress = {() => {
                 this.props.navigation.navigate('PasswordPage', {
                   passworditem: this.props.passworditem

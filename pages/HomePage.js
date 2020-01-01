@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Container } from "native-base";
 import PasswordItemList from "../components/PasswordItemList";
 import {
   setPasswordItemArrOnStoreAction,
@@ -8,7 +7,6 @@ import {
 } from "../store/actions/PasswordItemAction";
 import {
   retrieveAllData,
-  clearAsyncStorage,
   retrieveNextSequenceOnStorage
 } from "../components/StorageOperations";
 import KeyHolderHeader from "../components/KeyHolderHeader";

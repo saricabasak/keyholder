@@ -91,6 +91,7 @@ class SignInPage extends Component {
         }}
       >
         <PasswordInput
+        style={{borderColor : "#4B4B46" }}
           itemStyle={{ margin: 5, backgroundColor: "#EBDFDD", opacity: 0.5 }}
           itemErrorFlag={false}
           inputPlaceholder={translate("signIn.passwordInput")}
@@ -121,7 +122,7 @@ class SignInPage extends Component {
             justifyContent: "center"
           }}
         >
-          <Text>{translate("signIn.resetButton")}</Text>
+          <Text style={{color:"#C8C8BE"}}>{translate("signIn.resetButton")}</Text>
         </Button>
         <Dialog
           dialogTitle={<DialogTitle title= {translate("signIn.resetTitle")} />}

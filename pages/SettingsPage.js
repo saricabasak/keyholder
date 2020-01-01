@@ -42,8 +42,8 @@ class SettingsPage extends React.Component {
       secureTextCurrentMasterKey: true,
       secureTextNewMasterKey: true,
       secureTextConfirmNewMasterKey: true,
-      trRadio: this.props.language=="tr" ? true: false,
-      enRadio: this.props.language=="en" ? true: false
+      trRadio: this.props.language == "tr" ? true : false,
+      enRadio: this.props.language == "en" ? true : false
     };
     this.onCurrentMasterKeyChange = this.onCurrentMasterKeyChange.bind(this);
     this.onNewMasterKeyChange = this.onNewMasterKeyChange.bind(this);
@@ -52,7 +52,7 @@ class SettingsPage extends React.Component {
     this.duration = 2000;
   }
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     var masterInfo = this.props.navigation.getParam("masterInfo");
     if (nextProps && masterInfo) {
       this.setState(prevState => ({
@@ -264,7 +264,7 @@ class SettingsPage extends React.Component {
     });
     this.props.setMasterKey(this.state.masterInfo.newMasterKey);
     this.props.updatePasswordItemListArrOnStore(_passwordItems);
-    ("this.props.setMasterKey AFTERRRRRRRRRRRRRRRRRRRR this.props.masterKey-> "+ this.props.masterKey)
+    ("this.props.setMasterKey AFTERRRRRRRRRRRRRRRRRRRR this.props.masterKey-> " + this.props.masterKey)
   };
 
   onPressedEnglishRadio = () => {
@@ -293,14 +293,14 @@ class SettingsPage extends React.Component {
   };
 
   returnLanguageContentPage = () => {
-    
+
     return (
       <LanguageContentPage
         onPressedEnglishRadio={this.onPressedEnglishRadio}
         enRadio={this.state.enRadio}
         onPressedTurkishRadio={this.onPressedTurkishRadio}
         trRadio={this.state.trRadio}
-        buttonStyle={{ justifyContent: "center", marginTop : 3,backgroundColor:"#D96236" }}
+        buttonStyle={{ justifyContent: "center", marginTop: 3, backgroundColor: "#D96236" }}
         saveLanguage={this.saveLanguage}
         buttonText={translate("settings.saveButton")}
       />
@@ -311,9 +311,10 @@ class SettingsPage extends React.Component {
     return (
       <Form>
         <PasswordInput
+          style={{ borderColor: "#32322D" }}
           itemErrorFlag={this.state.validation.currentMasterKeyValidation}
           inputPlaceholder={translate("settings.current")}
-          placeholderTextColor = {{backgroundColor: "red"}}
+          placeholderTextColor={{ backgroundColor: "red" }}
           inputValue={this.state.masterInfo.currentMasterKey}
           inputOnChangeText={this.onCurrentMasterKeyChange}
           inputOnBlur={this.currentMasterKeyOnBlur}
@@ -323,6 +324,7 @@ class SettingsPage extends React.Component {
           iconEyeFlag={this.state.secureTextCurrentMasterKey}
         />
         <PasswordInput
+          style={{ borderColor: "#32322D" }}
           itemErrorFlag={this.state.validation.newMasterKeyValidation}
           inputPlaceholder={translate("settings.new")}
           inputValue={this.state.masterInfo.newMasterKey}
@@ -334,6 +336,7 @@ class SettingsPage extends React.Component {
           iconEyeFlag={this.state.secureTextNewMasterKey}
         />
         <PasswordInput
+          style={{ borderColor: "#32322D" }}
           itemErrorFlag={this.state.validation.confirmNewMasterKeyValidation}
           inputPlaceholder={translate("settings.confirm")}
           inputValue={this.state.masterInfo.confirmNewMasterKey}
@@ -347,8 +350,9 @@ class SettingsPage extends React.Component {
         <Button
           style={{
             justifyContent: "center",
-            marginTop : 3,
-            backgroundColor:"#D96236" }}
+            marginTop: 3,
+            backgroundColor: "#D96236"
+          }}
           onPress={this.savePassword}
         >
           <Text>{translate("settings.saveButton")}</Text>
@@ -361,24 +365,24 @@ class SettingsPage extends React.Component {
     return (
       <PageContainer>
         <KeyHolderHeader headerTitle={translate("settings.header")} />
-        <CardItem style={{backgroundColor:"#32322D"}}>
+        <CardItem style={{ backgroundColor: "#32322D" }}>
           <Accordion
             dataArray={[{ title: translate("password.changeMasterKeyHeader") }]}
             animation={true}
             expanded={true}
             renderContent={this.changePasswordPage}
-            style={{backgroundColor:"#64645F", color:"#FFB61E"}}
-            headerStyle = {{color : "#FFB61E"}}
+            style={{ backgroundColor: "#64645F", color: "#FFB61E" }}
+            headerStyle={{ color: "#FFB61E" }}
           />
         </CardItem>
-        <CardItem style={{backgroundColor:"#32322D", color:"#FFB61E"}}>
+        <CardItem style={{ backgroundColor: "#32322D", color: "#FFB61E" }}>
           <Accordion
             dataArray={[{ title: translate("password.changeLanguageHeader") }]}
             animation={true}
             expanded={true}
             renderContent={this.returnLanguageContentPage}
-            headerStyle={{ backgroundColor: "#4B4B46", color:"#FFB61E"}}
-            style={{backgroundColor:"#64645F", color:"#FFB61E"}}
+            headerStyle={{ backgroundColor: "#4B4B46", color: "#FFB61E" }}
+            style={{ backgroundColor: "#64645F", color: "#FFB61E" }}
           />
         </CardItem>
       </PageContainer>

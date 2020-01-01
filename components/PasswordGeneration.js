@@ -72,12 +72,12 @@ export default class PasswordGeneration extends Component {
     return (
       <View>
         <List>
-          <ListItem>
+          <ListItem style={{borderColor : "#32322D" }}>
             <Left>
               <Text style={{color:"#C8C8BE"}}>{translate("password.length")}</Text>
             </Left>
             <Right>
-              <Item picker style={{ borderColor: "transparent" }}>
+              <Item picker style={{ borderColor: "transparent", borderColor : "#32322D" }}>
                 <Picker
                   style={{ alignItems: "flex-end", width: 100 }}
                   mode="dropdown"
@@ -97,7 +97,7 @@ export default class PasswordGeneration extends Component {
               </Item>
             </Right>
           </ListItem>
-          <ListItem>
+          <ListItem style={{borderColor : "#32322D" }}>
             <Left>
               <Text style={{color:"#C8C8BE"}}>{translate("password.digit")}</Text>
             </Left>
@@ -109,7 +109,7 @@ export default class PasswordGeneration extends Component {
               />
             </Right>
           </ListItem>
-          <ListItem>
+          <ListItem style={{borderColor : "#32322D" }}>
             <Left>
               <Text style={{color:"#C8C8BE"}}>{translate("password.lowerCase")}</Text>
             </Left>
@@ -121,7 +121,7 @@ export default class PasswordGeneration extends Component {
               />
             </Right>
           </ListItem>
-          <ListItem>
+          <ListItem style={{borderColor : "#32322D" }}>
             <Left>
               <Text style={{color:"#C8C8BE"}}>{translate("password.upperCase")}</Text>
             </Left>
@@ -133,7 +133,7 @@ export default class PasswordGeneration extends Component {
               />
             </Right>
           </ListItem>
-          <ListItem>
+          <ListItem style={{borderColor : "#32322D" }}>
             <Left>
               <Text style={{color:"#C8C8BE"}}>{translate("password.specialChars")}</Text>
             </Left>

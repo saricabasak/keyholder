@@ -7,7 +7,7 @@ class LanguageRadio extends Component {
   }
   render() {
     return (
-      <ListItem onPress={this.props.itemOnPressed}>
+      <ListItem onPress={this.props.itemOnPressed} style={{borderColor : "#32322D" }}>
         <Left>
           <Text>{this.props.leftText}</Text>
         </Left>

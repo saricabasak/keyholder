@@ -7,7 +7,7 @@ class PasswordInput extends Component {
   }
   render() {
     return (
-      <Item error={this.props.itemErrorFlag} itemStyle = {this.props.itemStyle}>
+      <Item error={this.props.itemErrorFlag} itemStyle = {this.props.itemStyle} style = {this.props.style}>
         <Input
           placeholder={this.props.inputPlaceholder}
           placeholderTextColor="black"

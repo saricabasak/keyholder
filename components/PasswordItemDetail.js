@@ -289,7 +289,7 @@ class PasswordItemDetail extends Component {
           <CardItem style={{backgroundColor:"#4B4B46"}}>
             <Item
               error={this.state.validation.categoryValidation}
-              style={{ flex: 1 }}
+              style={{ flex: 1, borderColor : "#32322D"}}
             >
               <Icon name="ios-list" style={{color:"#FFB61E"}}/>
               <Picker
@@ -315,7 +315,7 @@ class PasswordItemDetail extends Component {
             </Item>
           </CardItem>
           <CardItem style={{backgroundColor:"#4B4B46"}}>
-            <Item error={this.state.validation.nameValidation}>
+            <Item error={this.state.validation.nameValidation} style={{borderColor : "#32322D"}}>
               <Icon name="bookmark" style={{color:"#FFB61E"}}/>
               <Input
                 placeholder={translate("password.name")}
@@ -328,7 +328,7 @@ class PasswordItemDetail extends Component {
             </Item>
           </CardItem>
           <CardItem style={{backgroundColor:"#4B4B46"}}>
-            <Item error={this.state.validation.usernameValidation}>
+            <Item error={this.state.validation.usernameValidation} style={{borderColor : "#32322D"}}>
               <Icon name="person" style={{color:"#FFB61E"}}/>
               <Input
                 placeholder={translate("password.username")}
@@ -341,7 +341,7 @@ class PasswordItemDetail extends Component {
             </Item>
           </CardItem>
           <CardItem style={{backgroundColor:"#4B4B46"}}>
-            <Item error={this.state.validation.passwordValidation}>
+            <Item error={this.state.validation.passwordValidation} style={{borderColor : "#32322D"}}>
               <Icon name="key" style={{color:"#FFB61E"}}/>
               <Input
                 placeholder={translate("password.password")}
@@ -362,7 +362,7 @@ class PasswordItemDetail extends Component {
             </Item>
           </CardItem>
           <CardItem style={{backgroundColor:"#4B4B46"}}>
-            <Item>
+            <Item style={{borderColor : "#32322D"}}>
               <Icon name="paper" style={{color:"#FFB61E"}}/>
               <Input
                 placeholder={translate("password.notes")}

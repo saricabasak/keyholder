@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Content, Text, Button, View } from "native-base";
-import LanguageRadio from "../components/inputs/LanguageRadio";
+import LanguageRadio from "../components/common/LanguageRadio";
 import { translate } from "../language/TranslateService";
 
 class LanguageContentPage extends Component {

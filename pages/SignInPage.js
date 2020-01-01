@@ -10,7 +10,7 @@ import {
   Container,
   View
 } from "native-base";
-import PasswordInput from "../components/inputs/PasswordInput";
+import PasswordInput from "../components/common/PasswordInput";
 import { withNavigation } from "react-navigation";
 import { decrypt } from "../components/Encryption";
 import { connect } from "react-redux";
@@ -47,7 +47,6 @@ class SignInPage extends Component {
       this.props.firstDataForDecrypt.password,
       this.state.masterKey
     );
-    console.log("SignInPage decryptedPassword -> " + decryptedPassword);
     if (!decryptedPassword) {
       Toast.show({
         text: translate("signIn.passwordError"),

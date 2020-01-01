@@ -9,7 +9,6 @@ class CategorizedSubList extends Component {
   }
 
   renderItems = data => {
-    //console.log("CategorizedSubList renderItems started");
     var returnObject = data.map(element => {
       return (
           <PasswordItemSwipeRow
@@ -20,7 +19,6 @@ class CategorizedSubList extends Component {
           />
       );
     });
-    //console.log("CategorizedSubList returnObject :  " + returnObject);
     return returnObject;
   };
 

@@ -20,8 +20,6 @@ class PasswordItemSwipeRow extends Component {
     super(props);
   }
   render() {
-    //console.log("PasswordItemSwipeRow render started");
-    //console.log("PasswordItemSwipeRow this.props.key : " + this.props._key);
     return (
       <SwipeRow
         leftOpenValue={0}

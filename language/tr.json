@@ -15,13 +15,14 @@
       "resetCancel" : "İptal"
     },
     "password" : {
+        "categoryPlaceHolderName" : "Kategori Seçiniz",
         "header" : "Parola",
         "name" : "İsim",
         "username" : "Kullanıcı İsmi",
         "password" : "Parola",
         "notes" : "Notlar",
         "length" : "Uzunluk",
-        "digit" : "Hane",
+        "digit" : "Numara",
         "lowerCase" : "Küçük Harf",
         "upperCase" : "Büyük Harf",
         "specialChars" : "Özel Karakter",
@@ -31,6 +32,9 @@
         "generatorButton" : "Parolayı Oluştur",
         "validationError" : "Gerekli alanları doldurunuz",
         "toastButton" : "OK",
+        "saveButton" : "Kaydet",
+        "addHint" : "Yeni Parola Eklemek için Buraya Tıklayınız",
+        "addHintButton" : "V",
         "resetSuccess" : "Uygulama başarılı bir şekilde sıfırlanmıştır",
         "category" : {
           "other" : "Diğer",

@@ -5,9 +5,6 @@ import { withNavigation } from 'react-navigation';
 
 class PasswordItemRow extends Component {
     render() {
-      //console.log("PasswordItem render started")
-      //console.log("PasswordItem this.props.key : "+ this.props._key)
-      //console.log("PasswordItem this.props.passworditem : "+ JSON.stringify(this.props.passworditem))
         return (
             <ListItem
               key = {this.props._key}

@@ -19,7 +19,7 @@ import { encrypt, decrypt } from "../components/Encryption";
 import { withNavigation } from "react-navigation";
 import KeyHolderHeader from "../components/KeyHolderHeader";
 import { translate } from "../language/TranslateService";
-import PasswordInput from "../components/inputs/PasswordInput";
+import PasswordInput from "../components/common/PasswordInput";
 import LanguageContentPage from "./LanguageContentPage";
 import PageContainer from '../components/PageContainer';
 import { setLanguage } from "../components/StorageOperations";
@@ -49,15 +49,11 @@ class SettingsPage extends React.Component {
     this.onNewMasterKeyChange = this.onNewMasterKeyChange.bind(this);
     this.onConfirmNewMasterKeyChange = this.onConfirmNewMasterKeyChange.bind(this);
     this.changePasswordPage = this.changePasswordPage.bind(this);
-    this.duration = 3000;
+    this.duration = 2000;
   }
 
   componentWillReceiveProps(nextProps){
-    //console.log("nextProps : " + nextProps)
-    console.log("nextProps : " + JSON.stringify(nextProps))
     var masterInfo = this.props.navigation.getParam("masterInfo");
-    console.log("componentWillReceiveProps this.props.masterKey-> "+ this.props.masterKey)
-    //console.log("nextProps master key -> " + nextProps. )
     if (nextProps && masterInfo) {
       this.setState(prevState => ({
         masterInfo: {
@@ -207,9 +203,6 @@ class SettingsPage extends React.Component {
   };
 
   savePassword = () => {
-    console.log("this.state.masterInfo.newMasterKey -> "+ this.state.masterInfo.newMasterKey)
-    console.log("this.props.masterKey -> "+ this.props.masterKey)
-
     this.validateAndSave().then(() => {
       if (!(this.state.masterInfo.currentMasterKey == this.props.masterKey)) {
         Toast.show({
@@ -271,7 +264,7 @@ class SettingsPage extends React.Component {
     });
     this.props.setMasterKey(this.state.masterInfo.newMasterKey);
     this.props.updatePasswordItemListArrOnStore(_passwordItems);
-    console.log("this.props.setMasterKey AFTERRRRRRRRRRRRRRRRRRRR this.props.masterKey-> "+ this.props.masterKey)
+    ("this.props.setMasterKey AFTERRRRRRRRRRRRRRRRRRRR this.props.masterKey-> "+ this.props.masterKey)
   };
 
   onPressedEnglishRadio = () => {

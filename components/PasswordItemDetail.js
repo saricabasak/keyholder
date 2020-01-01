@@ -189,8 +189,6 @@ class PasswordItemDetail extends Component {
   }
 
   componentWillReceiveProps(props) {
-    //console.log("nextProps : " + props)
-    //console.log("nextProps : " + JSON.stringify(props))
     if (props.passworditem) {
       const decryptedPassword = decrypt(
         props.passworditem.password,
@@ -299,7 +297,7 @@ class PasswordItemDetail extends Component {
                 selectedValue={this.state.passwordItem.category}
                 onValueChange={value => this.onCategoryChange(value)}
                 onBlur={this.categoryOnBlur}
-                placeholder="Select Category"
+                placeholder= {translate("password.categoryPlaceHolderName")}
                 placeholderTextColor="#FFB61E"
                 textStyle={{ color: "#FFB61E" }}
                 itemStyle={{

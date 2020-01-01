@@ -4,7 +4,7 @@ import { withNavigation } from "react-navigation";
 import { connect } from "react-redux";
 import {setMasterKeyAction} from "../store/actions/PasswordItemAction";
 import {translate} from "../language/TranslateService";
-import PasswordInput from '../components/inputs/PasswordInput';
+import PasswordInput from '../components/common/PasswordInput';
 
 class SignUpPage extends Component {
   constructor(props) {

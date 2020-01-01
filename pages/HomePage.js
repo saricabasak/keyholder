@@ -39,7 +39,8 @@ class HomePage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    passwordItems: state.PasswordItemReducer.PasswordItems
+    passwordItems: state.PasswordItemReducer.PasswordItems,
+    language: state.PasswordItemReducer.language
   };
 };
 

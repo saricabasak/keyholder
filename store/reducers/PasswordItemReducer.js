@@ -2,12 +2,13 @@ import {
   addDataToStorage,
   setSequence
 } from "../../components/StorageOperations";
+import {initialLanguage,initialSequence,initialMasterKey,initialPasswordItems} from '../../components/common/DefaultValues';
 
 const initialState = {
-  PasswordItems: [],
-  nextSequence: 0,
-  masterKey: "",
-  language: "en"
+  PasswordItems: initialPasswordItems,
+  nextSequence: initialSequence,
+  masterKey: initialMasterKey,
+  language: initialLanguage
 };
 
 const PasswordItemReducer = (state = initialState, action) => {

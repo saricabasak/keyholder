@@ -10,27 +10,27 @@ import { updateLanguageAction } from "../store/actions/PasswordItemAction";
 import {
   retrieveLanguageOnStorage
 } from "../components/StorageOperations";
+import {initialLanguage} from '../components/common/DefaultValues';
+
  class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterKey: "",
       isKeyExists: false,
       firstDataForDecrypt: {}
     };
   }
 
   resetApp =()=>{
+    this.props.updateLanguageOnStore(initialLanguage);
     this.setState({
-      masterKey: "",
       isKeyExists: false,
       firstDataForDecrypt: {}
     })
   }
-
+  
   componentWillMount() {
     //clearAsyncStorage();
-
     retrieveLanguageOnStorage().then(res => {
       this.props.updateLanguageOnStore(res);
     });

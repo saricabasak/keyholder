@@ -18,20 +18,12 @@ const TabNavigator = createMaterialTopTabNavigator(
           <Icon name="person" style={{color:"#D96236"}}/>,
         tabBarOnPress: ({ navigation, defaultHandler }) => {
           navigation.setParams({
-            validation: {
-              currentMasterKeyValidation: false,
-              newMasterKeyValidation: false,
-              confirmNewMasterKeyValidation: false
-            },
             masterInfo: {
               currentMasterKey: "",
               newMasterKey: "",
               confirmNewMasterKey: ""
-            },
-            secureTextCurrentMasterKey: true,
-            secureTextNewMasterKey: true,
-            secureTextConfirmNewMasterKey: true
-          });
+            }
+            });
           defaultHandler();
         }
       }

@@ -1,11 +1,11 @@
 {
     "signUp" : {
-      "passwordInput" : "Ana Parola Tanımla",
+      "passwordInput" : "Ana Şifre Tanımla",
       "signUpButton" : "Katıl"
     },
     "signIn" : {
-      "passwordError" : "Yanlış parola tekrar deneyiniz!",
-      "passwordInput" : "Ana Parolanızı Giriniz",
+      "passwordError" : "Yanlış şifre tekrar deneyiniz!",
+      "passwordInput" : "Ana Şifrenizi Giriniz",
       "signInButton" : "Giriş",
       "toastButton" : "OK",
       "resetButton" : "Uygulamayı Sıfırlayın",
@@ -16,24 +16,24 @@
     },
     "password" : {
         "categoryPlaceHolderName" : "Kategori Seçiniz",
-        "header" : "Parola",
+        "header" : "Şifre İşlemleri",
         "name" : "İsim",
         "username" : "Kullanıcı İsmi",
-        "password" : "Parola",
+        "password" : "Şifre",
         "notes" : "Notlar",
-        "length" : "Uzunluk",
+        "length" : "Şifre Uzunluğu",
         "digit" : "Numara",
         "lowerCase" : "Küçük Harf",
         "upperCase" : "Büyük Harf",
         "specialChars" : "Özel Karakter",
-        "generatorHeader" : "Parola Oluşturma",
-        "changeMasterKeyHeader" : "Ana Parola Değiştir",
+        "generatorHeader" : "Şifre Oluşturma",
+        "changeMasterKeyHeader" : "Ana Şifre Değiştir",
         "changeLanguageHeader" : "Dil Değiştir",
-        "generatorButton" : "Parolayı Oluştur",
+        "generatorButton" : "Şifre Oluştur",
         "validationError" : "Gerekli alanları doldurunuz",
         "toastButton" : "OK",
         "saveButton" : "Kaydet",
-        "addHint" : "Yeni Parola Eklemek için Buraya Tıklayınız",
+        "addHint" : "Yeni Şifre Eklemek için Buraya Tıklayınız",
         "addHintButton" : "V",
         "resetSuccess" : "Uygulama başarılı bir şekilde sıfırlanmıştır",
         "category" : {
@@ -47,17 +47,17 @@
           }
     },
     "home" : {
-      "header" : "Parola Listesi"
+      "header" : "Şifre Listesi"
     },
     "settings" : {
       "header" : "Ayarlar",
-      "current" : "Şuanli Ana Parola",
-      "new" : "Yeni Ana Parola",
-      "confirm" : "Yeni Ana Parola tekrar",
-      "passwordError" : "Şuanki ana parola yanlış",
-      "confirmError" : "Yeni parola ve tekrarı uyuşmamaktadır",
+      "current" : "Şuanki Ana Şifre",
+      "new" : "Yeni Ana Şifre",
+      "confirm" : "Yeni Ana Şifreyi Doğrulayın",
+      "passwordError" : "Şuanki ana şifre yanlış",
+      "confirmError" : "Yeni şifre ve tekrarı uyuşmamaktadır",
       "validationError" : "Gerekli alanları doldurunuz",
-      "masterKeySuccessMessage" : "Ana Parola başarılı şekilde değiştirilmiştir.",
+      "masterKeySuccessMessage" : "Ana Şifre başarılı şekilde değiştirilmiştir.",
       "languageSuccessMessage" : "Dil seçeneği başarılı şekilde değiştirilmiştir.",
       "toastButton" : "Tamam",
       "saveButton" : "Kaydet"

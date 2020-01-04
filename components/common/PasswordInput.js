@@ -1,28 +1,63 @@
 import React, { Component } from "react";
-import { Button, Icon, Input,Item } from "native-base";
+import { Button, Icon, Input, Item } from "native-base";
 
 class PasswordInput extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      inputValue: "",
+      validInput: true,
+      secureText: true
+    };
   }
+
+  toggleShowKey() {
+    this.setState({
+      secureText: !this.state.secureText
+    });
+  }
+
+  setInputValidation = () => {
+    if (this.state.inputValue == "") {
+      this.setState({
+        validInput: false
+      });
+    } else {
+      this.setState({
+        validInput: true
+      });
+    }
+  };
+
+  onBlur = () => {
+    this.setInputValidation();
+  };
+
+  onChange = (value) => {
+    this.setState({
+      inputValue: value
+    }, this.setInputValidation)
+    this.props.inputOnChangeText(value);
+  }
+
   render() {
     return (
-      <Item error={this.props.itemErrorFlag} itemStyle = {this.props.itemStyle} style = {this.props.style}>
+      <Item error={!this.state.validInput} itemStyle={this.props.itemStyle} style={this.state.validInput ? this.props.style : null}>
         <Input
           placeholder={this.props.inputPlaceholder}
           placeholderTextColor="black"
-          value={this.props.inputValue}
-          onChangeText={this.props.inputOnChangeText}
-          onBlur={this.props.inputOnBlur}
-          secureTextEntry={this.props.inputSecureTextEntry}
+          value={this.state.inputValue}
+          onChangeText={this.onChange}
+          onBlur={this.onBlur}
+          secureTextEntry={this.state.secureText}
         />
         <Button
           transparent={this.props.buttonTransparent}
-          onPress={this.props.buttonTogglePassword}
+          onPress={this.toggleShowKey}
         >
           <Icon
-            name={this.props.iconEyeFlag ? "ios-eye" : "ios-eye-off"}
-            style={{color:"#21638C"}}
+            name={this.state.secureText ? "ios-eye" : "ios-eye-off"}
+            style={{ color: "#21638C" }}
           />
         </Button>
       </Item>

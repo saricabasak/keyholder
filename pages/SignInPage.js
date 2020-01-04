@@ -30,7 +30,6 @@ class SignInPage extends Component {
     super(props);
     this.state = {
       masterKey: "",
-      secureText: true,
       visible: false
     };
     this.onMasterKeyInputChange = this.onMasterKeyInputChange.bind(this);
@@ -59,12 +58,6 @@ class SignInPage extends Component {
     }
   };
 
-  toggleShowPassword() {
-    this.setState({
-      secureText: !this.state.secureText
-    });
-  }
-
   onPressedResetDialog = () => {
     this.setState({ visible: true });
   };
@@ -91,16 +84,11 @@ class SignInPage extends Component {
         }}
       >
         <PasswordInput
-        style={{borderColor : "#4B4B46" }}
+          style={{borderColor : "#4B4B46" }}
           itemStyle={{ margin: 5, backgroundColor: "#EBDFDD", opacity: 0.5 }}
-          itemErrorFlag={false}
           inputPlaceholder={translate("signIn.passwordInput")}
-          inputValue={this.state.masterKey}
           inputOnChangeText={this.onMasterKeyInputChange}
-          inputSecureTextEntry={this.state.secureText}
           buttonTransparent={true}
-          buttonTogglePassword={this.toggleShowPassword.bind(this)}
-          iconEyeFlag={this.state.secureText}
         />
         <Button
           onPress={this.onEnterMasterKeyProcessButton}

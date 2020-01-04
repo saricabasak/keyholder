@@ -89,6 +89,7 @@ class SignInPage extends Component {
           inputPlaceholder={translate("signIn.passwordInput")}
           inputOnChangeText={this.onMasterKeyInputChange}
           buttonTransparent={true}
+          inputValue = {this.state.masterKey}
         />
         <Button
           onPress={this.onEnterMasterKeyProcessButton}

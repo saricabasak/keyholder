@@ -23,7 +23,7 @@ class ChangeMasterKeyPage extends Component {
     this.duration = 2000;
   }
 
-  componentWillReceiveProps(nextProps) {
+  /*componentWillReceiveProps(nextProps) {
     console.log(JSON.stringify(nextProps))
     var masterInfo = this.props.navigation.getParam("masterInfo");
     if (nextProps && masterInfo) {
@@ -36,7 +36,7 @@ class ChangeMasterKeyPage extends Component {
         }
       }));
     }
-  }
+  }*/
   onCurrentMasterKeyChange(value) {
     this.setState(
       prevState => ({
@@ -132,18 +132,21 @@ class ChangeMasterKeyPage extends Component {
           placeholderTextColor={{ backgroundColor: "red" }}
           inputOnChangeText={this.onCurrentMasterKeyChange}
           buttonTransparent={true}
+          inputValue = {this.state.masterInfo.currentMasterKey}
         />
         <PasswordInput
           style={{ borderColor: "#32322D" }}
           inputPlaceholder={translate("settings.new")}
           inputOnChangeText={this.onNewMasterKeyChange}
           buttonTransparent={true}
+          inputValue = {this.state.masterInfo.newMasterKey}
         />
         <PasswordInput
           style={{ borderColor: "#32322D" }}
           inputPlaceholder={translate("settings.confirm")}
           inputOnChangeText={this.onConfirmNewMasterKeyChange}
           buttonTransparent={true}
+          inputValue = {this.state.masterInfo.confirmNewMasterKey}
         />
         <Button
           style={{

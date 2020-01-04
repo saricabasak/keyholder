@@ -5,10 +5,16 @@ class PasswordInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: "",
       validInput: true,
       secureText: true
     };
+  }
+  
+  componentWillReceiveProps (newProps) {
+    if( newProps.inputValue !== this.props.inputValue ){
+      console.log("componentWillReceiveProps -> newProps.inputValue = " + newProps.inputValue + " this.props.inputValue = " + this.props.inputValue )
+      this.setInputValidation(newProps.inputValue);
+    }
   }
 
   toggleShowKey() {
@@ -17,8 +23,8 @@ class PasswordInput extends Component {
     });
   }
 
-  setInputValidation = () => {
-    if (this.state.inputValue == "") {
+  setInputValidation = (val) => {
+    if (val == "") {
       this.setState({
         validInput: false
       });
@@ -30,13 +36,11 @@ class PasswordInput extends Component {
   };
 
   onBlur = () => {
-    this.setInputValidation();
+    this.setInputValidation(this.props.inputValue);
   };
 
   onChange = (value) => {
-    this.setState({
-      inputValue: value
-    }, this.setInputValidation)
+    //this.setInputValidation();
     this.props.inputOnChangeText(value);
   }
 
@@ -46,7 +50,7 @@ class PasswordInput extends Component {
         <Input
           placeholder={this.props.inputPlaceholder}
           placeholderTextColor="black"
-          value={this.state.inputValue}
+          value={this.props.inputValue}
           onChangeText={this.onChange}
           onBlur={this.onBlur}
           secureTextEntry={this.state.secureText}

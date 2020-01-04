@@ -10,8 +10,7 @@ class SignUpPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterKey: "",
-      secureText:true
+      masterKey: ""
     };
     this.onMasterKeyInputChange = this.onMasterKeyInputChange.bind(this);
   }
@@ -27,25 +26,15 @@ class SignUpPage extends Component {
     this.props.navigation.navigate("HomePage");
   };
 
-  toggleShowPassword() {
-    this.setState({
-      secureText: !this.state.secureText
-    });
-  }
-
   render() {
     return (
       <Content contentContainerStyle = {{margin : 10, justifyContent : "center",flex: 1}}>
         <PasswordInput
           itemStyle = {{margin : 5, backgroundColor : '#EBDFDD', opacity : .5, }}
-          itemErrorFlag={false}
           inputPlaceholder={translate("signUp.passwordInput")}
           inputValue={this.state.masterKey}
           inputOnChangeText={this.onMasterKeyInputChange}
-          inputSecureTextEntry={this.state.secureText}
           buttonTransparent={true}
-          buttonTogglePassword={this.toggleShowPassword.bind(this)}
-          iconEyeFlag={this.state.secureText}
         />
       <Button
         onPress={this.onSpecifyMasterKeyProcessButton}

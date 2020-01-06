@@ -356,7 +356,7 @@ class PasswordItemDetail extends Component {
               <Button transparent onPress={this.toggleShowPassword.bind(this)}>
                 <Icon
                   name={this.state.secureText ? "ios-eye" : "ios-eye-off"}
-                  style={{color:"#21638C"}}
+                  style={{color:"#FFB61E"}}
                 />
               </Button>
             </Item>

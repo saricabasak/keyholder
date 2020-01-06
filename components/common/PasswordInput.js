@@ -17,13 +17,14 @@ class PasswordInput extends Component {
     }
   }
 
-  toggleShowKey() {
+  toggleShowKey = () => {
     this.setState({
       secureText: !this.state.secureText
     });
   }
 
   setInputValidation = (val) => {
+    console.log("val -> " + val)
     if (val == "") {
       this.setState({
         validInput: false
@@ -61,7 +62,7 @@ class PasswordInput extends Component {
         >
           <Icon
             name={this.state.secureText ? "ios-eye" : "ios-eye-off"}
-            style={{ color: "#21638C" }}
+            style={{ color: "#FFB61E" }}
           />
         </Button>
       </Item>

@@ -7,7 +7,8 @@ class InputItem extends Component {
     super(props);
     this.state = {
       inputValue : "",
-      borderColor: "#32322D"
+      validationValue : !this.props.required,
+      borderColor : "#4B4B46"
     }
   }
 
@@ -15,8 +16,19 @@ class InputItem extends Component {
     return this.state.inputValue;
   }
 
+  setValue(value){
+    this.setState(
+      prevState => ({
+        inputValue: value
+      })
+    );
+  }
+
+  getValidation(){
+    return this.state.validationValue;
+  }
+
   onInputChange(value) {
-    console.log("onInputChange" + this.state.inputValue);
     this.setState(
       prevState => ({
         inputValue: value
@@ -26,14 +38,15 @@ class InputItem extends Component {
   }
 
   runValidation(){
-    console.log("validation" + this.props.required);
     if(this.props.required && this.state.inputValue == ""){
       this.setState({
-        borderColor: "red"
+        borderColor: "red",
+        validationValue: false
       });
     }else{
       this.setState({
-        borderColor: "#32322D"
+        borderColor: "#4B4B46",
+        validationValue: true
       });
     }
   }
@@ -42,21 +55,26 @@ class InputItem extends Component {
     this.runValidation();
   };
 
+  componentWillReceiveProps (newProps) {
+    if( newProps.inputValue !== this.props.inputValue ){
+      this.setValue(newProps.inputValue);
+    }
+  }
+
   render() {
     return (
-      <CardItem style={{backgroundColor:"#4B4B46"}}>
         <Item style={{borderColor : this.state.borderColor}}>
-          <Icon name={this.props.iconName} style={{color:"#FFB61E"}}/>
+          <Icon name={this.props.iconName} style={{width:"5%", color:"#FFB61E"}}/>
           <Input
+            autoCorrect={false}
             placeholder={this.props.placeholder}
             value={this.state.inputValue}
             onChangeText={this.onInputChange.bind(this)}
             onBlur={this.onInputBlur}
             placeholderTextColor="#A58132"
-            style={{color:"#FFB61E"}}
+            style={{paddingLeft: "5%", color:"#FFB61E"}}
           />
         </Item>
-      </CardItem>
     )
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Button, Icon, Input, Item } from "native-base";
 
 class PasswordInput extends Component {
@@ -9,10 +10,9 @@ class PasswordInput extends Component {
       secureText: true
     };
   }
-  
+
   componentWillReceiveProps (newProps) {
     if( newProps.inputValue !== this.props.inputValue ){
-      console.log("componentWillReceiveProps -> newProps.inputValue = " + newProps.inputValue + " this.props.inputValue = " + this.props.inputValue )
       this.setInputValidation(newProps.inputValue);
     }
   }
@@ -40,7 +40,6 @@ class PasswordInput extends Component {
   };
 
   onChange = (value) => {
-    //this.setInputValidation();
     this.props.inputOnChangeText(value);
   }
 
@@ -49,7 +48,8 @@ class PasswordInput extends Component {
       <Item error={!this.state.validInput} itemStyle={this.props.itemStyle} style={this.state.validInput ? this.props.style : null}>
         <Input
           placeholder={this.props.inputPlaceholder}
-          placeholderTextColor="black"
+          placeholderTextColor="#A58132"
+          style={{color:"#FFB61E"}}
           value={this.props.inputValue}
           onChangeText={this.onChange}
           onBlur={this.onBlur}
@@ -61,7 +61,7 @@ class PasswordInput extends Component {
         >
           <Icon
             name={this.state.secureText ? "ios-eye" : "ios-eye-off"}
-            style={{ color: "#21638C" }}
+            style={{ color: "#359fe1" }}
           />
         </Button>
       </Item>
@@ -69,4 +69,4 @@ class PasswordInput extends Component {
   }
 }
 
-export default PasswordInput;
+export default connect(null, null, null, {forwardRef: true})(PasswordInput);

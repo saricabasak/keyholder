@@ -27,33 +27,56 @@ class PasswordPage extends Component {
     };
   }
 
+  componentWillReceiveProps(props) {
+    console.log("getParams: " + props.navigation.getParam("passworditem"));
+    this.state.passwordItem = props.navigation.getParam("passworditem");
+    console.log("componentWillReceiveProps: " + this.state.passwordItem.password);
+    this.state.passwordItem.password = this.decryptPassword(this.state.passwordItem.password);
+  }
+
   savePasswordItem = () => {
-      if (this.refs.passwordDetail.getValidation()) {
-        console.log(this.state.decryptedPassword);
-        this.savePasswordItemDetail(
-          this.refs.passwordDetail.getPasswordDetail(),
-          this.state.passwordItem.password
-        );
-        this.props.navigation.navigate(translate("pages.home"));
+    console.log("savePasswordItem");
+    if (this.refs.passwordDetail.getValidation()) {
+      this.state.passwordItem = this.refs.passwordDetail.getPasswordDetail();
+      this.state.passwordItem.password = this.encryptPassword(this.state.passwordItem.password);
+      console.log("savePasswordItem: " + this.state.passwordItem.password);
+      if (this.state.passwordItem.id === 0 || this.state.passwordItem.id === null) {
+        this.props.addPasswordItemArrOnStore(this.state.passwordItem);
       } else {
-        Toast.show({
-          text: translate("password.validationError"),
-          buttonText: translate("password.toastButton"),
-          type: "danger"
-        });
+        this.props.updatePasswordItemArrOnStore(this.state.passwordItem);
       }
-  };
-
-
-  savePasswordItemDetail = (passwordItem, decryptedPassword) => {
-    const encryptPassword = encrypt(decryptedPassword, this.props.masterKey);
-    passwordItem.password = encryptPassword;
-    if (passwordItem.id === 0 || passwordItem.id === null) {
-      this.props.addPasswordItemArrOnStore(passwordItem);
+      this.props.navigation.navigate(translate("pages.home"));
     } else {
-      this.props.updatePasswordItemArrOnStore(passwordItem);
+      Toast.show({
+        text: translate("password.validationError"),
+        buttonText: translate("password.toastButton"),
+        type: "danger"
+      });
     }
   };
+
+  decryptPassword = (password) => {
+    console.log("Decrypt: " + password);
+    return decrypt(password, this.props.masterKey);
+  }
+
+  encryptPassword = (password) => {
+    console.log("Encrypt: " + password);
+    return encrypt(password, this.props.masterKey);
+  }
+
+  clearPasswordItem = () => {
+    this.setState({
+      passwordItem: {
+        id: 0,
+        name: "",
+        username: "",
+        password: "",
+        notes: "",
+        category: ""
+      }
+    });
+  }
 
   render() {
     return (
@@ -68,7 +91,7 @@ class PasswordPage extends Component {
           }}>
           <PasswordDetail
             ref="passwordDetail"
-            passworditem={this.props.navigation.getParam("passworditem")}
+            passworditem={this.state.passwordItem}
           />
           <Button
             style={{
@@ -87,6 +110,7 @@ class PasswordPage extends Component {
 
 const mapStateToProps = state => {
   return {
+    passwordItems: state.PasswordItemReducer.PasswordItems,
     masterKey: state.PasswordItemReducer.masterKey
   };
 };

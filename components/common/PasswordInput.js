@@ -6,15 +6,27 @@ class PasswordInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      validInput: true,
+      inputValue : "",
+      validationValue : !this.props.required,
+      borderColor : "#4B4B46",
       secureText: true
     };
   }
 
-  componentWillReceiveProps (newProps) {
-    if( newProps.inputValue !== this.props.inputValue ){
-      this.setInputValidation(newProps.inputValue);
-    }
+  getValue(){
+    return this.state.inputValue;
+  }
+
+  setValue(value){
+    this.setState(
+      prevState => ({
+        inputValue: value
+      })
+    );
+  }
+
+  getValidation(){
+    return this.state.validationValue;
   }
 
   toggleShowKey = () => {
@@ -23,46 +35,63 @@ class PasswordInput extends Component {
     });
   }
 
-  setInputValidation = (val) => {
-    console.log("val -> " + val)
-    if (val == "") {
+  onInputChange(value) {
+    this.setState(
+      prevState => ({
+        inputValue: value
+      }),
+      this.runValidation
+    );
+  }
+
+  onInputBlur = () => {
+    this.runValidation();
+  };
+
+  runValidation(){
+    if(this.props.required && this.state.inputValue == ""){
       this.setState({
-        validInput: false
+        borderColor: "red",
+        validationValue: false
       });
-    } else {
+    }else{
       this.setState({
-        validInput: true
+        borderColor: "#4B4B46",
+        validationValue: true
       });
     }
-  };
+  }
 
-  onBlur = () => {
-    this.setInputValidation(this.props.inputValue);
-  };
-
-  onChange = (value) => {
-    this.props.inputOnChangeText(value);
+  componentWillReceiveProps (newProps) {
+    if( newProps.inputValue !== this.props.inputValue ){
+      this.setValue(newProps.inputValue);
+    }
   }
 
   render() {
     return (
-      <Item error={!this.state.validInput} itemStyle={this.props.itemStyle} style={this.state.validInput ? this.props.style : null}>
+      <Item  style={{borderColor : this.state.borderColor}}>
+        <Icon
+          name={this.props.iconName}
+          style={{width:"5%", color:"#FFB61E"}}
+        />
         <Input
-          placeholder={this.props.inputPlaceholder}
-          placeholderTextColor="#A58132"
-          style={{color:"#FFB61E"}}
-          value={this.props.inputValue}
-          onChangeText={this.onChange}
-          onBlur={this.onBlur}
+          autoCorrect={false}
+          placeholder={this.props.placeholder}
+          value={this.state.inputValue}
+          onChangeText={this.onInputChange.bind(this)}
+          onBlur={this.onInputBlur}
           secureTextEntry={this.state.secureText}
+          placeholderTextColor="#A58132"
+          style={{paddingLeft: "5%", color:"#FFB61E"}}
         />
         <Button
-          transparent={this.props.buttonTransparent}
+          transparent={true}
           onPress={this.toggleShowKey}
         >
           <Icon
             name={this.state.secureText ? "ios-eye" : "ios-eye-off"}
-            style={{ color: "#FFB61E" }}
+            style={{ color: "#16ADF8" }}
           />
         </Button>
       </Item>

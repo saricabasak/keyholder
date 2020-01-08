@@ -29,22 +29,14 @@ class SignInPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterKey: "",
       visible: false
     };
-    this.onMasterKeyInputChange = this.onMasterKeyInputChange.bind(this);
-  }
-
-  onMasterKeyInputChange(value) {
-    this.setState({
-      masterKey: value
-    });
   }
 
   onEnterMasterKeyProcessButton = () => {
     let decryptedPassword = decrypt(
       this.props.firstDataForDecrypt.password,
-      this.state.masterKey
+      this.refs.passwordInput.getValue()
     );
     if (!decryptedPassword) {
       Toast.show({
@@ -53,7 +45,7 @@ class SignInPage extends Component {
         type: "danger"
       });
     } else {
-      this.props.setMasterKey(this.state.masterKey);
+      this.props.setMasterKey(this.refs.passwordInput.getValue());
       this.props.navigation.navigate(translate("pages.home"));
     }
   };
@@ -61,6 +53,7 @@ class SignInPage extends Component {
   onPressedResetDialog = () => {
     this.setState({ visible: true });
   };
+  
   reset = () => {
     this.setState({ visible: false });
     //Are you sure? make popup to be sure you want to reset?
@@ -84,12 +77,9 @@ class SignInPage extends Component {
         }}
       >
         <PasswordInput
-          style={{borderColor : "#4B4B46" }}
-          itemStyle={{ margin: 5, backgroundColor: "#EBDFDD", opacity: 0.5 }}
-          inputPlaceholder={translate("signIn.passwordInput")}
-          inputOnChangeText={this.onMasterKeyInputChange}
-          buttonTransparent={true}
-          inputValue = {this.state.masterKey}
+          ref="passwordInput"
+          placeholder={translate("signIn.passwordInput")}
+          required={true}
         />
         <Button
           onPress={this.onEnterMasterKeyProcessButton}

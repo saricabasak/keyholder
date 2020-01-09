@@ -67,16 +67,7 @@ class PasswordPage extends Component {
     return (
       <KeyHolderContainer isLogin={false}>
         <KeyHolderHeader headerTitle={translate("password.header")} />
-<<<<<<< HEAD
         <KeyHolderContent justifyContent="space-between">
-=======
-        <Content
-          contentContainerStyle={{
-            padding: "1%",
-            flexDirection: "column",
-            justifyContent: "space-between"
-          }}>
->>>>>>> baa6a09052cf6299032f1d286fedc39e79f6a16a
           <PasswordDetail
             ref="passwordDetail"
             passworditem={this.props.navigation.getParam("passworditem")}

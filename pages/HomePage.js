@@ -11,7 +11,7 @@ import {
 } from "../components/operational/StorageOperations";
 import KeyHolderHeader from "../components/KeyHolderHeader";
 import {translate} from "../language/TranslateService";
-import PageContainer from '../components/PageContainer';
+import KeyHolderContainer from '../components/KeyHolderContainer';
 
 
 class HomePage extends React.Component {
@@ -27,10 +27,10 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <PageContainer>
+      <KeyHolderContainer isLogin={false}>
         <KeyHolderHeader headerTitle={translate("home.header")}/>
         <PasswordItemList passwordItems={this.props.passwordItems} />
-      </PageContainer>
+      </KeyHolderContainer>
     );
   }
 }

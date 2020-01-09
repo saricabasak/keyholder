@@ -4,6 +4,7 @@ import { withNavigation } from "react-navigation";
 import { connect } from "react-redux";
 import {setMasterKeyAction} from "../store/actions/PasswordItemAction";
 import {translate} from "../language/TranslateService";
+import KeyHolderContent from '../components/KeyHolderContent';
 import PasswordInput from '../components/common/PasswordInput';
 
 class SignUpPage extends Component {
@@ -18,24 +19,25 @@ class SignUpPage extends Component {
 
   render() {
     return (
-      <Content contentContainerStyle = {{margin : 10, justifyContent : "center",flex: 1}}>
+      <KeyHolderContent justifyContent="center">
         <PasswordInput
           ref="passwordInput"
           placeholder={translate("signIn.passwordInput")}
           required={true}
         />
-      <Button
-        onPress={this.onSpecifyMasterKeyProcessButton}
-        style = {{
-          margin : 5,
-          backgroundColor : "#D96236",
-          justifyContent : 'center'}}
-      >
-        <Text style={{color:"#C8C8BE"}}>
-          {translate("signUp.signUpButton")}
-        </Text>
-      </Button>
-  </Content>
+        <Button
+          onPress={this.onSpecifyMasterKeyProcessButton}
+          style = {{
+            margin : 5,
+            backgroundColor : "#D96236",
+            justifyContent : 'center'
+          }}
+        >
+          <Text style={{color:"#C8C8BE"}}>
+            {translate("signUp.signUpButton")}
+          </Text>
+        </Button>
+      </KeyHolderContent>
     );
   }
 }

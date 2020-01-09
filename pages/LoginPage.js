@@ -56,7 +56,7 @@ import {initialLanguage} from '../components/common/DefaultValues';
     }
 
     return (
-      <KeyHolderContainer>
+      <KeyHolderContainer isLogin={true}>
         {renderPage}
       </KeyHolderContainer>
     );

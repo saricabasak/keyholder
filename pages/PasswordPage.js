@@ -5,7 +5,8 @@ import { withNavigation } from "react-navigation";
 import { Content, Button, Text, Toast } from "native-base";
 import PasswordDetail from "../components/common/PasswordDetail";
 import KeyHolderHeader from "../components/KeyHolderHeader";
-import PageContainer from "../components/PageContainer";
+import KeyHolderContent from "../components/KeyHolderContent";
+import KeyHolderContainer from "../components/KeyHolderContainer";
 import { translate } from "../language/TranslateService";
 import {
   addPasswordItemArrOnStoreAction,
@@ -64,15 +65,9 @@ class PasswordPage extends Component {
 
   render() {
     return (
-      <PageContainer>
+      <KeyHolderContainer isLogin={false}>
         <KeyHolderHeader headerTitle={translate("password.header")} />
-        <Content
-          contentContainerStyle={{
-            padding: "1%",
-            flex: 1,
-            flexDirection: "column",
-            justifyContent: "space-between"
-          }}>
+        <KeyHolderContent justifyContent="space-between">
           <PasswordDetail
             ref="passwordDetail"
             passworditem={this.props.navigation.getParam("passworditem")}
@@ -87,8 +82,8 @@ class PasswordPage extends Component {
           >
             <Text>{translate("password.saveButton")}</Text>
           </Button>
-        </Content>
-      </PageContainer>
+        </KeyHolderContent>
+      </KeyHolderContainer>
     );
   }
 }

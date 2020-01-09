@@ -5,15 +5,11 @@ import logo from '../assets/transparentLogo.png';
 
 export default class KeyHolderContainer extends Component {
   render() {
-    return (
-      <Container
-        style={{
-          width: "100%",
-          height: "100%",
-          backgroundColor: "#32322D"
-
-        }}
-      >
+    console.log(this.props.isLogin);
+    let renderLogo;
+    let renderText;
+    if (this.props.isLogin) {
+      renderLogo = (
         <Image
           source={logo}
           style={{
@@ -23,6 +19,8 @@ export default class KeyHolderContainer extends Component {
           }}
           resizeMode="center"
         />
+      );
+      renderText = (
         <Text
           style={{
             color: "#FFB61E",
@@ -33,9 +31,21 @@ export default class KeyHolderContainer extends Component {
         >
           Welcome to Key Holder!
         </Text>
+      );
+    }
 
+    return (
+      <Container
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: "#32322D"
+
+        }}
+      >
+        {renderLogo}
+        {renderText}
         {this.props.children}
-
       </Container>
     );
   }

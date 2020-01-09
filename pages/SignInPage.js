@@ -5,11 +5,10 @@ import {
   Button,
   Text,
   Toast,
-  Content,
   Icon,
-  Container,
   View
 } from "native-base";
+import KeyHolderContent from "../components/KeyHolderContent";
 import PasswordInput from "../components/common/PasswordInput";
 import { withNavigation } from "react-navigation";
 import { decrypt } from "../components/operational/Encryption";
@@ -69,13 +68,7 @@ class SignInPage extends Component {
 
   render() {
     return (
-      <Content
-        contentContainerStyle={{
-          margin: 10,
-          justifyContent: "center",
-          flex: 1
-        }}
-      >
+      <KeyHolderContent justifyContent="center">
         <PasswordInput
           ref="passwordInput"
           placeholder={translate("signIn.passwordInput")}
@@ -127,7 +120,7 @@ class SignInPage extends Component {
             </Text>
           </DialogContent>
         </Dialog>
-      </Content>
+      </KeyHolderContent>
     );
   }
 }

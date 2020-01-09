@@ -5,7 +5,7 @@ import KeyHolderHeader from "../components/KeyHolderHeader";
 import { translate } from "../language/TranslateService";
 import LanguageContentPage from "./ChangeLanguagePage";
 import ChangeMasterKeyPage from "./ChangeMasterKeyPage";
-import PageContainer from '../components/PageContainer';
+import KeyHolderContainer from '../components/KeyHolderContainer';
 
 
 class SettingsPage extends React.Component {
@@ -31,7 +31,7 @@ class SettingsPage extends React.Component {
 
   render() {
     return (
-      <PageContainer>
+      <KeyHolderContainer isLogin={false}>
         <KeyHolderHeader headerTitle={translate("settings.header")} />
         <CardItem style={{ backgroundColor: "#32322D" }}>
           <Accordion
@@ -53,7 +53,7 @@ class SettingsPage extends React.Component {
             style={{ backgroundColor: "#64645F", color: "#FFB61E" }}
           />
         </CardItem>
-      </PageContainer>
+      </KeyHolderContainer>
     );
   }
 }

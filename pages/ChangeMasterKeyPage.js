@@ -17,61 +17,34 @@ class ChangeMasterKeyPage extends Component {
         confirmNewMasterKey: ""
       }
     };
-    this.onCurrentMasterKeyChange = this.onCurrentMasterKeyChange.bind(this);
-    this.onNewMasterKeyChange = this.onNewMasterKeyChange.bind(this);
-    this.onConfirmNewMasterKeyChange = this.onConfirmNewMasterKeyChange.bind(this);
     this.duration = 2000;
   }
 
-  /*componentWillReceiveProps(nextProps) {
-    console.log(JSON.stringify(nextProps))
-    var masterInfo = this.props.navigation.getParam("masterInfo");
-    if (nextProps && masterInfo) {
-      this.setState(prevState => ({
-        masterInfo: {
-          ...prevState.masterInfo,
-          currentMasterKey: masterInfo.currentMasterKey,
-          newMasterKey: masterInfo.newMasterKey,
-          confirmNewMasterKey: masterInfo.confirmNewMasterKey
-        }
-      }));
-    }
-  }*/
-  onCurrentMasterKeyChange(value) {
-    this.setState(
-      prevState => ({
-        masterInfo: {
-          ...prevState.masterInfo,
-          currentMasterKey: value
-        }
-      }));
+  componentWillReceiveProps(props) {
+    this.resetPage();
   }
 
-  onNewMasterKeyChange(value) {
-    this.setState(
-      prevState => ({
-        masterInfo: {
-          ...prevState.masterInfo,
-          newMasterKey: value
-        }
-      }));
+  resetPage = () => {
+    this.refs.currentMasterItem.setValue("");
+    this.refs.newMasterItem.setValue("");
+    this.refs.confirmMasterItem.setValue("");
+    this.refs.currentMasterItem.setValidationValue();
+    this.refs.newMasterItem.setValidationValue();
+    this.refs.confirmMasterItem.setValidationValue();
   }
 
-  onConfirmNewMasterKeyChange(value) {
-    this.setState(
-      prevState => ({
-        masterInfo: {
-          ...prevState.masterInfo,
-          confirmNewMasterKey: value
-        }
-      }));
+  runFieldsValidation = () => {
+    return (
+      this.refs.currentMasterItem.getValidation() &&
+      this.refs.newMasterItem.getValidation() &&
+      this.refs.confirmMasterItem.getValidation()
+    );
   }
+
   savePassword = () => {
-
-    if (this.state.masterInfo.currentMasterKey == "" ||
-      this.state.masterInfo.newMasterKey == "" ||
-      this.state.masterInfo.confirmNewMasterKey == ""
-    ) {
+    this.state.masterInfo = this.getInputsToState();
+    if (!this.runFieldsValidation() || this.state.masterInfo.currentMasterKey == "" || this.state.masterInfo.newMasterKey == "" 
+    || this.state.masterInfo.confirmNewMasterKey == "" ) {
       Toast.show({
         text: translate("settings.validationError"),
         buttonText: translate("settings.toastButton"),
@@ -80,7 +53,6 @@ class ChangeMasterKeyPage extends Component {
       });
       return;
     }
-
     if (!(this.state.masterInfo.currentMasterKey == this.props.masterKey)) {
       Toast.show({
         text: translate("settings.passwordError"),
@@ -109,6 +81,14 @@ class ChangeMasterKeyPage extends Component {
     this.props.navigation.navigate(translate("pages.home"));
   };
 
+  getInputsToState = () => {
+    this.state.masterInfo.currentMasterKey = this.refs.currentMasterItem.getValue();
+    this.state.masterInfo.newMasterKey = this.refs.newMasterItem.getValue();
+    this.state.masterInfo.confirmNewMasterKey = this.refs.confirmMasterItem.getValue();
+
+    return this.state.masterInfo;
+  }
+
   updateAllPasswordItemWithNewMasterKey = () => {
     let _passwordItems = [...this.props.passwordItems];
     _passwordItems.map(element => {
@@ -127,26 +107,22 @@ class ChangeMasterKeyPage extends Component {
     return (
       <Form>
         <PasswordInput
-          style={{ borderColor: "#32322D" }}
-          inputPlaceholder={translate("settings.current")}
-          placeholderTextColor={{ backgroundColor: "red" }}
-          inputOnChangeText={this.onCurrentMasterKeyChange}
-          buttonTransparent={true}
-          inputValue = {this.state.masterInfo.currentMasterKey}
+          ref="currentMasterItem"
+          iconName="key"
+          placeholder={translate("settings.current")}
+          required={true}
         />
         <PasswordInput
-          style={{ borderColor: "#32322D" }}
-          inputPlaceholder={translate("settings.new")}
-          inputOnChangeText={this.onNewMasterKeyChange}
-          buttonTransparent={true}
-          inputValue = {this.state.masterInfo.newMasterKey}
+          ref="newMasterItem"
+          iconName="key"
+          placeholder={translate("settings.new")}
+          required={true}
         />
         <PasswordInput
-          style={{ borderColor: "#32322D" }}
-          inputPlaceholder={translate("settings.confirm")}
-          inputOnChangeText={this.onConfirmNewMasterKeyChange}
-          buttonTransparent={true}
-          inputValue = {this.state.masterInfo.confirmNewMasterKey}
+          ref="confirmMasterItem"
+          iconName="key"
+          placeholder={translate("settings.confirm")}
+          required={true}
         />
         <Button
           style={{
@@ -180,5 +156,5 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps, null, {forwardRef: true}
 )(withNavigation(ChangeMasterKeyPage));

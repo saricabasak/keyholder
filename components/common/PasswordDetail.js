@@ -45,6 +45,8 @@ class PasswordDetail extends Component {
   }
 
   componentWillReceiveProps(props) {
+    console.log("PPPPPPPPP componentWillReceiveProps: " + JSON.stringify(props))
+
     let decryptedPassword = props.passworDecrypt(props.passworditem.password);
     this.refs.categoryItem.setValue(props.passworditem.category);
     this.refs.nameItem.setValue(props.passworditem.name);

@@ -70,6 +70,7 @@ class SignInPage extends Component {
     return (
       <KeyHolderContent justifyContent="center">
         <PasswordInput
+          iconName="key"
           ref="passwordInput"
           placeholder={translate("signIn.passwordInput")}
           required={true}

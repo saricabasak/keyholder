@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PasswordGenerator from "./PasswordGenerator.js";
+import PasswordGenerator from "./operational/PasswordGenerator.js";
 import { Item, Icon } from "native-base";
 import { Button, Accordion, View, List, ListItem } from "native-base";
 import { Left, Right, Text, Switch, Picker } from "native-base";

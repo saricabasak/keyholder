@@ -5,7 +5,7 @@ import PasswordInput from "./PasswordInput"
 import CategoryPicker from "./CategoryPicker"
 import PasswordGeneration from "../PasswordGeneration";
 import { Accordion, View } from "native-base";
-import { encrypt, decrypt } from "../Encryption";
+import { encrypt, decrypt } from "../operational/Encryption";
 import { translate } from "../../language/TranslateService";
 
 class PasswordDetail extends Component {

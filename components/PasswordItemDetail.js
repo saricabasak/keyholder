@@ -6,7 +6,7 @@ import {
 } from "../store/actions/PasswordItemAction";
 import { connect } from "react-redux";
 import PasswordGeneration from "./PasswordGeneration.js";
-import { encrypt, decrypt } from "./Encryption";
+import { encrypt, decrypt } from "../operational/Encryption";
 import {
   Content,
   Item,

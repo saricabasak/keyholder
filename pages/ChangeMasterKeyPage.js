@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text, Form, Toast, Button, Accordion } from "native-base";
 import { connect } from "react-redux";
 import { updatePasswordItemListArrOnStoreAction, setMasterKeyAction, updateLanguageAction } from "../store/actions/PasswordItemAction";
-import { encrypt, decrypt } from "../components/Encryption";
+import { encrypt, decrypt } from "../components/operational/Encryption";
 import { withNavigation } from "react-navigation";
 import { translate } from "../language/TranslateService";
 import PasswordInput from "../components/common/PasswordInput";

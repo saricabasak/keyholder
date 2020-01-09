@@ -5,7 +5,7 @@ import { translate } from "../language/TranslateService";
 import { connect } from "react-redux";
 import {  updateLanguageAction } from "../store/actions/PasswordItemAction";
 import { withNavigation } from "react-navigation";
-import { setLanguage } from "../components/StorageOperations";
+import { setLanguage } from "../components/operational/StorageOperations";
 
 class LanguageContentPage extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class LanguageContentPage extends Component {
     };
     this.duration = 2000;
   }
-  
+
   onPressedEnglishRadio = () => {
     this.setState({
       enRadio: true,

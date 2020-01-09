@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Content } from "native-base";
-import { isAnyPasswordDataExistsOnStorage } from "../components/StorageOperations";
+import { isAnyPasswordDataExistsOnStorage } from "../components/operational/StorageOperations";
 import SignInPage from "./SignInPage";
 import SignUpPage from "./SignUpPage.js";
 import KeyHolderContainer from '../components/KeyHolderContainer';
@@ -9,7 +9,7 @@ import { updateLanguageAction } from "../store/actions/PasswordItemAction";
 //import { clearAsyncStorage } from "../components/StorageOperations";
 import {
   retrieveLanguageOnStorage
-} from "../components/StorageOperations";
+} from "../components/operational/StorageOperations";
 import {initialLanguage} from '../components/common/DefaultValues';
 
  class LoginPage extends Component {
@@ -28,7 +28,7 @@ import {initialLanguage} from '../components/common/DefaultValues';
       firstDataForDecrypt: {}
     })
   }
-  
+
   componentWillMount() {
     //clearAsyncStorage();
     retrieveLanguageOnStorage().then(res => {

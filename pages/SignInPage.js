@@ -12,18 +12,18 @@ import {
 } from "native-base";
 import PasswordInput from "../components/common/PasswordInput";
 import { withNavigation } from "react-navigation";
-import { decrypt } from "../components/Encryption";
+import { decrypt } from "../components/operational/Encryption";
 import { connect } from "react-redux";
 import { setMasterKeyAction } from "../store/actions/PasswordItemAction";
 import { translate } from "../language/TranslateService";
-import ResetApplication from "../components/ResetApplication";
+import ResetApplication from "../components/operational/ResetApplication";
 import Dialog, {
   DialogTitle,
   DialogContent,
   DialogButton,
   DialogFooter
 } from "react-native-popup-dialog";
-import {clearAsyncStorage} from '../components/StorageOperations';
+import {clearAsyncStorage} from '../components/operational/StorageOperations';
 
 class SignInPage extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class SignInPage extends Component {
   onPressedResetDialog = () => {
     this.setState({ visible: true });
   };
-  
+
   reset = () => {
     this.setState({ visible: false });
     //Are you sure? make popup to be sure you want to reset?

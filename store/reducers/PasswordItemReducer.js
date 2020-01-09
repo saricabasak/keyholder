@@ -1,7 +1,7 @@
 import {
   addDataToStorage,
   setSequence
-} from "../../components/StorageOperations";
+} from "../../components/operational/StorageOperations";
 import {initialLanguage,initialSequence,initialMasterKey,initialPasswordItems} from '../../components/common/DefaultValues';
 
 const initialState = {

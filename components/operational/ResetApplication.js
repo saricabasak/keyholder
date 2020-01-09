@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {  clearAsyncStorage } from "./StorageOperations";
 import { Text, Toast} from "native-base";
-import {translate} from "../language/TranslateService";
+import {translate} from "../../language/TranslateService";
 
 
 export default class ResetApplication extends Component {

@@ -8,7 +8,7 @@ import {
 import {
   retrieveAllData,
   retrieveNextSequenceOnStorage
-} from "../components/StorageOperations";
+} from "../components/operational/StorageOperations";
 import KeyHolderHeader from "../components/KeyHolderHeader";
 import {translate} from "../language/TranslateService";
 import PageContainer from '../components/PageContainer';

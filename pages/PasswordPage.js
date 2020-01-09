@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { encrypt, decrypt } from "../components/Encryption";
+import { encrypt, decrypt } from "../components/operational/Encryption";
 import { withNavigation } from "react-navigation";
 import { Content, Button, Text, Toast } from "native-base";
 import PasswordDetail from "../components/common/PasswordDetail";

@@ -64,7 +64,7 @@ class InputItem extends Component {
   render() {
     return (
         <Item style={{borderColor : this.state.borderColor}}>
-          <Icon name={this.props.iconName} style={{width:"5%", color:"#FFB61E"}}/>
+          <Icon name={this.props.iconName} style={{width:"7%", color:"#FFB61E"}}/>
           <Input
             autoCorrect={false}
             placeholder={this.props.placeholder}

@@ -69,7 +69,6 @@ class PasswordPage extends Component {
         <Content
           contentContainerStyle={{
             padding: "1%",
-            flex: 1,
             flexDirection: "column",
             justifyContent: "space-between"
           }}>
@@ -111,5 +110,5 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps, null, {forwardRef: true}
 )(withNavigation(PasswordPage));

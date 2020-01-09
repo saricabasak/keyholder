@@ -20,6 +20,7 @@ class SignUpPage extends Component {
     return (
       <Content contentContainerStyle = {{margin : 10, justifyContent : "center",flex: 1}}>
         <PasswordInput
+          iconName="key"
           ref="passwordInput"
           placeholder={translate("signIn.passwordInput")}
           required={true}

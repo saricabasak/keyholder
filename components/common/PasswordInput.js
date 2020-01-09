@@ -18,14 +18,21 @@ class PasswordInput extends Component {
   }
 
   setValue(value){
-    this.setState(
-      prevState => ({
-        inputValue: value
-      })
+    this.setState({
+      inputValue: value
+      }
+    );
+  }
+
+  setValidationValue(){
+    this.setState({borderColor: "#4B4B46",
+      validationValue: true
+       }
     );
   }
 
   getValidation(){
+    console.log("this.state.validationValue -> " + this.state.validationValue)
     return this.state.validationValue;
   }
 
@@ -36,10 +43,9 @@ class PasswordInput extends Component {
   }
 
   onInputChange(value) {
-    this.setState(
-      prevState => ({
+    this.setState({
         inputValue: value
-      }),
+      },
       this.runValidation
     );
   }
@@ -73,7 +79,7 @@ class PasswordInput extends Component {
       <Item  style={{borderColor : this.state.borderColor}}>
         <Icon
           name={this.props.iconName}
-          style={{width:"5%", color:"#FFB61E"}}
+          style={{width:"7%", color:"#FFB61E"}}
         />
         <Input
           autoCorrect={false}

@@ -23,24 +23,8 @@ class PasswordDetail extends Component {
     }
   }
 
-  componentWillReceiveProps(props) {
-    console.log(props.passworditem);
-    console.log(this.state.passwordItem);
-    this.setState({
-        passwordItem: {
-          id: props.passworditem.id,
-          name: props.passworditem.name,
-          username: props.passworditem.username,
-          password: props.passworditem.password,
-          notes: props.passworditem.notes,
-          category: props.passworditem.category
-        }
-      }
-    );
-    console.log(this.state.passwordItem);
-  }
-
   getPasswordDetail(){
+    this.state.passwordItem.id = this.props.passworditem.id;
     this.state.passwordItem.category = this.refs.categoryItem.getValue();
     this.state.passwordItem.name = this.refs.nameItem.getValue();
     this.state.passwordItem.username = this.refs.usernameItem.getValue();
@@ -60,6 +44,15 @@ class PasswordDetail extends Component {
     );
   }
 
+  componentWillReceiveProps(props) {
+    let decryptedPassword = props.passworDecrypt(props.passworditem.password);
+    this.refs.categoryItem.setValue(props.passworditem.category);
+    this.refs.nameItem.setValue(props.passworditem.name);
+    this.refs.usernameItem.setValue(props.passworditem.username);
+    this.refs.passwordItem.setValue(decryptedPassword);
+    this.refs.notesItem.setValue(props.passworditem.notes);
+  }
+
   generatorContent() {
     return (
       <PasswordGeneration
@@ -73,35 +66,30 @@ class PasswordDetail extends Component {
       <View>
         <CategoryPicker
           ref="categoryItem"
-          inputValue={this.state.passwordItem.category}
           required={true}
         />
         <InputItem
           ref="nameItem"
           iconName="bookmark"
           placeholder={translate("password.name")}
-          inputValue={this.state.passwordItem.name}
           required={true}
         />
         <InputItem
           ref="usernameItem"
           iconName="person"
           placeholder={translate("password.username")}
-          inputValue={this.state.passwordItem.username}
           required={true}
         />
         <PasswordInput
           ref="passwordItem"
           iconName="key"
           placeholder={translate("password.password")}
-          inputValue={this.state.passwordItem.password}
           required={true}
         />
         <InputItem
           ref="notesItem"
           iconName="paper"
           placeholder={translate("password.notes")}
-          inputValue={this.state.passwordItem.notes}
           required={false}
         />
         <Accordion

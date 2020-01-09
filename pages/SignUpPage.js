@@ -9,20 +9,10 @@ import PasswordInput from '../components/common/PasswordInput';
 class SignUpPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      masterKey: ""
-    };
-    this.onMasterKeyInputChange = this.onMasterKeyInputChange.bind(this);
-  }
-
-  onMasterKeyInputChange(value) {
-    this.setState({
-      masterKey: value
-    });
   }
 
   onSpecifyMasterKeyProcessButton = () => {
-    this.props.setMasterKey(this.state.masterKey);
+    this.props.setMasterKey(this.refs.passwordInput.getValue());
     this.props.navigation.navigate("HomePage");
   };
 
@@ -30,11 +20,9 @@ class SignUpPage extends Component {
     return (
       <Content contentContainerStyle = {{margin : 10, justifyContent : "center",flex: 1}}>
         <PasswordInput
-          itemStyle = {{margin : 5, backgroundColor : '#EBDFDD', opacity : .5, }}
-          inputPlaceholder={translate("signUp.passwordInput")}
-          inputValue={this.state.masterKey}
-          inputOnChangeText={this.onMasterKeyInputChange}
-          buttonTransparent={true}
+          ref="passwordInput"
+          placeholder={translate("signIn.passwordInput")}
+          required={true}
         />
       <Button
         onPress={this.onSpecifyMasterKeyProcessButton}

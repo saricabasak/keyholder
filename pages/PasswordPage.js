@@ -27,19 +27,10 @@ class PasswordPage extends Component {
     };
   }
 
-  componentWillReceiveProps(props) {
-    console.log("getParams: " + props.navigation.getParam("passworditem"));
-    this.state.passwordItem = props.navigation.getParam("passworditem");
-    console.log("componentWillReceiveProps: " + this.state.passwordItem.password);
-    this.state.passwordItem.password = this.decryptPassword(this.state.passwordItem.password);
-  }
-
   savePasswordItem = () => {
-    console.log("savePasswordItem");
     if (this.refs.passwordDetail.getValidation()) {
       this.state.passwordItem = this.refs.passwordDetail.getPasswordDetail();
       this.state.passwordItem.password = this.encryptPassword(this.state.passwordItem.password);
-      console.log("savePasswordItem: " + this.state.passwordItem.password);
       if (this.state.passwordItem.id === 0 || this.state.passwordItem.id === null) {
         this.props.addPasswordItemArrOnStore(this.state.passwordItem);
       } else {
@@ -56,26 +47,19 @@ class PasswordPage extends Component {
   };
 
   decryptPassword = (password) => {
-    console.log("Decrypt: " + password);
-    return decrypt(password, this.props.masterKey);
+    if(password === "" || password === null){
+      return "";
+    }else {
+      return decrypt(password, this.props.masterKey);
+    }
   }
 
   encryptPassword = (password) => {
-    console.log("Encrypt: " + password);
-    return encrypt(password, this.props.masterKey);
-  }
-
-  clearPasswordItem = () => {
-    this.setState({
-      passwordItem: {
-        id: 0,
-        name: "",
-        username: "",
-        password: "",
-        notes: "",
-        category: ""
-      }
-    });
+    if(password === "" || password === null){
+      return "";
+    }else {
+      return encrypt(password, this.props.masterKey);
+    }
   }
 
   render() {
@@ -91,7 +75,8 @@ class PasswordPage extends Component {
           }}>
           <PasswordDetail
             ref="passwordDetail"
-            passworditem={this.state.passwordItem}
+            passworditem={this.props.navigation.getParam("passworditem")}
+            passworDecrypt={this.decryptPassword}
           />
           <Button
             style={{

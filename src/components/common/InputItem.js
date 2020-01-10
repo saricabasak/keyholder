@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CardItem, Item, Icon, Input } from "native-base";
+import { password, colors } from "../../themes/ThemeService"
 
 class InputItem extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class InputItem extends Component {
     this.state = {
       inputValue : "",
       validationValue : !this.props.required,
-      borderColor : "#4B4B46"
+      borderColor : colors.validInputBorder
     }
   }
 
@@ -40,12 +41,12 @@ class InputItem extends Component {
   runValidation(){
     if(this.props.required && this.state.inputValue == ""){
       this.setState({
-        borderColor: "red",
+        borderColor: colors.invalidInputBorder,
         validationValue: false
       });
     }else{
       this.setState({
-        borderColor: "#4B4B46",
+        borderColor: colors.validInputBorder,
         validationValue: true
       });
     }
@@ -64,15 +65,18 @@ class InputItem extends Component {
   render() {
     return (
         <Item style={{borderColor : this.state.borderColor}}>
-          <Icon name={this.props.iconName} style={{width:"7%", color:"#FFB61E"}}/>
+          <Icon
+            name={this.props.iconName}
+            style={password.inputIconStyle}
+          />
           <Input
             autoCorrect={false}
             placeholder={this.props.placeholder}
             value={this.state.inputValue}
             onChangeText={this.onInputChange.bind(this)}
             onBlur={this.onInputBlur}
-            placeholderTextColor="#A58132"
-            style={{paddingLeft: "5%", color:"#FFB61E"}}
+            placeholderTextColor={colors.placeholderTextColor}
+            style={password.inputStyle}
           />
         </Item>
     )

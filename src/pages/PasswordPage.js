@@ -7,6 +7,7 @@ import PasswordDetail from "../components/common/PasswordDetail";
 import KeyHolderHeader from "../components/KeyHolderHeader";
 import KeyHolderContent from "../components/KeyHolderContent";
 import KeyHolderContainer from "../components/KeyHolderContainer";
+import { password } from "../themes/ThemeService";
 import { translate } from "../language/TranslateService";
 import {
   addPasswordItemArrOnStoreAction,
@@ -74,10 +75,7 @@ class PasswordPage extends Component {
             passworDecrypt={this.decryptPassword}
           />
           <Button
-            style={{
-              justifyContent: "center",
-              backgroundColor:"#D96236"
-            }}
+            style={password.buttonStyle}
             onPress={this.savePasswordItem}
           >
             <Text>{translate("password.saveButton")}</Text>

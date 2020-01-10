@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import { Image } from 'react-native';
 import { Header, Left, Body, Title,  Right } from "native-base";
 import logo from '../../assets/transparentLogo.png';
+import { header } from "../themes/ThemeService";
 
 export default class KeyHolderHeader extends Component {
   render() {
     return (
-        <Header style={{backgroundColor:"#1D1D1B"}}>
+        <Header style={header.headerStyle}>
           <Left>
             <Image
-              style={{width: 50, height: 50}}
+              style={header.logoStyle}
               source={logo}
             />
           </Left>
           <Body>
-            <Title style={{color:"#D96236", fontWeight:"bold"}}>
+            <Title style={header.titleStyle}>
               {this.props.headerTitle}
             </Title>
           </Body>

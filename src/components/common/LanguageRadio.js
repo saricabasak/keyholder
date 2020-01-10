@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ListItem, Left, Right, Radio, Text } from "native-base";
+import { colors, settings } from "../../themes/ThemeService";
 
 class LanguageRadio extends Component {
   constructor(props) {
@@ -7,13 +8,16 @@ class LanguageRadio extends Component {
   }
   render() {
     return (
-      <ListItem onPress={this.props.itemOnPressed} style={{borderColor : "#32322D" }}>
+      <ListItem
+        onPress={this.props.itemOnPressed}
+        style={settings.itemRowStyle}
+      >
         <Left>
           <Text>{this.props.leftText}</Text>
         </Left>
         <Right>
           <Radio
-            selectedColor={"#FFB61E"}
+            selectedColor={colors.selectedColor}
             selected={this.props.radioSelectedFlag} />
         </Right>
       </ListItem>

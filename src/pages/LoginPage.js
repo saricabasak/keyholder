@@ -49,7 +49,10 @@ import {initialLanguage} from '../components/common/DefaultValues';
     let renderPage;
     if (isKeyExists) {
       renderPage = (
-        <SignInPage firstDataForDecrypt={this.state.firstDataForDecrypt} onPressedReset = {this.resetApp} />
+        <SignInPage
+          firstDataForDecrypt={this.state.firstDataForDecrypt}
+          onPressedReset = {this.resetApp}
+        />
       );
     } else {
       renderPage = <SignUpPage />;

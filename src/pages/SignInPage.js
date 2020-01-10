@@ -14,6 +14,7 @@ import { withNavigation } from "react-navigation";
 import { decrypt } from "../components/operational/Encryption";
 import { connect } from "react-redux";
 import { setMasterKeyAction } from "../store/actions/PasswordItemAction";
+import { login } from "../themes/ThemeService";
 import { translate } from "../language/TranslateService";
 import ResetApplication from "../components/operational/ResetApplication";
 import Dialog, {
@@ -77,25 +78,19 @@ class SignInPage extends Component {
         />
         <Button
           onPress={this.onEnterMasterKeyProcessButton}
-          style={{
-            margin: 5,
-            backgroundColor: "#D96236",
-            justifyContent: "center"
-          }}
+          style={login.buttonStyle}
         >
-          <Text style={{color:"#C8C8BE"}}>
+          <Text style={login.buttonTextStyle}>
             {translate("signIn.signInButton")}
           </Text>
         </Button>
         <Button
           onPress={this.onPressedResetDialog}
-          style={{
-            margin: 5,
-            backgroundColor: "#D96236",
-            justifyContent: "center"
-          }}
+          style={login.buttonStyle}
         >
-          <Text style={{color:"#C8C8BE"}}>{translate("signIn.resetButton")}</Text>
+          <Text style={login.buttonText}>
+            {translate("signIn.resetButton")}
+          </Text>
         </Button>
         <Dialog
           dialogTitle={<DialogTitle title= {translate("signIn.resetTitle")} />}
@@ -111,7 +106,10 @@ class SignInPage extends Component {
                   this.setState({ visible: false });
                 }}
               />
-              <DialogButton text={translate("signIn.resetOk")} onPress={this.reset} />
+              <DialogButton
+                text={translate("signIn.resetOk")}
+                onPress={this.reset}
+              />
             </DialogFooter>
           }
         >

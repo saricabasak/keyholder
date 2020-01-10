@@ -3,6 +3,7 @@ import { CardItem, Accordion } from "native-base";
 import { connect } from "react-redux";
 import KeyHolderHeader from "../components/KeyHolderHeader";
 import { translate } from "../language/TranslateService";
+import { settings } from "../themes/ThemeService";
 import LanguageContentPage from "./ChangeLanguagePage";
 import ChangeMasterKeyPage from "./ChangeMasterKeyPage";
 import KeyHolderContainer from '../components/KeyHolderContainer';
@@ -18,7 +19,7 @@ class SettingsPage extends React.Component {
 
     return (
       <LanguageContentPage
-        buttonStyle={{ justifyContent: "center", marginTop: 3, backgroundColor: "#D96236" }}
+        buttonStyle={settings.buttonStyle}
       />
     );
   };
@@ -33,24 +34,24 @@ class SettingsPage extends React.Component {
     return (
       <KeyHolderContainer isLogin={false}>
         <KeyHolderHeader headerTitle={translate("settings.header")} />
-        <CardItem style={{ backgroundColor: "#32322D" }}>
+        <CardItem style={settings.itemStyle}>
           <Accordion
             dataArray={[{ title: translate("password.changeMasterKeyHeader") }]}
             animation={true}
             expanded={true}
             renderContent={this.returnChangeMasterKeyPage}
-            style={{ backgroundColor: "#64645F", color: "#FFB61E" }}
-            headerStyle={{ color: "#FFB61E" }}
+            headerStyle={settings.itemHeaderStyle}
+            style={settings.itemContentStyle}
           />
         </CardItem>
-        <CardItem style={{ backgroundColor: "#32322D", color: "#FFB61E" }}>
+        <CardItem style={settings.itemStyle}>
           <Accordion
             dataArray={[{ title: translate("password.changeLanguageHeader") }]}
             animation={true}
             expanded={true}
             renderContent={this.returnLanguageContentPage}
-            headerStyle={{ backgroundColor: "#4B4B46", color: "#FFB61E" }}
-            style={{ backgroundColor: "#64645F", color: "#FFB61E" }}
+            headerStyle={settings.itemHeaderStyle}
+            style={settings.itemContentStyle}
           />
         </CardItem>
       </KeyHolderContainer>

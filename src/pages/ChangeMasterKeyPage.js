@@ -5,6 +5,7 @@ import { updatePasswordItemListArrOnStoreAction, setMasterKeyAction, updateLangu
 import { encrypt, decrypt } from "../components/operational/Encryption";
 import { withNavigation } from "react-navigation";
 import { translate } from "../language/TranslateService";
+import { password } from "../themes/ThemeService";
 import PasswordInput from "../components/common/PasswordInput";
 
 class ChangeMasterKeyPage extends Component {
@@ -43,7 +44,7 @@ class ChangeMasterKeyPage extends Component {
 
   savePassword = () => {
     this.state.masterInfo = this.getInputsToState();
-    if (!this.runFieldsValidation() || this.state.masterInfo.currentMasterKey == "" || this.state.masterInfo.newMasterKey == "" 
+    if (!this.runFieldsValidation() || this.state.masterInfo.currentMasterKey == "" || this.state.masterInfo.newMasterKey == ""
     || this.state.masterInfo.confirmNewMasterKey == "" ) {
       Toast.show({
         text: translate("settings.validationError"),
@@ -125,11 +126,7 @@ class ChangeMasterKeyPage extends Component {
           required={true}
         />
         <Button
-          style={{
-            justifyContent: "center",
-            marginTop: 3,
-            backgroundColor: "#D96236"
-          }}
+          style={password.buttonStyle}
           onPress={this.savePassword}
         >
           <Text>{translate("settings.saveButton")}</Text>

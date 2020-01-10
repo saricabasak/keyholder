@@ -4,6 +4,7 @@ import { withNavigation } from "react-navigation";
 import { connect } from "react-redux";
 import {setMasterKeyAction} from "../store/actions/PasswordItemAction";
 import {translate} from "../language/TranslateService";
+import { login } from "../themes/ThemeService";
 import KeyHolderContent from '../components/KeyHolderContent';
 import PasswordInput from '../components/common/PasswordInput';
 
@@ -28,13 +29,9 @@ class SignUpPage extends Component {
         />
         <Button
           onPress={this.onSpecifyMasterKeyProcessButton}
-          style = {{
-            margin : 5,
-            backgroundColor : "#D96236",
-            justifyContent : 'center'
-          }}
+          style = {login.buttonStyle}
         >
-          <Text style={{color:"#C8C8BE"}}>
+          <Text style={login.buttonTextStyle}>
             {translate("signUp.signUpButton")}
           </Text>
         </Button>

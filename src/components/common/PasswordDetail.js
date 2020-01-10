@@ -7,6 +7,7 @@ import PasswordGeneration from "../PasswordGeneration";
 import { Accordion, View } from "native-base";
 import { encrypt, decrypt } from "../operational/Encryption";
 import { translate } from "../../language/TranslateService";
+import { password } from "../../themes/ThemeService";
 
 class PasswordDetail extends Component {
   constructor(props) {
@@ -95,12 +96,12 @@ class PasswordDetail extends Component {
           required={false}
         />
         <Accordion
-          style={{padding:"1%"}}
+          style={{padding:"1%", paddingTop:"5%"}}
           dataArray={[{ title: translate("password.generatorHeader") }]}
           animation={true}
           expanded={true}
           renderContent={this.generatorContent}
-          headerStyle={{ color:"#A58132", backgroundColor:"#7D7D78"}}
+          headerStyle={password.generatorHeaderStyle}
         />
       </View>
     );

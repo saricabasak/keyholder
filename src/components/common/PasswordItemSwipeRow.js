@@ -10,6 +10,7 @@ import {
   Right,
   Left
 } from "native-base";
+import { home } from "../../themes/ThemeService";
 import { SwipeRow } from "react-native-swipe-list-view";
 import { StyleSheet, Dimensions,TouchableOpacity } from "react-native";
 
@@ -30,17 +31,19 @@ class PasswordItemSwipeRow extends Component {
         closeOnScroll={true}
         closeOnRowBeginSwipe={true}
       >
-        <View style={styles.standaloneRowBack}>
+        <View style={home.swipeRowViewStyle}>
           <Text>Left</Text>
           <TouchableOpacity
-            style={[styles.backRightBtn, styles.backRightBtnRight]}
-            onPress={() => this.props.rightButtonOnPress(this.props.passworditem)}
+            style={home.swipeRowStyle}
+            onPress={() =>
+              this.props.rightButtonOnPress(
+                this.props.passworditem)}
           >
             <Icon name="trash" />
           </TouchableOpacity>
         </View>
 
-        <View style={{ backgroundColor: "#4B4B46" }}>
+        <View style={home.itemRowViewStyle}>
           <PasswordItemRow
             key={this.props.passworditem.id}
             passworditem={this.props.passworditem}
@@ -50,26 +53,4 @@ class PasswordItemSwipeRow extends Component {
     );
   }
 }
-const styles = StyleSheet.create({
-  standaloneRowBack: {
-    alignItems: "center",
-    backgroundColor: "#D96236",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 15
-  },
-  backRightBtn: {
-    alignItems: "center",
-    bottom: 0,
-    justifyContent: "center",
-    position: "absolute",
-    top: 0,
-    width: 75
-  },
-  backRightBtnRight: {
-    backgroundColor: "#D96236",
-    right: 0
-  }
-});
 export default PasswordItemSwipeRow;

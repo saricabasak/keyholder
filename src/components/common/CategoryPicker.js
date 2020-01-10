@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { CardItem, Item, Icon, Picker } from "native-base";
 import { translate } from "../../language/TranslateService";
 import Categories from "../Categories";
+import { password, colors } from "../../themes/ThemeService"
 
 class CategoryPicker extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class CategoryPicker extends Component {
     this.state = {
       category : "",
       validationValue : !this.props.required,
-      borderColor: "#4B4B46"
+      borderColor: colors.validInputBorder
     }
   }
 
@@ -46,12 +47,12 @@ class CategoryPicker extends Component {
   runValidation(){
     if(this.state.category == ""){
       this.setState({
-        borderColor: "red",
+        borderColor: colors.invalidInputBorder,
         validationValue: false
       });
     }else{
       this.setState({
-        borderColor: "#4B4B46",
+        borderColor: colors.validInputBorder,
         validationValue: true
       });
     }
@@ -79,24 +80,20 @@ class CategoryPicker extends Component {
   render () {
     return (
       <Item style={{borderColor : this.state.borderColor}}>
-        <Icon name="ios-list" style={{ width:"5%", color:"#FFB61E"}}/>
+        <Icon name="ios-list" style={password.inputIconStyle}/>
         <Picker
           mode="dropdown"
           selectedValue={this.state.category}
           onValueChange={value => this.onCategoryChange(value)}
           onBlur={this.onCategoryBlur}
           placeholder= {translate("password.categoryPlaceHolderName")}
-          placeholderStyle={{ color: "#A58132" }}
-          textStyle={{ color: "#FFB61E" }}
-          headerStyle={{ backgroundColor: "#32322D" }}
-          headerBackButtonTextStyle={{ color: "#21638C" }}
-          headerTitleStyle={{ color: "#D96236" }}
-          itemTextStyle={{ color: '#FFB61E' }}
-          itemStyle={{
-            marginLeft: 0,
-            paddingLeft: 10,
-            backgroundColor: "#4B4B46"
-          }}
+          placeholderStyle={password.placeholderStyle}
+          textStyle={password.categoryTextStyle}
+          headerStyle={password.headerStyle}
+          headerBackButtonTextStyle={password.headerBackButtonTextStyle}
+          headerTitleStyle={password.headerTitleStyle}
+          itemTextStyle={password.categoryTextStyle}
+          itemStyle={password.itemStyle}
         >
           {this.renderCategories()}
         </Picker>

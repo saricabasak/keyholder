@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ListItem, Left, Right, Text, Icon } from 'native-base';
 import { withNavigation } from 'react-navigation';
+import { home } from "../themes/ThemeService";
 
 
 class PasswordItemRow extends Component {
@@ -9,7 +10,7 @@ class PasswordItemRow extends Component {
             <ListItem
               key = {this.props._key}
               button
-              style = {{borderBottomColor : "#32322D"}}
+              style = {home.itemRowStyle}
               onPress = {() => {
                 this.props.navigation.navigate('PasswordPage', {
                   passworditem: this.props.passworditem
@@ -17,7 +18,7 @@ class PasswordItemRow extends Component {
               }}
             >
               <Left>
-                <Text style={{color:"#C8C8BE"}}>
+                <Text style={home.itemTextStyle}>
                   {this.props.passworditem.name}
                 </Text>
               </Left>

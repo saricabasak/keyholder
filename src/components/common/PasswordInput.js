@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { password, colors } from "../../themes/ThemeService";
 import { Button, Icon, Input, Item } from "native-base";
 
 class PasswordInput extends Component {
@@ -8,7 +9,7 @@ class PasswordInput extends Component {
     this.state = {
       inputValue : "",
       validationValue : !this.props.required,
-      borderColor : "#4B4B46",
+      borderColor : colors.validInputBorder,
       secureText: true
     };
   }
@@ -25,14 +26,13 @@ class PasswordInput extends Component {
   }
 
   setValidationValue(){
-    this.setState({borderColor: "#4B4B46",
+    this.setState({
+      borderColor: colors.validInputBorder,
       validationValue: true
-       }
-    );
+    });
   }
 
   getValidation(){
-    console.log("this.state.validationValue -> " + this.state.validationValue)
     return this.state.validationValue;
   }
 
@@ -57,12 +57,12 @@ class PasswordInput extends Component {
   runValidation(){
     if(this.props.required && this.state.inputValue == ""){
       this.setState({
-        borderColor: "red",
+        borderColor: colors.invalidInputBorder,
         validationValue: false
       });
     }else{
       this.setState({
-        borderColor: "#4B4B46",
+        borderColor: colors.validInputBorder,
         validationValue: true
       });
     }
@@ -79,7 +79,7 @@ class PasswordInput extends Component {
       <Item  style={{borderColor : this.state.borderColor}}>
         <Icon
           name={this.props.iconName}
-          style={{width:"7%", color:"#FFB61E"}}
+          style={password.inputIconStyle}
         />
         <Input
           autoCorrect={false}
@@ -88,8 +88,8 @@ class PasswordInput extends Component {
           onChangeText={this.onInputChange.bind(this)}
           onBlur={this.onInputBlur}
           secureTextEntry={this.state.secureText}
-          placeholderTextColor="#A58132"
-          style={{paddingLeft: "5%", color:"#FFB61E"}}
+          placeholderTextColor={colors.placeholderTextColor}
+          style={password.inputStyle}
         />
         <Button
           transparent={true}
@@ -97,7 +97,7 @@ class PasswordInput extends Component {
         >
           <Icon
             name={this.state.secureText ? "ios-eye" : "ios-eye-off"}
-            style={{ color: "#16ADF8" }}
+            style={password.secureTextIconStyle}
           />
         </Button>
       </Item>

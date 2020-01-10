@@ -3,6 +3,7 @@ import { createAppContainer ,StackNavigator} from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from 'react-navigation-stack';
 import { Icon,Root } from "native-base";
+import { navigator } from "../themes/ThemeService";
 import HomePage from "../pages/HomePage";
 import SettingsPage from "../pages/SettingsPage";
 import PasswordPage from "../pages/PasswordPage";
@@ -15,7 +16,7 @@ const TabNavigator = createMaterialTopTabNavigator(
       screen: SettingsPage,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) =>
-          <Icon name="person" style={{color:"#D96236"}}/>,
+          <Icon name="settings" style={navigator.iconStyle}/>,
         tabBarOnPress: ({ navigation, defaultHandler }) => {
           navigation.setParams({
             masterInfo: {
@@ -32,7 +33,7 @@ const TabNavigator = createMaterialTopTabNavigator(
       screen: HomePage,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) =>
-          <Icon name="home" style={{color:"#D96236"}}/>,
+          <Icon name="home" style={navigator.iconStyle}/>,
         swipeEnabled: false
       }
     },
@@ -40,7 +41,7 @@ const TabNavigator = createMaterialTopTabNavigator(
       screen: PasswordPage,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) =>
-          <Icon name="ios-add-circle" style={{color:"#D96236"}}/>,
+          <Icon name="ios-add-circle" style={navigator.iconStyle}/>,
         tabBarOnPress: ({ navigation, defaultHandler }) => {
           navigation.setParams({
             passworditem: {
@@ -60,16 +61,12 @@ const TabNavigator = createMaterialTopTabNavigator(
   {
     initialRouteName: "HomePage",
     tabBarPosition: "bottom",
-    tabBarOptions: { 
+    tabBarOptions: {
       iconStyle:{height: 30},
       showIcon: true,
       showLabel: false,
-      indicatorStyle: {
-        backgroundColor: "#D96236"
-      },
-      style: {
-        backgroundColor: "#1D1D1B"
-      }
+      indicatorStyle: navigator.indicatorStyle,
+      style: navigator.style
     }
   }
 );

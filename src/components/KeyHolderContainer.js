@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Image, Text } from 'react-native';
 import { Container } from "native-base";
 import logo from '../../assets/transparentLogo.png';
+import { container } from "../themes/ThemeService";
 
 export default class KeyHolderContainer extends Component {
   render() {
@@ -12,37 +13,19 @@ export default class KeyHolderContainer extends Component {
       renderLogo = (
         <Image
           source={logo}
-          style={{
-            width: "40%",
-            height: "40%",
-            alignSelf: "center"
-          }}
+          style={container.logoStyle}
           resizeMode="center"
         />
       );
       renderText = (
-        <Text
-          style={{
-            color: "#FFB61E",
-            fontSize:20,
-            fontWeight: "bold",
-            alignSelf: "center"
-          }}
-        >
+        <Text style={container.titleStyle}>
           Welcome to Key Holder!
         </Text>
       );
     }
 
     return (
-      <Container
-        style={{
-          width: "100%",
-          height: "100%",
-          backgroundColor: "#32322D"
-
-        }}
-      >
+      <Container style={container.containerStyle}>
         {renderLogo}
         {renderText}
         {this.props.children}

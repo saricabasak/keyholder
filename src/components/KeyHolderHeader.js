@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Image } from 'react-native';
 import { Header, Left, Body, Title,  Right } from "native-base";
-import logo from '../assets/transparentLogo.png';
+import logo from '../../assets/transparentLogo.png';
 
 export default class KeyHolderHeader extends Component {
   render() {

@@ -3,8 +3,8 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { Provider } from "react-redux";
-import Navigator from "./navigation/Navigator";
-import store from './store/store';
+import Navigator from "./src/navigation/Navigator";
+import store from './src/store/store';
 
 export default class App extends React.Component {
   constructor(props) {

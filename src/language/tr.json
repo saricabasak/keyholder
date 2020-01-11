@@ -15,6 +15,7 @@
       "resetCancel" : "İptal"
     },
     "password" : {
+        "cancel" : "İptal",
         "categoryPlaceHolderName" : "Kategori Seçiniz",
         "header" : "Şifre İşlemleri",
         "name" : "İsim",

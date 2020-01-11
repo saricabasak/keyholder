@@ -15,6 +15,7 @@
     "resetCancel" : "Cancel"
   },
   "password" : {
+      "cancel" : "Cancel",
       "categoryPlaceHolderName" : "Select Category",
       "header" : "Password",
       "name" : "Name",

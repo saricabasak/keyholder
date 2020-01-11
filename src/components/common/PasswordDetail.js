@@ -59,6 +59,9 @@ class PasswordDetail extends Component {
         <CategoryPicker
           ref="categoryItem"
           required={true}
+          iconName="ios-list"
+          placeholder = {translate("password.categoryPlaceHolderName")}
+          placeholderStyle = {password.placeholderStyle}
         />
         <InputItem
           ref="nameItem"

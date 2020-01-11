@@ -30,7 +30,6 @@ import {initialLanguage} from '../components/common/DefaultValues';
   }
 
   componentWillMount() {
-    //clearAsyncStorage();
     retrieveLanguageOnStorage().then(res => {
       this.props.updateLanguageOnStore(res);
     });

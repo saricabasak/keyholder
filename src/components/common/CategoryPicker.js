@@ -80,7 +80,7 @@ class CategoryPicker extends Component {
       {
         options: optionValues,
         cancelButtonIndex: CANCEL_INDEX,
-        destructiveButtonIndex: 8, //not used but must fill the index
+        destructiveButtonIndex: 8,
         title: "Select Category"
       },
       buttonIndex => {
@@ -100,7 +100,11 @@ class CategoryPicker extends Component {
           style={password.inputIconStyle}
         />
         <Button transparent onPress={this.openCategoryActionSheet}>
-          <Text style = {this.state.category == "" ? password.placeholderStyle : password.categoryTextStyle }>{this.state.category == "" ? translate("password.categoryPlaceHolderName") : translate("password.category." + this.state.category)}</Text>
+          <Text style = {this.state.category == "" ? password.placeholderStyle : password.categoryTextStyle }>
+            {this.state.category == ""
+              ? translate("password.categoryPlaceHolderName")
+              : translate("password.category." + this.state.category)}
+          </Text>
         </Button>
       </Item>
     )

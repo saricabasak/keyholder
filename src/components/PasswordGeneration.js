@@ -3,6 +3,7 @@ import PasswordGenerator from "./operational/PasswordGenerator.js";
 import { Item, Icon } from "native-base";
 import { Button, Accordion, View, List, ListItem } from "native-base";
 import { Left, Right, Text, Switch, Picker } from "native-base";
+import LengthInput from "./input/LengthInput";
 import {translate} from "../language/TranslateService";
 import { password, colors } from "../themes/ThemeService";
 
@@ -73,33 +74,7 @@ export default class PasswordGeneration extends Component {
     return (
       <View>
         <List>
-          <ListItem style={password.generatorItemStyle}>
-            <Left>
-              <Text style={password.generatorTextStyle}>
-                {translate("password.length")}
-              </Text>
-            </Left>
-            <Right>
-              <Item picker style={password.generatorItemStyle}>
-                <Picker
-                  style={{ alignItems: "flex-end", width: "100%" }}
-                  mode="dropdown"
-                  iosIcon={<Icon name="arrow-down" />}
-                  selectedValue={this.state.generationParameters.lengthValue}
-                  onValueChange={value => this.onLengthChange(value)}
-                >
-                  <Picker.Item label="6" value={6} />
-                  <Picker.Item label="8" value={8} />
-                  <Picker.Item label="10" value={10} />
-                  <Picker.Item label="12" value={12} />
-                  <Picker.Item label="14" value={14} />
-                  <Picker.Item label="16" value={16} />
-                  <Picker.Item label="18" value={18} />
-                  <Picker.Item label="20" value={20} />
-                </Picker>
-              </Item>
-            </Right>
-          </ListItem>
+          <LengthInput/>
           <ListItem style={password.generatorItemStyle}>
             <Left>
               <Text style={password.generatorTextStyle}>

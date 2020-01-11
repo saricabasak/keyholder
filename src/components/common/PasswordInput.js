@@ -21,25 +21,11 @@ class PasswordInput extends Component {
   setValue(value){
     this.setState({
       inputValue: value
-      }
-    );
-  }
-
-  setValidationValue(){
-    this.setState({
-      borderColor: colors.validInputBorder,
-      validationValue: true
     });
   }
 
   getValidation(){
     return this.state.validationValue;
-  }
-
-  toggleShowKey = () => {
-    this.setState({
-      secureText: !this.state.secureText
-    });
   }
 
   onInputChange(value) {
@@ -52,7 +38,13 @@ class PasswordInput extends Component {
 
   onInputBlur = () => {
     this.runValidation();
-  };
+  }
+
+  toggleShowKey = () => {
+    this.setState({
+      secureText: !this.state.secureText
+    });
+  }
 
   runValidation(){
     if(this.props.required && this.state.inputValue == ""){

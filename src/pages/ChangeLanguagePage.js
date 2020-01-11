@@ -3,11 +3,11 @@ import { Text, Button, View, Toast } from "native-base";
 import LanguageRadio from "../components/common/LanguageRadio";
 import { translate } from "../language/TranslateService";
 import { connect } from "react-redux";
-import {  updateLanguageAction } from "../store/actions/PasswordItemAction";
+import { updateLanguageAction } from "../store/actions/PasswordItemAction";
 import { withNavigation } from "react-navigation";
 import { setLanguage } from "../components/operational/StorageOperations";
 
-class LanguageContentPage extends Component {
+class ChangeLanguagePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,4 +81,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withNavigation(LanguageContentPage));
+)(withNavigation(ChangeLanguagePage));

@@ -13,7 +13,7 @@ class LanguageRadio extends Component {
         style={settings.itemRowStyle}
       >
         <Left>
-          <Text>{this.props.leftText}</Text>
+          <Text style={settings.itemTextStyle}>{this.props.leftText}</Text>
         </Left>
         <Right>
           <Radio

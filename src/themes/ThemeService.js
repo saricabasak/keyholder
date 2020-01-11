@@ -24,6 +24,13 @@ export const login = StyleSheet.create({
   },
   buttonTextStyle: {
     color: getStyle("button.textColor")
+  },
+  transparentButtonStyle: {
+    justifyContent : "flex-end",
+    margin : "2%"
+  },
+  textStyle: {
+    color: "#118ac6"
   }
 });
 
@@ -107,7 +114,7 @@ export const password = StyleSheet.create({
     backgroundColor: "#4B4B46"
   },
   secureTextIconStyle: {
-    color: "#16ADF8"
+    color: "#118ac6"
   },
   generatorHeaderStyle:{
     color:"#A58132",
@@ -128,7 +135,23 @@ export const settings = StyleSheet.create({
     backgroundColor: "#32322D"
   },
   itemHeaderStyle: {
-    backgroundColor: "#4B4B46",
+    padding: "2%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#454540"
+  },
+  itemHeaderIconStyle: {
+    width: "10%",
+    fontSize: 20,
+    color: "#FFB61E"
+  },
+  itemHeaderTextStyle: {
+    width: "80%",
+    fontWeight: "bold",
+    color: "#FFB61E"
+  },
+  itemHeaderExpandIconStyle: {
+    fontSize: 17,
     color: "#FFB61E"
   },
   itemContentStyle: {
@@ -136,13 +159,17 @@ export const settings = StyleSheet.create({
     color: "#FFB61E"
   },
   buttonStyle: {
-    justifyContent: "center",
-    marginTop: 3,
-    backgroundColor: "#D96236"
+    backgroundColor: getStyle("button.backgroundColor"),
+    justifyContent : 'center',
+    margin : "2%"
   },
   itemRowStyle: {
     borderBottomColor : "#32322D"
   },
+  itemTextStyle: {
+    paddingLeft: "2%",
+    color:"#FFB61E"
+  }
 });
 
 export const header = StyleSheet.create({

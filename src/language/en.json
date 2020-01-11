@@ -8,10 +8,10 @@
     "passwordInput" : "Enter Master Key",
     "signInButton" : "Sign In",
     "toastButton" : "OK",
-    "resetButton" : "Reset Application",
+    "resetButton" : "Forgot password?",
     "resetTitle" : "Resetting Application",
-    "resetContent" : "Once you reset your app, there is no going back and lose your all data. Still want to do that?",
-    "resetOk" : "Proceed",
+    "resetContent" : "Since your all data including your master password stored in your local memory, there is no way to recover master password. If you prefer, you can reset all your data and sign up again.",
+    "resetOk" : "Reset",
     "resetCancel" : "Cancel"
   },
   "password" : {

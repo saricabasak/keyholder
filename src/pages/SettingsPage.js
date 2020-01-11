@@ -1,10 +1,10 @@
 import React from "react";
-import { CardItem, Accordion } from "native-base";
+import { CardItem, Accordion, View, Text, Icon } from "native-base";
 import { connect } from "react-redux";
 import KeyHolderHeader from "../components/KeyHolderHeader";
 import { translate } from "../language/TranslateService";
 import { settings } from "../themes/ThemeService";
-import LanguageContentPage from "./ChangeLanguagePage";
+import ChangeLanguagePage from "./ChangeLanguagePage";
 import ChangeMasterKeyPage from "./ChangeMasterKeyPage";
 import KeyHolderContainer from '../components/KeyHolderContainer';
 
@@ -16,9 +16,8 @@ class SettingsPage extends React.Component {
   }
 
   returnLanguageContentPage = () => {
-
     return (
-      <LanguageContentPage
+      <ChangeLanguagePage
         buttonStyle={settings.buttonStyle}
       />
     );
@@ -30,6 +29,19 @@ class SettingsPage extends React.Component {
     );
   };
 
+  renderAccordionHeader(item, expanded) {
+  return (
+    <View style={settings.itemHeaderStyle}>
+      <Icon style={settings.itemHeaderIconStyle} name="settings" />
+      <Text style={settings.itemHeaderTextStyle}>{item.title}</Text>
+      {expanded
+        ? <Icon style={settings.itemHeaderExpandIconStyle} name="arrow-up" />
+        : <Icon style={settings.itemHeaderExpandIconStyle} name="arrow-down" />
+      }
+    </View>
+  );
+}
+
   render() {
     return (
       <KeyHolderContainer isLogin={false}>
@@ -40,7 +52,7 @@ class SettingsPage extends React.Component {
             animation={true}
             expanded={true}
             renderContent={this.returnChangeMasterKeyPage}
-            headerStyle={settings.itemHeaderStyle}
+            renderHeader={this.renderAccordionHeader}
             style={settings.itemContentStyle}
           />
         </CardItem>
@@ -50,7 +62,7 @@ class SettingsPage extends React.Component {
             animation={true}
             expanded={true}
             renderContent={this.returnLanguageContentPage}
-            headerStyle={settings.itemHeaderStyle}
+            renderHeader={this.renderAccordionHeader}
             style={settings.itemContentStyle}
           />
         </CardItem>

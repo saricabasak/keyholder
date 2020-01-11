@@ -85,10 +85,11 @@ class SignInPage extends Component {
           </Text>
         </Button>
         <Button
+          transparent
+          style={login.transparentButtonStyle}
           onPress={this.onPressedResetDialog}
-          style={login.buttonStyle}
         >
-          <Text style={login.buttonText}>
+          <Text style={login.textStyle}>
             {translate("signIn.resetButton")}
           </Text>
         </Button>

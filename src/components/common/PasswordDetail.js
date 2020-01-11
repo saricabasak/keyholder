@@ -31,8 +31,7 @@ class PasswordDetail extends Component {
       this.refs.categoryItem.getValidation() &&
       this.refs.nameItem.getValidation() &&
       this.refs.usernameItem.getValidation() &&
-      this.refs.passwordItem.getValidation() &&
-      this.refs.notesItem.getValidation()
+      this.refs.passwordItem.getValidation()
     );
   }
 

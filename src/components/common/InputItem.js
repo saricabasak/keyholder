@@ -26,7 +26,11 @@ class InputItem extends Component {
   }
 
   getValidation(){
-    return this.state.validationValue;
+    if(this.state.inputValue == null || this.state.inputValue == "" ){
+      return false;
+    }else{
+      return true;
+    }
   }
 
   onInputChange(value) {

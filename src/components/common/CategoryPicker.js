@@ -28,7 +28,11 @@ class CategoryPicker extends Component {
   }
 
   getValidation() {
-    return this.state.validationValue;
+    if(this.state.category == null || this.state.category == "" ){
+      return false;
+    }else{
+      return true;
+    }
   }
 
   runValidation() {

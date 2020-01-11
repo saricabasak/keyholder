@@ -33,7 +33,11 @@ class PasswordInput extends Component {
   }
 
   getValidation(){
-    return this.state.validationValue;
+    if(this.state.validationValue == null || this.state.validationValue == "" ){
+      return false;
+    }else{
+      return true;
+    }
   }
 
   toggleShowKey = () => {

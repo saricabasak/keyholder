@@ -2,7 +2,7 @@ import React from "react";
 import { createAppContainer ,StackNavigator} from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from 'react-navigation-stack';
-import { Icon,Root } from "native-base";
+import { Icon,Root, Text } from "native-base";
 import { navigator } from "../themes/ThemeService";
 import HomePage from "../pages/HomePage";
 import SettingsPage from "../pages/SettingsPage";
@@ -89,6 +89,10 @@ const RootStack = createStackNavigator({
 const AppContainer = createAppContainer(RootStack);
 
 export default class Navigator extends React.Component {
+  constructor(props){
+    super(props)
+    Text.defaultProps.uppercase = false;
+  }
   render() {
     return (
       <Root>

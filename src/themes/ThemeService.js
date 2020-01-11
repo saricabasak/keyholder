@@ -24,6 +24,13 @@ export const login = StyleSheet.create({
   },
   buttonTextStyle: {
     color: getStyle("button.textColor")
+  },
+  transparentButtonStyle: {
+    justifyContent : "flex-end",
+    margin : "2%"
+  },
+  textStyle: {
+    color: "#118ac6"
   }
 });
 
@@ -107,7 +114,7 @@ export const password = StyleSheet.create({
     backgroundColor: "#4B4B46"
   },
   secureTextIconStyle: {
-    color: "#16ADF8"
+    color: "#118ac6"
   },
   generatorHeaderStyle:{
     color:"#A58132",

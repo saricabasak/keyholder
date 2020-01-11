@@ -12,27 +12,18 @@ import { password } from "../../themes/ThemeService";
 class PasswordDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      passwordItem: {
-        id: 0,
-        category: "",
-        name: "",
-        username: "",
-        password: "",
-        notes: ""
-      }
-    }
   }
 
   getPasswordDetail(){
-    this.state.passwordItem.id = this.props.passworditem.id;
-    this.state.passwordItem.category = this.refs.categoryItem.getValue();
-    this.state.passwordItem.name = this.refs.nameItem.getValue();
-    this.state.passwordItem.username = this.refs.usernameItem.getValue();
-    this.state.passwordItem.password = this.refs.passwordItem.getValue();
-    this.state.passwordItem.notes = this.refs.notesItem.getValue();
+    let passwordItem = {};
+    passwordItem.id = this.props.passworditem.id;
+    passwordItem.category = this.refs.categoryItem.getValue();
+    passwordItem.name = this.refs.nameItem.getValue();
+    passwordItem.username = this.refs.usernameItem.getValue();
+    passwordItem.password = this.refs.passwordItem.getValue();
+    passwordItem.notes = this.refs.notesItem.getValue();
 
-    return this.state.passwordItem;
+    return passwordItem;
   }
 
   getValidation(){
@@ -46,8 +37,6 @@ class PasswordDetail extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log("PPPPPPPPP componentWillReceiveProps: " + JSON.stringify(props))
-
     let decryptedPassword = props.passworDecrypt(props.passworditem.password);
     this.refs.categoryItem.setValue(props.passworditem.category);
     this.refs.nameItem.setValue(props.passworditem.name);

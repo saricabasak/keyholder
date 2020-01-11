@@ -6,7 +6,6 @@ import { container } from "../themes/ThemeService";
 
 export default class KeyHolderContainer extends Component {
   render() {
-    console.log(this.props.isLogin);
     let renderLogo;
     let renderText;
     if (this.props.isLogin) {

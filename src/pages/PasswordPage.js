@@ -17,26 +17,16 @@ import {
 class PasswordPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      passwordItem: {
-        id: 0,
-        name: "",
-        username: "",
-        password: "",
-        notes: "",
-        category: ""
-      }
-    };
   }
 
   savePasswordItem = () => {
     if (this.refs.passwordDetail.getValidation()) {
-      this.state.passwordItem = this.refs.passwordDetail.getPasswordDetail();
-      this.state.passwordItem.password = this.encryptPassword(this.state.passwordItem.password);
-      if (this.state.passwordItem.id === 0 || this.state.passwordItem.id === null) {
-        this.props.addPasswordItemArrOnStore(this.state.passwordItem);
+      let passwordItem = this.refs.passwordDetail.getPasswordDetail();
+      passwordItem.password = this.encryptPassword(passwordItem.password);
+      if (passwordItem.id === 0 || passwordItem.id === null) {
+        this.props.addPasswordItemArrOnStore(passwordItem);
       } else {
-        this.props.updatePasswordItemArrOnStore(this.state.passwordItem);
+        this.props.updatePasswordItemArrOnStore(passwordItem);
       }
       this.props.navigation.navigate(translate("pages.home"));
     } else {

@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CardItem, Item, Icon, Picker } from "native-base";
+import { Item, Icon, Picker, ActionSheet, Input, Label, Button, Text } from "native-base";
 import { translate } from "../../language/TranslateService";
-import Categories from "../Categories";
+import { Categories } from "../Categories";
 import { password, colors } from "../../themes/ThemeService"
+
+var CANCEL_INDEX = 7;
 
 class CategoryPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category : "",
-      validationValue : !this.props.required,
+      category: "",
+      validationValue: !this.props.required,
       borderColor: colors.validInputBorder
     }
   }
@@ -19,7 +21,7 @@ class CategoryPicker extends Component {
     return this.state.category;
   }
 
-  setValue(value){
+  setValue(value) {
     this.setState(
       prevState => ({
         category: value
@@ -27,30 +29,17 @@ class CategoryPicker extends Component {
     );
   }
 
-  getValidation(){
+  getValidation() {
     return this.state.validationValue;
   }
 
-  onCategoryChange(value) {
-    this.setState(
-      prevState => ({
-        category: value
-      }),
-      this.runValidation
-    );
-  }
-
-  onCategoryBlur = () => {
-    this.runValidation();
-  };
-
-  runValidation(){
-    if(this.state.category == ""){
+  runValidation() {
+    if (this.state.category == "") {
       this.setState({
         borderColor: colors.invalidInputBorder,
         validationValue: false
       });
-    }else{
+    } else {
       this.setState({
         borderColor: colors.validInputBorder,
         validationValue: true
@@ -58,48 +47,64 @@ class CategoryPicker extends Component {
     }
   }
 
-  componentWillReceiveProps (newProps) {
-    if( newProps.inputValue !== this.props.inputValue ){
+  componentWillReceiveProps(newProps) {
+    if (newProps.inputValue !== this.props.inputValue) {
       this.setValue(newProps.inputValue);
     }
   }
 
-  renderCategories = () => {
+  renderCategoryValues = () => {
     var cat = Categories();
-    return cat.map(c => {
-      return (
-        <Picker.Item
-          label={translate("password.category." + c)}
-          value={c}
-          key = {c}
-        />
-      );
+    let arr = [];
+    cat.map(c => {
+      return arr.push(translate("password.category." + c));
     });
+    arr.push(translate("password.cancel"));
+    return arr;//Value
   };
 
-  render () {
+  renderCategoryKeys = () => {
+    var cat = Categories();
+    let arr = [];
+    cat.map(c => {
+      return arr.push(c);
+    });
+    arr.push(translate("password.cancel"));
+    return arr;//key
+  };
+
+  openCategoryActionSheet = () => {
+    optionValues = this.renderCategoryValues();
+    optionKeys = this.renderCategoryKeys();
+    ActionSheet.show(
+      {
+        options: optionValues,
+        cancelButtonIndex: CANCEL_INDEX,
+        destructiveButtonIndex: 8, //not used but must fill the index
+        title: "Select Category"
+      },
+      buttonIndex => {
+        if(buttonIndex != 7){
+          this.setValue(optionKeys[buttonIndex])
+        }
+        this.runValidation()
+      }
+    )
+  }
+
+  render() {
     return (
-      <Item style={{borderColor : this.state.borderColor}}>
-        <Icon name="ios-list" style={password.inputIconStyle}/>
-        <Picker
-          mode="dropdown"
-          selectedValue={this.state.category}
-          onValueChange={value => this.onCategoryChange(value)}
-          onBlur={this.onCategoryBlur}
-          placeholder= {translate("password.categoryPlaceHolderName")}
-          placeholderStyle={password.placeholderStyle}
-          textStyle={password.categoryTextStyle}
-          headerStyle={password.headerStyle}
-          headerBackButtonTextStyle={password.headerBackButtonTextStyle}
-          headerTitleStyle={password.headerTitleStyle}
-          itemTextStyle={password.categoryTextStyle}
-          itemStyle={password.itemStyle}
-        >
-          {this.renderCategories()}
-        </Picker>
+      <Item style={{ borderColor: this.state.borderColor }} >
+        <Icon
+          name={this.props.iconName}
+          style={password.inputIconStyle}
+        />
+        <Button transparent onPress={this.openCategoryActionSheet}>
+          <Text style = {this.state.category == "" ? password.placeholderStyle : password.categoryTextStyle }>{this.state.category == "" ? translate("password.categoryPlaceHolderName") : translate("password.category." + this.state.category)}</Text>
+        </Button>
       </Item>
     )
   }
 }
 
-export default connect(null, null, null, {forwardRef: true})(CategoryPicker);
+export default connect(null, null, null, { forwardRef: true })(CategoryPicker);

@@ -22,7 +22,7 @@ class PasswordDetail extends Component {
     passwordItem.username = this.refs.usernameItem.getValue();
     passwordItem.password = this.refs.passwordItem.getValue();
     passwordItem.notes = this.refs.notesItem.getValue();
-
+    console.log("getPasswordDetail passwordItem -> " + JSON.stringify(passwordItem))
     return passwordItem;
   }
 
@@ -31,8 +31,7 @@ class PasswordDetail extends Component {
       this.refs.categoryItem.getValidation() &&
       this.refs.nameItem.getValidation() &&
       this.refs.usernameItem.getValidation() &&
-      this.refs.passwordItem.getValidation() &&
-      this.refs.notesItem.getValidation()
+      this.refs.passwordItem.getValidation()
     );
   }
 
@@ -43,6 +42,7 @@ class PasswordDetail extends Component {
     this.refs.usernameItem.setValue(props.passworditem.username);
     this.refs.passwordItem.setValue(decryptedPassword);
     this.refs.notesItem.setValue(props.passworditem.notes);
+    console.log("componentWillReceiveProps props.passworditem.category -> " + JSON.stringify(props.passworditem.category))
   }
 
   renderAccordionHeader(item, expanded) {

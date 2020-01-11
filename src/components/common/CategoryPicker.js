@@ -22,15 +22,17 @@ class CategoryPicker extends Component {
   }
 
   setValue(value) {
-    this.setState(
-      prevState => ({
-        category: value
-      })
-    );
+    this.setState({
+      category: value
+    })
   }
 
   getValidation() {
-    return this.state.validationValue;
+    if(this.state.category == null || this.state.category == "" ){
+      return false;
+    }else{
+      return true;
+    }
   }
 
   runValidation() {
@@ -48,8 +50,9 @@ class CategoryPicker extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.inputValue !== this.props.inputValue) {
-      this.setValue(newProps.inputValue);
+    console.log("componentWillReceiveProps newProps -> " + JSON.stringify(newProps))
+    if (newProps.category !== this.props.category) {
+      this.setValue(newProps.category);
     }
   }
 
@@ -84,10 +87,12 @@ class CategoryPicker extends Component {
         title: "Select Category"
       },
       buttonIndex => {
-        if(buttonIndex != 7){
-          this.setValue(optionKeys[buttonIndex])
+        if (buttonIndex != 7) {
+          this.setState({
+            category: optionKeys[buttonIndex]
+          },
+            this.runValidation)
         }
-        this.runValidation()
       }
     )
   }
@@ -100,10 +105,8 @@ class CategoryPicker extends Component {
           style={password.inputIconStyle}
         />
         <Button transparent onPress={this.openCategoryActionSheet}>
-          <Text style = {this.state.category == "" ? password.placeholderStyle : password.categoryTextStyle }>
-            {this.state.category == ""
-              ? translate("password.categoryPlaceHolderName")
-              : translate("password.category." + this.state.category)}
+          <Text style={this.state.category == "" ? password.placeholderStyle : password.categoryTextStyle}>
+            {this.state.category == "" ? translate("password.categoryPlaceHolderName") : translate("password.category." + this.state.category)}
           </Text>
         </Button>
       </Item>

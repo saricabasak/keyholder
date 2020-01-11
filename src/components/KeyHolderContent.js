@@ -8,7 +8,6 @@ export default class KeyHolderContent extends Component {
     return (
       <Content contentContainerStyle={{
         padding: "1%",
-        flex: 1,
         flexDirection: "column",
         justifyContent: justifyContent
       }}>

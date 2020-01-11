@@ -4,7 +4,7 @@ import InputItem from "./InputItem"
 import PasswordInput from "./PasswordInput"
 import CategoryPicker from "./CategoryPicker"
 import PasswordGeneration from "../PasswordGeneration";
-import { Accordion, View } from "native-base";
+import { Accordion, View, Icon, Text } from "native-base";
 import { encrypt, decrypt } from "../operational/Encryption";
 import { translate } from "../../language/TranslateService";
 import { password } from "../../themes/ThemeService";
@@ -43,6 +43,19 @@ class PasswordDetail extends Component {
     this.refs.usernameItem.setValue(props.passworditem.username);
     this.refs.passwordItem.setValue(decryptedPassword);
     this.refs.notesItem.setValue(props.passworditem.notes);
+  }
+
+  renderAccordionHeader(item, expanded) {
+    return (
+      <View style={password.generatorHeaderStyle}>
+        <Icon style={password.generatorHeaderIconStyle} name="settings" />
+        <Text style={password.generatorHeaderTextStyle}>{item.title}</Text>
+        {expanded
+          ? <Icon style={password.generatorHeaderExpandIconStyle} name="arrow-up" />
+          : <Icon style={password.generatorHeaderExpandIconStyle} name="arrow-down" />
+        }
+      </View>
+    );
   }
 
   generatorContent() {
@@ -90,7 +103,7 @@ class PasswordDetail extends Component {
           animation={true}
           expanded={true}
           renderContent={this.generatorContent}
-          headerStyle={password.generatorHeaderStyle}
+          renderHeader={this.renderAccordionHeader}
         />
       </View>
     );

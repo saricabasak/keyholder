@@ -30,17 +30,17 @@ class SettingsPage extends React.Component {
   };
 
   renderAccordionHeader(item, expanded) {
-  return (
-    <View style={settings.itemHeaderStyle}>
-      <Icon style={settings.itemHeaderIconStyle} name="settings" />
-      <Text style={settings.itemHeaderTextStyle}>{item.title}</Text>
-      {expanded
-        ? <Icon style={settings.itemHeaderExpandIconStyle} name="arrow-up" />
-        : <Icon style={settings.itemHeaderExpandIconStyle} name="arrow-down" />
-      }
-    </View>
-  );
-}
+    return (
+      <View style={settings.itemHeaderStyle}>
+        <Icon style={settings.itemHeaderIconStyle} name="settings" />
+        <Text style={settings.itemHeaderTextStyle}>{item.title}</Text>
+        {expanded
+          ? <Icon style={settings.itemHeaderExpandIconStyle} name="arrow-up" />
+          : <Icon style={settings.itemHeaderExpandIconStyle} name="arrow-down" />
+        }
+      </View>
+    );
+  }
 
   render() {
     return (

@@ -116,9 +116,25 @@ export const password = StyleSheet.create({
   secureTextIconStyle: {
     color: "#118ac6"
   },
-  generatorHeaderStyle:{
-    color:"#A58132",
-    backgroundColor:"#7D7D78"
+  generatorHeaderStyle: {
+    padding: "2%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#454540"
+  },
+  generatorHeaderIconStyle: {
+    width: "10%",
+    fontSize: 20,
+    color: "#FFB61E"
+  },
+  generatorHeaderTextStyle: {
+    width: "80%",
+    fontWeight: "bold",
+    color: "#FFB61E"
+  },
+  generatorHeaderExpandIconStyle: {
+    fontSize: 17,
+    color: "#FFB61E"
   },
   generatorItemStyle: {
     paddingLeft:"3%",

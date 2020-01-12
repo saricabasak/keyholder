@@ -138,12 +138,16 @@ export const password = StyleSheet.create({
   },
   generatorItemStyle: {
     paddingLeft:"3%",
-    paddingRight:"5%",
-    borderColor : "#32322D"
+    paddingRight:"3%",
+    borderColor : "#4B4B46"
   },
   generatorTextStyle:{
     color:"#FFB61E"
-  }
+  },
+  generatorContentStyle: {
+    backgroundColor: "#64645F",
+    color: "#FFB61E"
+  },
 });
 
 export const settings = StyleSheet.create({

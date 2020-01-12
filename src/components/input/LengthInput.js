@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Item, Left, Text, Right, Button, Icon } from "native-base";
+import { ListItem, Left, Text, Right, Button, Icon } from "native-base";
 import { password, colors } from "../../themes/ThemeService";
 import { translate } from "../../language/TranslateService";
 
@@ -42,21 +42,15 @@ class LengthInput extends Component {
     );
   }
 
-  componentWillReceiveProps (newProps) {
-    if( newProps.inputValue !== this.props.inputValue ){
-      this.setValue(newProps.inputValue);
-    }
-  }
-
   render() {
     return (
-      <Item>
+      <ListItem style={password.generatorItemStyle}>
         <Left>
           <Text style={password.generatorTextStyle}>
             {translate("password.length")}
           </Text>
         </Left>
-        <Right style={{flexDirection: "row", justifyContent: "flex-end", alignItems: "center"}}>
+        <Right style={{height:20, flexDirection: "row", justifyContent: "flex-end", alignItems: "center"}}>
           <Button transparent
           onPress={this.lengthDecrement}>
             <Icon name="remove"/>
@@ -69,7 +63,7 @@ class LengthInput extends Component {
             <Icon name="add"/>
           </Button>
         </Right>
-      </Item>
+      </ListItem>
     );
   }
 }

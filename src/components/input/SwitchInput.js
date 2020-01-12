@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Item, Left, Text, Right, Switch } from "native-base";
+import { ListItem, Left, Text, Right, Switch } from "native-base";
 import { password, colors } from "../../themes/ThemeService"
 
-class GeneratorSwitch extends Component {
+class SwitchInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,18 +31,12 @@ class GeneratorSwitch extends Component {
     );
   }
 
-  componentWillReceiveProps (newProps) {
-    if( newProps.switchValue !== this.props.switchValue ){
-      this.setValue(newProps.switchValue);
-    }
-  }
-
   render() {
     return (
-      <Item style={password.generatorItemStyle}>
+      <ListItem style={password.generatorItemStyle}>
         <Left>
           <Text style={password.generatorTextStyle}>
-            {translate("password.digit")}
+            {this.props.name}
           </Text>
         </Left>
         <Right>
@@ -55,9 +49,9 @@ class GeneratorSwitch extends Component {
             }}
           />
         </Right>
-      </Item>
+      </ListItem>
     )
   }
 }
 
-export default connect(null, null, null, {forwardRef: true})(InputItem);
+export default connect(null, null, null, {forwardRef: true})(SwitchInput);

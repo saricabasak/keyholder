@@ -68,7 +68,9 @@ class PasswordPage extends Component {
             style={password.buttonStyle}
             onPress={this.savePasswordItem}
           >
-            <Text>{translate("password.saveButton")}</Text>
+            <Text style={password.buttonTextStyle}>
+              {translate("password.saveButton")}
+            </Text>
           </Button>
         </KeyHolderContent>
       </KeyHolderContainer>

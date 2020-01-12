@@ -22,7 +22,6 @@ class PasswordDetail extends Component {
     passwordItem.username = this.refs.usernameItem.getValue();
     passwordItem.password = this.refs.passwordItem.getValue();
     passwordItem.notes = this.refs.notesItem.getValue();
-    console.log("getPasswordDetail passwordItem -> " + JSON.stringify(passwordItem))
     return passwordItem;
   }
 
@@ -42,7 +41,6 @@ class PasswordDetail extends Component {
     this.refs.usernameItem.setValue(props.passworditem.username);
     this.refs.passwordItem.setValue(decryptedPassword);
     this.refs.notesItem.setValue(props.passworditem.notes);
-    console.log("componentWillReceiveProps props.passworditem.category -> " + JSON.stringify(props.passworditem.category))
   }
 
   renderAccordionHeader(item, expanded) {
@@ -58,10 +56,14 @@ class PasswordDetail extends Component {
     );
   }
 
-  generatorContent() {
+  getGeneratedPassword = (generatedPassword) => {
+    this.refs.passwordItem.setValue(generatedPassword);
+  }
+
+  generatorContent = () => {
     return (
       <PasswordGeneration
-        setDecryptedPassword={this.setDecryptedPassword}
+        getGeneratedPassword={this.getGeneratedPassword}
       />
     );
   }

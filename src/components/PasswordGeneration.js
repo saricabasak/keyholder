@@ -1,153 +1,41 @@
 import React, { Component } from "react";
-import PasswordGenerator from "./operational/PasswordGenerator.js";
-import { Item, Icon } from "native-base";
-import { Button, Accordion, View, List, ListItem } from "native-base";
-import { Left, Right, Text, Switch, Picker } from "native-base";
+import { connect } from "react-redux";
+import { View, List, Button, Text } from "native-base";
 import LengthInput from "./input/LengthInput";
+import SwitchInput from "./input/SwitchInput";
 import {translate} from "../language/TranslateService";
-import { password, colors } from "../themes/ThemeService";
+import { password } from "../themes/ThemeService";
+import PasswordGenerator from "./operational/PasswordGenerator.js";
 
 
-export default class PasswordGeneration extends Component {
+class PasswordGeneration extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      generationParameters: {
-        lengthValue: 8,
-        digitValue: true,
-        lowerValue: true,
-        upperValue: true,
-        specialValue: true
-      },
-      decryptedPassword: ""
-    };
   }
 
-  generatePassword() {
-    let decryptedPassword = PasswordGenerator.generatePassword(
-      this.state.generationParameters
-    );
-    this.props.setDecryptedPassword(decryptedPassword);
+  generatePassword = () => {
+    let generationParameters = {};
+    generationParameters.lengthValue = this.refs.lengthRef.getValue();
+    generationParameters.digitValue = this.refs.digit.getValue();
+    generationParameters.lowerValue = this.refs.lowerCase.getValue();
+    generationParameters.upperValue = this.refs.upperCase.getValue();
+    generationParameters.specialValue = this.refs.specialChar.getValue();
+    let generatedPassword = PasswordGenerator.generatePassword(generationParameters);
+    console.log(generatedPassword);
+    this.props.getGeneratedPassword(generatedPassword);
   }
 
-  onLengthChange(value) {
-    this.setState(prevState => ({
-      generationParameters: {
-        ...prevState.generationParameters,
-        lengthValue: value
-      }
-    }));
-  }
-  onDigitChange(value) {
-    this.setState(prevState => ({
-      generationParameters: {
-        ...prevState.generationParameters,
-        digitValue: value
-      }
-    }));
-  }
-  onLowerChange(value) {
-    this.setState(prevState => ({
-      generationParameters: {
-        ...prevState.generationParameters,
-        lowerValue: value
-      }
-    }));
-  }
-  onUpperChange(value) {
-    this.setState(prevState => ({
-      generationParameters: {
-        ...prevState.generationParameters,
-        upperValue: value
-      }
-    }));
-  }
-  onSpecialChange(value) {
-    this.setState(prevState => ({
-      generationParameters: {
-        ...prevState.generationParameters,
-        specialValue: value
-      }
-    }));
-  }
   render() {
     return (
-      <View>
-        <List>
-          <LengthInput/>
-          <ListItem style={password.generatorItemStyle}>
-            <Left>
-              <Text style={password.generatorTextStyle}>
-                {translate("password.digit")}
-              </Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.digitValue}
-                onValueChange={this.onDigitChange.bind(this)}
-                trackColor={{
-                  true: colors.switchTrueColor,
-                  false: colors.switchFalseColor
-                }}
-              />
-            </Right>
-          </ListItem>
-          <ListItem style={password.generatorItemStyle}>
-            <Left>
-              <Text style={password.generatorTextStyle}>
-                {translate("password.lowerCase")}
-              </Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.lowerValue}
-                onValueChange={this.onLowerChange.bind(this)}
-                trackColor={{
-                  true: colors.switchTrueColor,
-                  false: colors.switchFalseColor
-                }}
-              />
-            </Right>
-          </ListItem>
-          <ListItem style={password.generatorItemStyle}>
-            <Left>
-              <Text style={password.generatorTextStyle}>
-                {translate("password.upperCase")}
-              </Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.upperValue}
-                onValueChange={this.onUpperChange.bind(this)}
-                trackColor={{
-                  true: colors.switchTrueColor,
-                  false: colors.switchFalseColor
-                }}
-              />
-            </Right>
-          </ListItem>
-          <ListItem style={password.generatorItemStyle}>
-            <Left>
-              <Text style={password.generatorTextStyle}>
-                {translate("password.specialChars")}
-              </Text>
-            </Left>
-            <Right>
-              <Switch
-                value={this.state.generationParameters.specialValue}
-                onValueChange={this.onSpecialChange.bind(this)}
-                trackColor={{
-                  true: colors.switchTrueColor,
-                  false: colors.switchFalseColor
-                }}
-              />
-            </Right>
-          </ListItem>
-        </List>
+      <View style={password.generatorContentStyle}>
+        <LengthInput ref="lengthRef" />
+        <SwitchInput ref="digit" name={translate("password.digit")}/>
+        <SwitchInput ref="lowerCase" name={translate("password.lowerCase")}/>
+        <SwitchInput ref="upperCase" name={translate("password.upperCase")}/>
+        <SwitchInput ref="specialChar" name={translate("password.specialChars")}/>
         <Button success
           style={password.buttonStyle}
-          onPress={this.generatePassword.bind(this)}
-        >
+          onPress={this.generatePassword}>
           <Text style={password.buttonTextStyle}>
             {translate("password.generatorButton")}
           </Text>
@@ -156,3 +44,4 @@ export default class PasswordGeneration extends Component {
     );
   }
 }
+export default connect(null, null, null, {forwardRef: true})(PasswordGeneration)

@@ -23,6 +23,12 @@ class PasswordInput extends Component {
       inputValue: value
     });
   }
+  
+  setValueWithValidation(value){
+    this.setState({
+      inputValue: value
+    },this.runValidation);
+  }
 
   getValidation(){
     if(this.state.validationValue == null || this.state.validationValue == "" ){

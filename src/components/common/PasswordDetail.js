@@ -57,7 +57,7 @@ class PasswordDetail extends Component {
   }
 
   getGeneratedPassword = (generatedPassword) => {
-    this.refs.passwordItem.setValue(generatedPassword);
+    this.refs.passwordItem.setValueWithValidation(generatedPassword);
   }
 
   generatorContent = () => {

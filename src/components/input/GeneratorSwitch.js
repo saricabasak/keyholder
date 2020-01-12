@@ -16,19 +16,15 @@ class GeneratorSwitch extends Component {
   }
 
   setValue(value){
-    this.setState(
-      prevState => ({
+    this.setState({
         switchValue: value
       })
-    );
   }
 
   onSwitchChange(value) {
-    this.setState(
-      prevState => ({
+    this.setState({
         switchValue: value
       })
-    );
   }
 
   componentWillReceiveProps (newProps) {

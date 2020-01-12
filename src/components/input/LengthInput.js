@@ -17,29 +17,23 @@ class LengthInput extends Component {
   }
 
   setValue(value){
-    this.setState(
-      prevState => ({
+    this.setState({
         lengthValue: value
       })
-    );
   }
 
   lengthDecrement = () => {
     let value = this.state.lengthValue - 1;
-    this.setState(
-      prevState => ({
+    this.setState({
         lengthValue: value
       })
-    );
   }
 
   lengthIncrement = () => {
     let value = this.state.lengthValue + 1;
-    this.setState(
-      prevState => ({
+    this.setState({
         lengthValue: value
       })
-    );
   }
 
   componentWillReceiveProps (newProps) {

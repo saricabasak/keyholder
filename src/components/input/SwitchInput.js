@@ -16,19 +16,15 @@ class SwitchInput extends Component {
   }
 
   setValue(value){
-    this.setState(
-      prevState => ({
+    this.setState({
         switchValue: value
       })
-    );
   }
 
   onSwitchChange(value) {
-    this.setState(
-      prevState => ({
+    this.setState({
         switchValue: value
       })
-    );
   }
 
   render() {

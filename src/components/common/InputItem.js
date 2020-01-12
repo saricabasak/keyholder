@@ -18,11 +18,9 @@ class InputItem extends Component {
   }
 
   setValue(value){
-    this.setState(
-      prevState => ({
+    this.setState({
         inputValue: value
       })
-    );
   }
 
   getValidation(){
@@ -34,12 +32,9 @@ class InputItem extends Component {
   }
 
   onInputChange(value) {
-    this.setState(
-      prevState => ({
+    this.setState({
         inputValue: value
-      }),
-      this.runValidation
-    );
+      },this.runValidation)
   }
 
   runValidation(){

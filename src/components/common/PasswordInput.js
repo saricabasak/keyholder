@@ -23,7 +23,7 @@ class PasswordInput extends Component {
       inputValue: value
     });
   }
-  
+
   setValueWithValidation(value){
     this.setState({
       inputValue: value
@@ -31,7 +31,7 @@ class PasswordInput extends Component {
   }
 
   getValidation(){
-    if(this.state.validationValue == null || this.state.validationValue == "" ){
+    if(this.state.inputValue == null || this.state.inputValue == "" ){
       return false;
     }else{
       return true;

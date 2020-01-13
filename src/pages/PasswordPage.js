@@ -30,6 +30,7 @@ class PasswordPage extends Component {
       }
       this.props.navigation.navigate(translate("pages.home"));
     } else {
+      this.refs.passwordDetail.runValidationForAllInputs();
       Toast.show({
         text: translate("password.validationError"),
         buttonText: translate("password.toastButton"),

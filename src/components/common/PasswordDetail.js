@@ -5,7 +5,6 @@ import PasswordInput from "./PasswordInput"
 import CategoryPicker from "./CategoryPicker"
 import PasswordGeneration from "../PasswordGeneration";
 import { Accordion, View, Icon, Text } from "native-base";
-import { encrypt, decrypt } from "../operational/Encryption";
 import { translate } from "../../language/TranslateService";
 import { password } from "../../themes/ThemeService";
 
@@ -14,7 +13,7 @@ class PasswordDetail extends Component {
     super(props);
   }
 
-  getPasswordDetail(){
+  getPasswordDetail() {
     let passwordItem = {};
     passwordItem.id = this.props.passworditem.id;
     passwordItem.category = this.refs.categoryItem.getValue();
@@ -25,13 +24,20 @@ class PasswordDetail extends Component {
     return passwordItem;
   }
 
-  getValidation(){
+  getValidation() {
     return (
       this.refs.categoryItem.getValidation() &&
       this.refs.nameItem.getValidation() &&
       this.refs.usernameItem.getValidation() &&
       this.refs.passwordItem.getValidation()
     );
+  }
+
+  runValidationForAllInputs() {
+    this.refs.categoryItem.runValidation();
+    this.refs.nameItem.runValidation();
+    this.refs.usernameItem.runValidation();
+    this.refs.passwordItem.runValidation();
   }
 
   componentWillReceiveProps(props) {
@@ -75,8 +81,8 @@ class PasswordDetail extends Component {
           ref="categoryItem"
           required={true}
           iconName="ios-list"
-          placeholder = {translate("password.categoryPlaceHolderName")}
-          placeholderStyle = {password.placeholderStyle}
+          placeholder={translate("password.categoryPlaceHolderName")}
+          placeholderStyle={password.placeholderStyle}
         />
         <InputItem
           ref="nameItem"
@@ -103,7 +109,7 @@ class PasswordDetail extends Component {
           required={false}
         />
         <Accordion
-          style={{padding:"1%", paddingTop:"5%"}}
+          style={{ padding: "1%", paddingTop: "5%" }}
           dataArray={[{ title: translate("password.generatorHeader") }]}
           animation={true}
           expanded={true}
@@ -115,4 +121,4 @@ class PasswordDetail extends Component {
   }
 }
 
-export default connect(null, null, null, {forwardRef: true})(PasswordDetail);
+export default connect(null, null, null, { forwardRef: true })(PasswordDetail);

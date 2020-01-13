@@ -99,12 +99,12 @@ class CategoryPicker extends Component {
 
   render() {
     return (
-      <Item style={{ borderColor: this.state.borderColor }} >
+      <Item style={{ borderColor: this.state.borderColor }} onPress= {this.openCategoryActionSheet} >
         <Icon
           name={this.props.iconName}
           style={password.inputIconStyle}
         />
-        <Button transparent onPress={this.openCategoryActionSheet}>
+        <Button transparent onPress= {this.openCategoryActionSheet}>
           <Text style={this.state.category == "" ? password.placeholderStyle : password.categoryTextStyle}>
             {this.state.category == "" ? translate("password.categoryPlaceHolderName") : translate("password.category." + this.state.category)}
           </Text>

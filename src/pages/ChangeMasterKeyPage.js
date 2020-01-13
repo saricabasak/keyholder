@@ -29,9 +29,6 @@ class ChangeMasterKeyPage extends Component {
     this.refs.currentMasterItem.setValue("");
     this.refs.newMasterItem.setValue("");
     this.refs.confirmMasterItem.setValue("");
-    this.refs.currentMasterItem.setValidationValue();
-    this.refs.newMasterItem.setValidationValue();
-    this.refs.confirmMasterItem.setValidationValue();
   }
 
   runFieldsValidation = () => {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CardItem, Item, Icon, Input } from "native-base";
+import { CardItem, Item, Icon, Input, Textarea } from "native-base";
 import { password, colors } from "../../themes/ThemeService"
 
 class InputItem extends Component {
@@ -62,21 +62,40 @@ class InputItem extends Component {
   }
 
   render() {
+    if (this.props.numberOfLines) {
+      renderInput = (
+        <Textarea
+          rowSpan={this.props.numberOfLines}
+          autoCorrect={false}
+          placeholder={this.props.placeholder}
+          value={this.state.inputValue}
+          onChangeText={this.onInputChange.bind(this)}
+          onBlur={this.onInputBlur}
+          placeholderTextColor={colors.placeholderTextColor}
+          style={password.inputStyle}
+        />
+      )
+    }else{
+      renderInput = (
+        <Input
+          autoCorrect={false}
+          placeholder={this.props.placeholder}
+          value={this.state.inputValue}
+          onChangeText={this.onInputChange.bind(this)}
+          onBlur={this.onInputBlur}
+          placeholderTextColor={colors.placeholderTextColor}
+          style={password.inputStyle}
+        />
+      )
+    }
+
     return (
         <Item style={{borderColor : this.state.borderColor}}>
           <Icon
             name={this.props.iconName}
             style={password.inputIconStyle}
           />
-          <Input
-            autoCorrect={false}
-            placeholder={this.props.placeholder}
-            value={this.state.inputValue}
-            onChangeText={this.onInputChange.bind(this)}
-            onBlur={this.onInputBlur}
-            placeholderTextColor={colors.placeholderTextColor}
-            style={password.inputStyle}
-          />
+          {renderInput}
         </Item>
     )
   }

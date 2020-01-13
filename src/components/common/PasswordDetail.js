@@ -107,6 +107,7 @@ class PasswordDetail extends Component {
           iconName="paper"
           placeholder={translate("password.notes")}
           required={false}
+          numberOfLines={2}
         />
         <Accordion
           style={{ padding: "1%", paddingTop: "5%" }}

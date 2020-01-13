@@ -8,7 +8,7 @@
     "regularButton" : {
       "backgroundColor" : "#D96236",
       "textColor" : "#C8C8BE"
-    }
+    },
     "transparentButton" : {
       "textColor" : "#118AC6"
     }

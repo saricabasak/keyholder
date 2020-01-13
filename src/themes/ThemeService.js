@@ -18,19 +18,19 @@ export const navigator = StyleSheet.create({
 
 export const login = StyleSheet.create({
   buttonStyle: {
-    backgroundColor: getStyle("button.backgroundColor"),
+    backgroundColor: getStyle("login.regularButton.backgroundColor"),
     justifyContent : 'center',
     margin : "2%"
   },
   buttonTextStyle: {
-    color: getStyle("button.textColor")
+    color: getStyle("login.regularButton.textColor")
   },
   transparentButtonStyle: {
     justifyContent : "flex-end",
     margin : "2%"
   },
   textStyle: {
-    color: "#118ac6"
+    color: getStyle("login.transparentButton.textColor")
   }
 });
 
@@ -48,7 +48,7 @@ export const home = StyleSheet.create({
   },
   swipeRowViewStyle: {
     alignItems: "center",
-    backgroundColor: "#D96236",
+    backgroundColor: getStyle("home.swipeRow.backgroundColor"),
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -61,147 +61,142 @@ export const home = StyleSheet.create({
     position: "absolute",
     top: 0,
     width: 75,
-    backgroundColor: "#D96236",
+    backgroundColor: getStyle("home.swipeRow.backgroundColor"),
     right: 0
   },
   itemRowStyle: {
-    borderBottomColor : "#32322D"
+    borderBottomColor : getStyle("home.itemRow.borderBottomColor")
   },
   itemRowViewStyle: {
-    backgroundColor: "#4B4B46"
+    backgroundColor: getStyle("home.itemRow.backgroundColor")
   },
   itemTextStyle: {
-    color:"#C8C8BE"
+    color: getStyle("home.itemRow.textColor")
   }
 });
 
 export const password = StyleSheet.create({
   buttonStyle: {
-    backgroundColor: getStyle("button.backgroundColor"),
+    backgroundColor: getStyle("password.button.backgroundColor"),
     justifyContent : 'center',
     margin : "2%"
   },
   buttonTextStyle: {
-    color: getStyle("button.textColor")
+    color: getStyle("password.button.textColor")
   },
   inputIconStyle: {
     width:"10%",
     paddingLeft:"2%",
-    color:"#FFB61E"
+    color: getStyle("password.input.textColor")
   },
   inputStyle: {
     paddingLeft: "5%",
-    color:"#FFB61E"
+    color: getStyle("password.input.iconColor")
   },
   placeholderStyle:{
-    color: "#A58132"
+    color: getStyle("password.input.placeholderColor")
   },
   categoryTextStyle: {
-    color: "#FFB61E"
-  },
-  headerStyle:{
-    backgroundColor: "#32322D"
-  },
-  headerBackButtonTextStyle: {
-    color: "#21638C"
-  },
-  headerTitleStyle: {
-    color: "#D96236"
-  },
-  itemStyle: {
-    marginLeft: 0,
-    paddingLeft: 10,
-    backgroundColor: "#4B4B46"
+    color: getStyle("password.input.textColor")
   },
   secureTextIconStyle: {
-    color: "#118ac6"
+    color: getStyle("password.input.secureIconColor")
+  },
+  headerStyle:{
+    backgroundColor: getStyle("password.header.backgroundColor")
+  },
+  headerBackButtonTextStyle: {
+    color: getStyle("password.header.backTextColor")
+  },
+  headerTitleStyle: {
+    color: getStyle("password.header.titleColor")
   },
   generatorHeaderStyle: {
     padding: "2%",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#454540"
+    backgroundColor: getStyle("password.generator.headerColor")
   },
   generatorHeaderIconStyle: {
     width: "10%",
     fontSize: 20,
-    color: "#FFB61E"
+    color: getStyle("password.generator.textColor")
   },
   generatorHeaderTextStyle: {
     width: "80%",
     fontWeight: "bold",
-    color: "#FFB61E"
+    color: getStyle("password.generator.textColor")
   },
   generatorHeaderExpandIconStyle: {
     fontSize: 17,
-    color: "#FFB61E"
+    color: getStyle("password.generator.textColor")
   },
   generatorItemStyle: {
     paddingLeft:"3%",
     paddingRight:"3%",
-    borderColor : "#4B4B46"
+    borderColor : getStyle("password.generator.borderColor")
   },
   generatorTextStyle:{
-    color:"#FFB61E"
+    color: getStyle("password.generator.textColor")
   },
   generatorContentStyle: {
-    backgroundColor: "#64645F",
-    color: "#FFB61E"
+    backgroundColor: getStyle("password.generator.backgroundColor"),
+    color: getStyle("password.generator.textColor")
   },
 });
 
 export const settings = StyleSheet.create({
   itemStyle: {
-    backgroundColor: "#32322D"
+    backgroundColor: getStyle("password.settings.backgroundColor")
   },
   itemHeaderStyle: {
     padding: "2%",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#454540"
+    backgroundColor: getStyle("password.settings.headerColor")
   },
   itemHeaderIconStyle: {
     width: "10%",
     fontSize: 20,
-    color: "#FFB61E"
+    color: getStyle("settings.textColor")
   },
   itemHeaderTextStyle: {
     width: "80%",
     fontWeight: "bold",
-    color: "#FFB61E"
+    color: getStyle("settings.textColor")
   },
   itemHeaderExpandIconStyle: {
     fontSize: 17,
-    color: "#FFB61E"
+    color: getStyle("settings.textColor")
   },
   itemContentStyle: {
-    backgroundColor: "#64645F",
-    color: "#FFB61E"
+    backgroundColor: getStyle("settings.contentColor"),
+    color: getStyle("settings.textColor")
   },
   buttonStyle: {
-    backgroundColor: getStyle("button.backgroundColor"),
+    backgroundColor: getStyle("settings.buttonColor"),
     justifyContent : 'center',
     margin : "2%"
   },
   itemRowStyle: {
-    borderBottomColor : "#32322D"
+    borderBottomColor : getStyle("settings.backgroundColor")
   },
   itemTextStyle: {
     paddingLeft: "2%",
-    color:"#FFB61E"
+    color: getStyle("settings.textColor")
   }
 });
 
 export const header = StyleSheet.create({
   headerStyle: {
-    backgroundColor:"#1D1D1B"
+    backgroundColor: getStyle("header.backgroundColor")
   },
   logoStyle: {
     width: 50,
     height: 50
   },
   titleStyle: {
-    color:"#D96236",
+    color: getStyle("header.titleColor"),
     fontWeight:"bold"
   }
 });
@@ -210,7 +205,7 @@ export const container = StyleSheet.create({
   containerStyle: {
     width: "100%",
     height: "100%",
-    backgroundColor: "#32322D"
+    backgroundColor: getStyle("container.backgroundColor")
   },
   logoStyle: {
     width: "40%",
@@ -218,7 +213,7 @@ export const container = StyleSheet.create({
     alignSelf: "center"
   },
   titleStyle: {
-    color: "#FFB61E",
+    color: getStyle("container.titleColor"),
     fontSize:20,
     fontWeight: "bold",
     alignSelf: "center"
@@ -226,10 +221,10 @@ export const container = StyleSheet.create({
 });
 
 export const colors = {
-  validInputBorder: "#4B4B46",
-  invalidInputBorder: "red",
-  placeholderTextColor: "#A58132",
-  selectedColor: "#16ADF8",
-  switchTrueColor: "#16ADF8",
-  switchFalseColor: "#4B4B46"
+  validInputBorder: getStyle("common.validInputBorder"),
+  invalidInputBorder: getStyle("common.invalidInputBorder"),
+  placeholderTextColor: getStyle("common.placeholderTextColor"),
+  selectedColor: getStyle("common.selectedColor"),
+  switchTrueColor: getStyle("common.switchTrueColor"),
+  switchFalseColor: getStyle("common.switchFalseColor")
 }

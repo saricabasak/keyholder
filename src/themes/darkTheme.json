@@ -4,26 +4,75 @@
     "indicatorColor" : "#D96236",
     "backgroundColor" : "#1D1D1B"
   },
-  "button" : {
-    "backgroundColor" : "#D96236",
-    "textColor" : "#C8C8BE"
+  "login" : {
+    "regularButton" : {
+      "backgroundColor" : "#D96236",
+      "textColor" : "#C8C8BE"
+    }
+    "transparentButton" : {
+      "textColor" : "#118AC6"
+    }
   },
   "home" : {
     "category" : {
       "backgroundColor" : "#32322D",
       "iconColor" : "#FFB61E",
       "textColor" : "#FFB61E"
+    },
+    "swipeRow" : {
+      "backgroundColor" : "#D96236",
+    },
+    "itemRow" : {
+      "borderBottomColor" : "#32322D",
+      "backgroundColor" : "#4B4B46",
+      "textColor" : "#C8C8BE"
+    }
+  },
+  "password" : {
+    "button" : {
+      "backgroundColor" : "#D96236",
+      "textColor" : "#C8C8BE"
+    },
+    "input" : {
+      "iconColor" : "#FFB61E",
+      "textColor" : "#FFB61E",
+      "placeholderColor" : "#A58132",
+      "secureIconColor" : "#118AC6"
+    },
+    "header" : {
+      "titleColor" : "#D96236",
+      "backTextColor" : "#21638C",
+      "backgroundColor" : "#32322D"
+    },
+    "generator" : {
+      "headerColor" : "#454540",
+      "textColor" : "#FFB61E",
+      "borderColor" : "#4B4B46",
+      "backgroundColor" : "#64645F"
     }
   },
   "settings" : {
-    "cardItem" : {
-      "backgroundColor" : "#32322D"
-    },
-    "accordion" : {
-      "headerBackgroundColor" : "#4B4B46",
-      "headerTextColor" : "#FFB61E",
-      "contentbackgroundColor" : "#64645F",
-      "contentTextColor" : "#FFB61E"
-    }
+    "backgroundColor" : "#32322D",
+    "textColor" : "#FFB61E",
+    "headerColor" : "#454540",
+    "borderColor" : "#32322D",
+    "buttonColor" : "#D96236",
+    "contentColor" : "#64645F"
+  },
+  "header" : {
+    "backgroundColor" : "#1D1D1B",
+    "titleColor" : "#D96236"
+  },
+  "container" : {
+    "backgroundColor" : "#32322D",
+    "titleColor" : "#FFB61E"
+  },
+  "common" : {
+    "validInputBorder": "#4B4B46",
+    "invalidInputBorder": "red",
+    "placeholderTextColor": "#A58132",
+    "selectedColor": "#16ADF8",
+    "switchTrueColor": "#16ADF8",
+    "switchFalseColor": "#4B4B46"
   }
 }

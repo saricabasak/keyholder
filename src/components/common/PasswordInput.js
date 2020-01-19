@@ -7,41 +7,43 @@ class PasswordInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue : "",
-      validationValue : !this.props.required,
-      borderColor : colors.validInputBorder,
+      inputValue: "",
+      validationValue: !this.props.required,
+      borderColor: colors.validInputBorder,
       secureText: true
     };
   }
 
-  getValue(){
+  getValue() {
     return this.state.inputValue;
   }
 
-  setValue(value){
+  setValue(value) {
     this.setState({
-      inputValue: value
+      inputValue: value,
+      validationValue: true,
+      borderColor: colors.validInputBorder
     });
   }
 
-  setValueWithValidation(value){
+  setValueWithValidation(value) {
     this.setState({
       inputValue: value
-    },this.runValidation);
+    }, this.runValidation);
   }
 
-  getValidation(){
-    if(this.state.inputValue == null || this.state.inputValue == "" ){
+  getValidation() {
+    if (this.state.inputValue == null || this.state.inputValue == "") {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
 
   onInputChange(value) {
     this.setState({
-        inputValue: value
-      },
+      inputValue: value
+    },
       this.runValidation
     );
   }
@@ -56,13 +58,13 @@ class PasswordInput extends Component {
     });
   }
 
-  runValidation(){
-    if(this.props.required && this.state.inputValue == ""){
+  runValidation() {
+    if (this.props.required && this.state.inputValue == "") {
       this.setState({
         borderColor: colors.invalidInputBorder,
         validationValue: false
       });
-    }else{
+    } else {
       this.setState({
         borderColor: colors.validInputBorder,
         validationValue: true
@@ -70,15 +72,15 @@ class PasswordInput extends Component {
     }
   }
 
-  componentWillReceiveProps (newProps) {
-    if( newProps.inputValue !== this.props.inputValue ){
+  componentWillReceiveProps(newProps) {
+    if (newProps.inputValue !== this.props.inputValue) {
       this.setValue(newProps.inputValue);
     }
   }
 
   render() {
     return (
-      <Item  style={{borderColor : this.state.borderColor}}>
+      <Item style={{ borderColor: this.state.borderColor }}>
         <Icon
           name={this.props.iconName}
           style={password.inputIconStyle}
@@ -92,6 +94,7 @@ class PasswordInput extends Component {
           secureTextEntry={this.state.secureText}
           placeholderTextColor={colors.placeholderTextColor}
           style={password.inputStyle}
+          textContentType = "none"
         />
         <Button
           transparent={true}
@@ -107,4 +110,4 @@ class PasswordInput extends Component {
   }
 }
 
-export default connect(null, null, null, {forwardRef: true})(PasswordInput);
+export default connect(null, null, null, { forwardRef: true })(PasswordInput);

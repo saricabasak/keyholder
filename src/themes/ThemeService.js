@@ -236,5 +236,6 @@ export const colors = {
   placeholderTextColor: getStyle("common.placeholderTextColor"),
   selectedColor: getStyle("common.selectedColor"),
   switchTrueColor: getStyle("common.switchTrueColor"),
-  switchFalseColor: getStyle("common.switchFalseColor")
+  switchFalseColor: getStyle("common.switchFalseColor"),
+  androidStatusBarColor: getStyle("header.backgroundColor")
 }

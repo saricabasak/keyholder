@@ -19,7 +19,9 @@ class InputItem extends Component {
 
   setValue(value){
     this.setState({
-        inputValue: value
+        inputValue: value,
+        validationValue:true,
+        borderColor : colors.validInputBorder
       })
   }
 

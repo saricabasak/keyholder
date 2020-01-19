@@ -1,4 +1,6 @@
 {
+  "KeyHolderWelcome" : "Welcome to KeyHolder!",
+  "KeyHolderHeader" : "KeyHolder",
   "signUp" : {
     "passwordInput" : "Specify Master Key",
     "signUpButton" : "Sign Up"

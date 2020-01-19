@@ -5,6 +5,7 @@ import PasswordInput from "./PasswordInput"
 import CategoryPicker from "./CategoryPicker"
 import PasswordGeneration from "../PasswordGeneration";
 import { Accordion, View, Icon, Text } from "native-base";
+import { ScrollView } from 'react-native';
 import { translate } from "../../language/TranslateService";
 import { password } from "../../themes/ThemeService";
 
@@ -76,7 +77,7 @@ class PasswordDetail extends Component {
 
   render() {
     return (
-      <View>
+      <ScrollView>
         <CategoryPicker
           ref="categoryItem"
           required={true}
@@ -107,7 +108,7 @@ class PasswordDetail extends Component {
           iconName="paper"
           placeholder={translate("password.notes")}
           required={false}
-          numberOfLines={2}
+          multiline={true}
         />
         <Accordion
           style={{ padding: "1%", paddingTop: "5%" }}
@@ -117,7 +118,7 @@ class PasswordDetail extends Component {
           renderContent={this.generatorContent}
           renderHeader={this.renderAccordionHeader}
         />
-      </View>
+      </ScrollView>
     );
   }
 }

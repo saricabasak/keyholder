@@ -3,6 +3,7 @@ import { Image, Text } from 'react-native';
 import { Container } from "native-base";
 import logo from '../../assets/transparentLogo.png';
 import { container } from "../themes/ThemeService";
+import { translate } from "../language/TranslateService";
 
 export default class KeyHolderContainer extends Component {
   render() {
@@ -18,7 +19,7 @@ export default class KeyHolderContainer extends Component {
       );
       renderText = (
         <Text style={container.titleStyle}>
-          Welcome to Key Holder!
+          {translate("KeyHolderWelcome")}
         </Text>
       );
     }

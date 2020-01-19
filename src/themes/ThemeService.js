@@ -91,7 +91,17 @@ export const password = StyleSheet.create({
   },
   inputStyle: {
     paddingLeft: "5%",
-    color: getStyle("password.input.iconColor")
+    paddingRight: "5%",
+    color: getStyle("password.input.iconColor"),
+    height:50,
+    flex: 1
+  },
+  multilineInputStyle: {
+    paddingLeft: "5%",
+    paddingRight: "5%",
+    color: getStyle("password.input.iconColor"),
+    height:75,
+    flex: 1
   },
   placeholderStyle:{
     color: getStyle("password.input.placeholderColor")

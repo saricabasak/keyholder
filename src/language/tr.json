@@ -1,4 +1,6 @@
 {
+    "KeyHolderWelcome" : "KeyHolder'a Hoşgeldiniz!",
+    "KeyHolderHeader" : "KeyHolder",
     "signUp" : {
       "passwordInput" : "Ana Şifre Tanımla",
       "signUpButton" : "Katıl"
@@ -40,7 +42,7 @@
         "category" : {
           "other" : "Diğer",
           "socialMedia" : "Sosyal Medya",
-          "finance" :"Finans", 
+          "finance" :"Finans",
           "shopping":"Alışveriş",
           "travel" : "Gezi",
           "game":"Oyun",
@@ -78,4 +80,3 @@
     "Oyun": "logo-game-controller-b",
     "Eğitim": "ios-journal"
   }
-  

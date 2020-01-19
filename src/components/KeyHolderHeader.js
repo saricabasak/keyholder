@@ -3,6 +3,7 @@ import { Image } from 'react-native';
 import { Header, Left, Body, Title,  Right } from "native-base";
 import logo from '../../assets/transparentLogo.png';
 import { header } from "../themes/ThemeService";
+import { translate } from "../language/TranslateService";
 
 export default class KeyHolderHeader extends Component {
   render() {
@@ -16,7 +17,7 @@ export default class KeyHolderHeader extends Component {
           </Left>
           <Body>
             <Title style={header.titleStyle}>
-              {this.props.headerTitle}
+              {translate("KeyHolderHeader")}
             </Title>
           </Body>
           <Right />

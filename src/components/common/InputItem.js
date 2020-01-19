@@ -62,41 +62,23 @@ class InputItem extends Component {
   }
 
   render() {
-    if (this.props.numberOfLines) {
-      renderInput = (
-        <Textarea
-          rowSpan={this.props.numberOfLines}
-          autoCorrect={false}
-          placeholder={this.props.placeholder}
-          value={this.state.inputValue}
-          onChangeText={this.onInputChange.bind(this)}
-          onBlur={this.onInputBlur}
-          placeholderTextColor={colors.placeholderTextColor}
-          style={password.inputStyle}
+    return (
+      <Item style={{borderColor : this.state.borderColor}}>
+        <Icon
+          name={this.props.iconName}
+          style={password.inputIconStyle}
         />
-      )
-    }else{
-      renderInput = (
         <Input
           autoCorrect={false}
+          multiline={this.props.multiline}
           placeholder={this.props.placeholder}
           value={this.state.inputValue}
           onChangeText={this.onInputChange.bind(this)}
           onBlur={this.onInputBlur}
           placeholderTextColor={colors.placeholderTextColor}
-          style={password.inputStyle}
+          style={this.props.multiline ? password.multilineInputStyle : password.inputStyle}
         />
-      )
-    }
-
-    return (
-        <Item style={{borderColor : this.state.borderColor}}>
-          <Icon
-            name={this.props.iconName}
-            style={password.inputIconStyle}
-          />
-          {renderInput}
-        </Item>
+      </Item>
     )
   }
 }

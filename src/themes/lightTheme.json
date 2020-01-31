@@ -1,0 +1,78 @@
+{
+  "navigator" : {
+    "iconColor" : "#24445f",
+    "indicatorColor" : "#24445f",
+    "backgroundColor" : "#F5F5F5"
+  },
+  "login" : {
+    "regularButton" : {
+      "backgroundColor" : "#ea6530",
+      "textColor" : "white"
+    },
+    "transparentButton" : {
+      "textColor" : "#118AC6"
+    }
+  },
+  "home" : {
+    "category" : {
+      "backgroundColor" : "#FAFAFA",
+      "iconColor" : "#ea6530",
+      "textColor" : "#ea6530"
+    },
+    "swipeRow" : {
+      "backgroundColor" : "#ea6530"
+    },
+    "itemRow" : {
+      "borderBottomColor" : "#BDBDBD",
+      "backgroundColor" : "white",
+      "textColor" : "#346288"
+    }
+  },
+  "password" : {
+    "button" : {
+      "backgroundColor" : "#ea6530",
+      "textColor" : "white"
+    },
+    "input" : {
+      "iconColor" : "#ea6530",
+      "textColor" : "#24445f",
+      "placeholderColor" : "#BDBDBD",
+      "secureIconColor" : "#118AC6"
+    },
+    "header" : {
+      "titleColor" : "#ea6530",
+      "backTextColor" : "#21638C",
+      "backgroundColor" : "#FAFAFA"
+    },
+    "generator" : {
+      "headerColor" : "#F5F5F5",
+      "textColor" : "#346288",
+      "borderColor" : "#4B4B46",
+      "backgroundColor" : "#F5F5F5"
+    }
+  },
+  "settings" : {
+    "backgroundColor" : "#FAFAFA",
+    "textColor" : "#346288",
+    "headerColor" : "#454540",
+    "borderColor" : "#24445f",
+    "buttonColor" : "#ea6530",
+    "contentColor" : "#F5F5F5"
+  },
+  "header" : {
+    "backgroundColor" : "#F5F5F5",
+    "titleColor" : "#24445f"
+  },
+  "container" : {
+    "backgroundColor" : "#FAFAFA",
+    "titleColor" : "#346288"
+  },
+  "common" : {
+    "validInputBorder": "#4B4B46",
+    "invalidInputBorder": "red",
+    "placeholderTextColor": "#BDBDBD",
+    "selectedColor": "#16ADF8",
+    "switchTrueColor": "#16ADF8",
+    "switchFalseColor": "#4B4B46"
+  }
+}

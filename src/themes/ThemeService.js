@@ -87,12 +87,12 @@ export const password = StyleSheet.create({
   inputIconStyle: {
     width:"10%",
     paddingLeft:"2%",
-    color: getStyle("password.input.textColor")
+    color: getStyle("password.input.iconColor")
   },
   inputStyle: {
     paddingLeft: "5%",
     paddingRight: "5%",
-    color: getStyle("password.input.iconColor"),
+    color: getStyle("password.input.textColor"),
     height:50,
     flex: 1
   },

@@ -32,6 +32,7 @@
       "generatorHeader" : "Password Generator",
       "changeMasterKeyHeader" : "Change Master Key",
       "changeLanguageHeader" : "Change Language",
+      "changeThemeHeader" : "Change Theme",
       "generatorButton" : "Generate Password",
       "validationError" : "Please fill required fields!",
       "toastButton" : "OK",
@@ -62,6 +63,7 @@
     "validationError" : "Please fill required fields!",
     "masterKeySuccessMessage" : "Master key has been changed successfully!",
     "languageSuccessMessage" : "Language has been changed successfully!",
+    "themeSuccessMessage" : "Theme has been changed successfully!",
     "toastButton" : "OK",
     "saveButton" : "Save"
   },
@@ -71,6 +73,10 @@
   "language":{
       "turkish" : "Turkish",
       "english" : "English"
+  },
+  "theme":{
+      "light" : "Light Theme",
+      "dark"  :  "Dark Theme"
   },
   "Other": "ios-cafe",
   "Social Media": "ios-chatbubbles",

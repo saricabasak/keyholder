@@ -7,6 +7,7 @@ import { settings } from "../themes/ThemeService";
 import ChangeLanguagePage from "./ChangeLanguagePage";
 import ChangeMasterKeyPage from "./ChangeMasterKeyPage";
 import KeyHolderContainer from '../components/KeyHolderContainer';
+import ChangeThemePage from "./ChangeThemePage";
 
 
 class SettingsPage extends React.Component {
@@ -26,6 +27,14 @@ class SettingsPage extends React.Component {
   returnChangeMasterKeyPage = () => {
     return (
       <ChangeMasterKeyPage />
+    );
+  };
+  
+  returnThemeContentPage = () => {
+    return (
+      <ChangeThemePage
+        buttonStyle={settings.buttonStyle}
+      />
     );
   };
 
@@ -66,6 +75,16 @@ class SettingsPage extends React.Component {
             style={settings.itemContentStyle}
           />
         </CardItem>
+        <CardItem style={settings.itemStyle}>
+          <Accordion
+            dataArray={[{ title: translate("password.changeThemeHeader") }]}
+            animation={true}
+            expanded={true}
+            renderContent={this.returnThemeContentPage}
+            renderHeader={this.renderAccordionHeader}
+            style={settings.itemContentStyle}
+          />
+        </CardItem>
       </KeyHolderContainer>
     );
   }
@@ -73,7 +92,8 @@ class SettingsPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    language: state.PasswordItemReducer.language
+    language: state.PasswordItemReducer.language,
+    theme: state.PasswordItemReducer.theme
   };
 };
 

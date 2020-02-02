@@ -2,13 +2,14 @@ import {
   addDataToStorage,
   setSequence
 } from "../../components/operational/StorageOperations";
-import {initialLanguage,initialSequence,initialMasterKey,initialPasswordItems} from '../../components/common/DefaultValues';
+import {initialLanguage,initialSequence,initialMasterKey,initialPasswordItems,initialTheme} from '../../components/common/DefaultValues';
 
 const initialState = {
   PasswordItems: initialPasswordItems,
   nextSequence: initialSequence,
   masterKey: initialMasterKey,
-  language: initialLanguage
+  language: initialLanguage,
+  theme: initialTheme
 };
 
 const PasswordItemReducer = (state = initialState, action) => {
@@ -71,6 +72,11 @@ const PasswordItemReducer = (state = initialState, action) => {
     }
     case "UPDATE_LANGUAGE":{
       newState.language = action.payload
+      return newState;
+    }
+    case "UPDATE_THEME":{
+      console.log("updating theme on store action-> " + action.payload)
+      newState.theme = action.payload
       return newState;
     }
     default:

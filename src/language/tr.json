@@ -32,6 +32,7 @@
         "generatorHeader" : "Şifre Oluşturma",
         "changeMasterKeyHeader" : "Ana Şifre Değiştir",
         "changeLanguageHeader" : "Dil Değiştir",
+        "changeThemeHeader" : "Tema Değiştir",
         "generatorButton" : "Şifre Oluştur",
         "validationError" : "Gerekli alanları doldurunuz",
         "toastButton" : "OK",
@@ -62,6 +63,7 @@
       "validationError" : "Gerekli alanları doldurunuz",
       "masterKeySuccessMessage" : "Ana Şifre başarılı şekilde değiştirilmiştir.",
       "languageSuccessMessage" : "Dil seçeneği başarılı şekilde değiştirilmiştir.",
+      "themeSuccessMessage" : "Tema seçeneği başarılı şekilde değiştirilmiştir.",
       "toastButton" : "Tamam",
       "saveButton" : "Kaydet"
     },
@@ -71,6 +73,10 @@
     "language":{
         "turkish" : "Türkçe",
         "english" : "İngilizce"
+    },
+    "theme":{
+      "light" : "Açık Tema",
+      "dark"  :  "Koyu Tema"
     },
     "Diğer": "ios-cafe",
     "Sosyal Medya": "ios-chatbubbles",

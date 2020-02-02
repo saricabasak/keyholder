@@ -5,12 +5,12 @@ import SignInPage from "./SignInPage";
 import SignUpPage from "./SignUpPage.js";
 import KeyHolderContainer from '../components/KeyHolderContainer';
 import { connect } from "react-redux";
-import { updateLanguageAction } from "../store/actions/PasswordItemAction";
+import { updateLanguageAction,updateThemeAction } from "../store/actions/PasswordItemAction";
 //import { clearAsyncStorage } from "../components/StorageOperations";
 import {
-  retrieveLanguageOnStorage
+  retrieveLanguageOnStorage,retrieveThemeOnStorage
 } from "../components/operational/StorageOperations";
-import {initialLanguage} from '../components/common/DefaultValues';
+import {initialLanguage, initialTheme} from '../components/common/DefaultValues';
 
  class LoginPage extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ import {initialLanguage} from '../components/common/DefaultValues';
 
   resetApp =()=>{
     this.props.updateLanguageOnStore(initialLanguage);
+    this.props.updateThemeOnStore(initialTheme);
     this.setState({
       isKeyExists: false,
       firstDataForDecrypt: {}
@@ -32,6 +33,10 @@ import {initialLanguage} from '../components/common/DefaultValues';
   componentWillMount() {
     retrieveLanguageOnStorage().then(res => {
       this.props.updateLanguageOnStore(res);
+    });
+    retrieveThemeOnStorage().then(res => {
+      console.log("retrieveThemeOnStorage theme: " + res)
+      this.props.updateThemeOnStore(res);
     });
 
     isAnyPasswordDataExistsOnStorage().then(response => {
@@ -67,7 +72,8 @@ import {initialLanguage} from '../components/common/DefaultValues';
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateLanguageOnStore: data => dispatch(updateLanguageAction(data))
+    updateLanguageOnStore: data => dispatch(updateLanguageAction(data)),
+    updateThemeOnStore: data => dispatch(updateThemeAction(data))
   };
 };
 

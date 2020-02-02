@@ -1,57 +1,64 @@
-export function setPasswordItemArrOnStoreAction(passwordItemArr){
-    return{
-        type:'SET_ALL_ITEM_STORE',
-        payload : passwordItemArr
+export function setPasswordItemArrOnStoreAction(passwordItemArr) {
+    return {
+        type: 'SET_ALL_ITEM_STORE',
+        payload: passwordItemArr
     }
 }
 
-export function setNextSequenceOnStoreAction(seq){
-    return{
-        type:'SET_SEQUENCE_STORE',
-        payload : seq
+export function setNextSequenceOnStoreAction(seq) {
+    return {
+        type: 'SET_SEQUENCE_STORE',
+        payload: seq
     }
 }
 
-export function addPasswordItemArrOnStoreAction(data){
-    return{
-        type:'ADD_PASSWORD_ITEM',
+export function addPasswordItemArrOnStoreAction(data) {
+    return {
+        type: 'ADD_PASSWORD_ITEM',
         payload: data
     }
 }
 
 
-export function updatePasswordItemArrOnStoreAction(data){
-    return{
-        type:'UPDATE_PASSWORD_ITEM',
+export function updatePasswordItemArrOnStoreAction(data) {
+    return {
+        type: 'UPDATE_PASSWORD_ITEM',
         payload: data
     }
 }
 
-export function updatePasswordItemListArrOnStoreAction(data){
-    return{
-        type:'UPDATE_PASSWORD_ITEM_LIST',
+export function updatePasswordItemListArrOnStoreAction(data) {
+    return {
+        type: 'UPDATE_PASSWORD_ITEM_LIST',
         payload: data
     }
 }
 
-export function deletePasswordItemArrOnStoreAction(data){
-    return{
-        type:'DELETE_PASSWORD_ITEM',
+export function deletePasswordItemArrOnStoreAction(data) {
+    return {
+        type: 'DELETE_PASSWORD_ITEM',
         payload: data
     }
 }
 
-export function setMasterKeyAction(data){
-    return{
-        type:'SET_MASTER_KEY',
+export function setMasterKeyAction(data) {
+    return {
+        type: 'SET_MASTER_KEY',
         payload: data
     }
 
 }
 
-export function updateLanguageAction(data){
-    return{
-        type:'UPDATE_LANGUAGE',
+export function updateLanguageAction(data) {
+    return {
+        type: 'UPDATE_LANGUAGE',
+        payload: data
+    }
+}
+
+export function updateThemeAction(data) {
+    return {
+        type: 'UPDATE_THEME',
         payload: data
     }
 }

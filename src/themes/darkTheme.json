@@ -1,5 +1,8 @@
 {
   "navigator" : {
+    "iconStyle" : {
+      "color": "#D96236"
+    },
     "iconColor" : "#D96236",
     "indicatorColor" : "#D96236",
     "backgroundColor" : "#1D1D1B"

@@ -50,7 +50,6 @@ class CategoryPicker extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("componentWillReceiveProps newProps -> " + JSON.stringify(newProps))
     if (newProps.category !== this.props.category) {
       this.setValue(newProps.category);
     }

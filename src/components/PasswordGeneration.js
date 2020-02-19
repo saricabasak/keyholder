@@ -21,7 +21,6 @@ class PasswordGeneration extends Component {
     generationParameters.upperValue = this.refs.upperCase.getValue();
     generationParameters.specialValue = this.refs.specialChar.getValue();
     let generatedPassword = PasswordGenerator.generatePassword(generationParameters);
-    console.log(generatedPassword);
     this.props.getGeneratedPassword(generatedPassword);
   }
 

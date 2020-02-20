@@ -9,13 +9,13 @@
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/kilit_logo_logo_500x500.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/kilit_logo_logo_1000x1000.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#DAD7C5"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -25,6 +25,10 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.coderals.keyholder",
+      "versionCode": 1
     },
     "androidStatusBar": {
       "barStyle": "light-content",

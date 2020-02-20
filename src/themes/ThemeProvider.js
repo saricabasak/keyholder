@@ -5,5 +5,5 @@ import lightTheme from './lightTheme.json';
 var _ = require('lodash');
 
 export function getStyle (item){
-  return _.get(lightTheme,item);
+  return _.get(darkTheme,item);
 }

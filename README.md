@@ -42,4 +42,3 @@ coderalscorp@gmail.com
 <img src="https://user-images.githubusercontent.com/22741824/75111989-b575f380-5650-11ea-93b0-4d543d1c6d4b.JPG" width="378" height="800">
 <img src="https://user-images.githubusercontent.com/22741824/75111990-b575f380-5650-11ea-86ba-ef0c67e4d896.JPG" width="378" height="800">
 <img src="https://user-images.githubusercontent.com/22741824/75111991-b60e8a00-5650-11ea-8226-8c4957369bf5.JPG" width="378" height="800">
-

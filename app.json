@@ -24,7 +24,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "com.coderals.keyholder",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "package": "com.coderals.keyholder",

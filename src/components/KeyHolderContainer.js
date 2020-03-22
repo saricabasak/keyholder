@@ -14,7 +14,7 @@ export default class KeyHolderContainer extends Component {
         <Image
           source={logo}
           style={container.logoStyle}
-          resizeMode="center"
+          resizeMode="contain"
         />
       );
       renderText = (

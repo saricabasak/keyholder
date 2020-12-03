@@ -46,7 +46,8 @@
           "shopping":"Alışveriş",
           "travel" : "Gezi",
           "game":"Oyun",
-          "education" : "Eğitim"
+          "education" : "Eğitim",
+          "work": "İş"
           }
     },
     "home" : {
@@ -78,5 +79,6 @@
     "Alışveriş": "ios-cart",
     "Gezi": "ios-paper-plane",
     "Oyun": "logo-game-controller-b",
-    "Eğitim": "ios-journal"
+    "Eğitim": "ios-journal",
+    "İş":"ios-laptop-outline"
   }

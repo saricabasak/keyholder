@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import {
-  Item,
-  Input,
   Button,
   Text,
   Toast,
-  Icon,
-  View
 } from "native-base";
 import KeyHolderContent from "../components/KeyHolderContent";
 import PasswordInput from "../components/common/PasswordInput";
@@ -16,13 +12,13 @@ import { connect } from "react-redux";
 import { setMasterKeyAction } from "../store/actions/PasswordItemAction";
 import { login } from "../themes/ThemeService";
 import { translate } from "../language/TranslateService";
-import ResetApplication from "../components/operational/ResetApplication";
 import Dialog, {
   DialogTitle,
   DialogContent,
   DialogButton,
   DialogFooter
 } from "react-native-popup-dialog";
+import { KeyboardAvoidingView } from 'react-native';
 import {clearAsyncStorage} from '../components/operational/StorageOperations';
 
 class SignInPage extends Component {
@@ -70,7 +66,11 @@ class SignInPage extends Component {
   render() {
     return (
       <KeyHolderContent justifyContent="center">
-        <PasswordInput
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : "height"}
+          style={login.KeyboardAvoidingViewStyle}
+        >
+          <PasswordInput
           iconName="key"
           ref="passwordInput"
           placeholder={translate("signIn.passwordInput")}
@@ -93,6 +93,7 @@ class SignInPage extends Component {
             {translate("signIn.resetButton")}
           </Text>
         </Button>
+        </KeyboardAvoidingView>
         <Dialog
           dialogTitle={<DialogTitle title= {translate("signIn.resetTitle")} />}
           visible={this.state.visible}

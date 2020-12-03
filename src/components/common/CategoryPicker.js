@@ -5,7 +5,7 @@ import { translate } from "../../language/TranslateService";
 import { Categories } from "../Categories";
 import { password, colors } from "../../themes/ThemeService"
 
-var CANCEL_INDEX = 7;
+
 
 class CategoryPicker extends Component {
   constructor(props) {
@@ -78,15 +78,16 @@ class CategoryPicker extends Component {
   openCategoryActionSheet = () => {
     optionValues = this.renderCategoryValues();
     optionKeys = this.renderCategoryKeys();
+    //Cancel butonu herzaman en sonda olacak length-1 şeklinde.
     ActionSheet.show(
       {
         options: optionValues,
-        cancelButtonIndex: CANCEL_INDEX,
-        destructiveButtonIndex: 8,
+        cancelButtonIndex: optionValues.length - 1,
+        destructiveButtonIndex: optionValues.length,
         title: "Select Category"
       },
       buttonIndex => {
-        if (buttonIndex != 7) {
+        if (buttonIndex != optionValues.length - 1) {
           this.setState({
             category: optionKeys[buttonIndex]
           },

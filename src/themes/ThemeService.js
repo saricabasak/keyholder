@@ -31,6 +31,9 @@ export const login = StyleSheet.create({
   },
   textStyle: {
     color: getStyle("login.transparentButton.textColor")
+  },
+  KeyboardAvoidingViewStyle:{
+    flex : 2
   }
 });
 

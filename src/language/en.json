@@ -46,7 +46,8 @@
         "shopping":"Shopping",
         "travel" : "Travel",
         "game":"Game",
-        "education" : "Education"
+        "education" : "Education",
+        "work": "Work"
         }
   },
   "home" : {
@@ -78,5 +79,6 @@
   "Shopping": "ios-cart",
   "Travel": "ios-paper-plane",
   "Game": "logo-game-controller-b",
-  "Education": "ios-journal"
+  "Education": "ios-journal",
+  "Work":"ios-laptop-outline"
 }
